@@ -1,702 +1,543 @@
-Song,Artist,release_date
-My Heart Will Go On,Celine Dion,2020
-Hotel California,Eagles,1976
-Billie Jean,Michael Jackson,1982
-Layla,Derek and the Dominos,1970
-I Will Always Love You,Whitney Houston,1992
-Sweet Caroline,Neil Diamond,1969
-Every Breath You Take,The Police,1983
-Bohemian Rhapsody,Queen,1975
-Stayin' Alive,Bee Gees,2023
-The Sound of Silence,Simon & Garfunkel,1964
-Don't Stop Believin',Journey,2010
-Can't Help Falling in Love,Elvis Presley,1961
-Beat It,Michael Jackson,1982
-Stairway To Heaven,Led Zeppelin,1971
-Maggie May,Rod Stewart,1971
-Dancing Queen,ABBA,2002
-In the Air Tonight,Phil Collins,1981
-Livin' on a Prayer,Bon Jovi,2022
-What's Love Got to Do with It,Tina Turner,2020
-With Or Without You,U2,2022
-Thriller,Michael Jackson,2017
-Under Pressure,David Bowie & Queen,1982
-Smoke on the Water,Deep Purple,1972
-Another One Bites the Dust,Queen,1980
-Back in Black,AC/DC,1980
-Wish You Were Here,Pink Floyd,1975
-Black Magic Woman / Gypsy Queen,Santana,1970
-Sultans of Swing,Dire Straits,1978
-Wannabe,Spice Girls,1996
-Imagine,John Lennon,1971
-(Everything I Do) I Do It for You,Bryan Adams,1991
-Go Your Own Way,Fleetwood Mac,1977
-I Wanna Dance with Somebody (Who Loves Me),Whitney Houston,1987
-Sweet Child O' Mine,Guns N' Roses,2023
-Smells Like Teen Spirit,Nirvana,1991
-Another Day in Paradise,Phil Collins,1989
-Your Song,Elton John,1970
-Highway to Hell,AC/DC,1979
-You Shook Me All Night Long,AC/DC,1980
-I Want It That Way,Backstreet Boys,1999
-Losing My Religion,R.E.M.,2022
-Mrs. Robinson,Simon & Garfunkel,1968
-Black or White,Michael Jackson,1991
-Take It Easy,Eagles,1972
-...Baby One More Time,Britney Spears,1999
-Like A Prayer,Madonna,2009
-Jailhouse Rock,Elvis Presley,1997
-Friends In Low Places,Garth Brooks,2015
-You're the One That I Want,John Travolta & Olivia Newton-John,1978
-Walk This Way,Aerosmith,1975
-We Will Rock You,Queen,1977
-Blue Christmas,Elvis Presley,1957
-Another Brick in the Wall (Part II),Pink Floyd,1979
-You Give Love a Bad Name,Bon Jovi,2022
-All Along the Watchtower,Jimi Hendrix Experience,1997
-Lose Yourself,Eminem,2005
-Under the Bridge,Red Hot Chili Peppers,1991
-Thunderstruck,AC/DC,1990
-Fast Car,Tracy Chapman,2015
-Don't Stop Me Now,Queen,1978
-Paranoid,Black Sabbath,1970
-Sunday Bloody Sunday,U2,2022
-Zombie,The Cranberries,1993
-Someone Like You,Adele,2011
-Because You Loved Me,Celine Dion,1996
-Let It Be,The Beatles,1963
-Paint It Black,The Rolling Stones,1966
-Ironic,Alanis Morissette,2023
-Dream On,Aerosmith,1973
-All I Want For Christmas Is You,Mariah Carey ft. Justin Bieber,1994
-How Deep Is Your Love,Bee Gees,1979
-Jump,Van Halen,2020
-Nothing Else Matters,Metallica,1991
-"Rocket Man (I Think It's Going to Be a Long, Long Time)",Elton John,1972
-Don't Speak,No Doubt,2020
-Somebody to Love,Queen,1976
-You Can't Hurry Love,The Supremes,1966
-Purple Rain,Prince and the Revolutions,1984
-Enter Sandman,Metallica,1991
-All That She Wants,Ace Of Base,2020
-Piano Man,Billy Joel,1973
-Dreams,Fleetwood Mac,1977
-Wonderful Tonight,Eric Clapton,1977
-I Want to Hold Your Hand,The Beatles,1973
-Believe,Cher,2023
-Everybody (Backstreet's Back),Backstreet Boys,2013
-Sunshine of Your Love,Cream,2019
-Money for Nothing,Dire Straits,1985
-Pour Some Sugar on Me,Def Leppard,2013
-Hero,Mariah Carey,2005
-Like A Virgin,Madonna,2009
-Come As You Are,Nirvana,1991
-Mamma Mia,ABBA,2018
-Born in the U.S.A.,Bruce Springsteen,1984
-Have You Ever Seen The Rain,Creedence Clearwater Revival,1970
-One,U2,2017
-Beautiful Day,U2,2022
-Good Vibrations,The Beach Boys,2012
-Da Ya Think I'm Sexy?,Rod Stewart,1978
-(I Can't Get No) Satisfaction,The Rolling Stones,1965
-Whole Lotta Love,Led Zeppelin,1969
-Rolling In The Deep,Adele,2011
-Man in the Mirror,Michael Jackson,2012
-November Rain,Guns N' Roses,2019
-You Can't Hurry Love,Phil Collins,1982
-Oops!... I Did It Again,Britney Spears,2000
-Money,Pink Floyd,1973
-Uptown Girl,Billy Joel,1983
-La Isla Bonita,Madonna,1986
-Fortunate Son,Creedence Clearwater Revival,1969
-Wouldn't It Be Nice,The Beach Boys,1966
-In The End,Linkin Park,2024
-Tears in Heaven,Eric Clapton,1992
-Light My Fire,The Doors,1967
-Surfin' U.S.A.,The Beach Boys,1963
-Start Me Up,The Rolling Stones,1981
-Don't Stop 'Til You Get Enough,Michael Jackson,1979
-Like a Rolling Stone,Bob Dylan,1965
-Come Together,The Beatles,1969
-Basket Case,Green Day,1994
-Dancing in the Dark,Bruce Springsteen,1984
-Careless Whisper,George Michael,1998
-I Still Haven't Found What I'm Looking For,U2,2023
-Purple Haze,Jimi Hendrix Experience,1967
-Without You,Mariah Carey,2005
-Yesterday,The Beatles,1965
-I Want to Break Free,Queen,1984
-Man! I Feel Like a Woman!,Shania Twain,1997
-Woman in Love,Barbra Streisand,1980
-Suspicious Minds,Elvis Presley,1969
-Fantasy,Mariah Carey,1995
-Bennie and the Jets,Elton John,1973
-I'd Do Anything for Love (But I Won't Do That),Meat Loaf ft. Lorraine Crosby,2018
-Smooth Criminal,Michael Jackson,2012
-Walk of Life,Dire Straits,1980
-The Power of Love,Celine Dion,2017
-We Are the Champions,Queen,1977
-Here Comes the Sun,The Beatles,1969
-Riders on the Storm,The Doors,1971
-I Want You Back,The Jackson 5,1969
-The Best,Tina Turner,2016
-Sympathy For The Devil,The Rolling Stones,1968
-Fly Me to the Moon,Frank Sinatra,1962
-The Real Slim Shady,Eminem,2000
-Material Girl,Madonna,1985
-Break On Through (To the Other Side),The Doors,2022
-Welcome to the Jungle,Guns N' Roses,1987
-The Way You Make Me Feel,Michael Jackson,2012
-It's All Coming Back to Me Now,Celine Dion,1996
-Bad Moon Rising,Creedence Clearwater Revival,1969
-The Logical Song,Supertramp,1979
-The Boxer,Simon & Garfunkel,1970
-Superstition,Stevie Wonder,2002
-Faith,George Michael,1987
-Beast Of Burden,The Rolling Stones,1978
-Always Be My Baby,Mariah Carey,1995
-Paradise City,Guns N' Roses,2018
-Without Me,Eminem,2002
-No Scrubs,TLC,2022
-Roxanne,The Police,1978
-It's My Life,Bon Jovi,2024
-Bridge over Troubled Water,Simon & Garfunkel,1970
-Hey Jude,The Beatles,2023
-I Have Nothing,Whitney Houston,2022
-Vogue,Madonna,2009
-Band on the Run,Paul McCartney & Wings,1973
-One,Metallica,1988
-Wake Me Up Before You Go-Go,Wham!,2006
-"Whenever, Wherever",Shakira,2001
-Viva La Vida,Coldplay,2008
-Paradise by the Dashboard Light,Meat Loaf,1977
-Everywhere,Fleetwood Mac,1987
-Enjoy the Silence,Depeche Mode,2022
-(I've Had) The Time Of My Life,Bill Medley & Jennifer Warnes,2014
-'Till I Collapse,Eminem ft. Nate Dogg,2002
-How Will I Know,Whitney Houston,1985
-Hello,Adele,2015
-Respect,Aretha Franklin,1967
-Love Me Do,The Beatles,1963
-The Dance,Garth Brooks,2017
-Comfortably Numb,Pink Floyd,1979
-Knockin' on Heaven's Door,Guns N' Roses,2024
-Cocaine,Eric Clapton,2013
-Born to Run,Bruce Springsteen,1975
-Maria Maria,Santana ft. The Product G&B,1999
-Message in a Bottle,The Police,1979
-Yellow,Coldplay,2000
-Englishman in New York,Sting,1987
-Smooth Operator,Sade,2011
-Say My Name,Destiny's Child,1999
-Shape of You,Ed Sheeran,2017
-You Don't Bring Me Flowers,Barbra Streisand,1978
-Angie,The Rolling Stones,1969
-Heart of Gold,Neil Young,1972
-I Just Called to Say I Love You,Stevie Wonder,1999
-Desperado,Eagles,1973
-Sussudio,Phil Collins,2024
-Don't Go Breaking My Heart,Elton John & Kiki Dee,1975
-Cecilia,Simon & Garfunkel,1970
-You're Beautiful,James Blunt,2005
-The Scientist,Coldplay,2002
-Just Can't Get Enough,Depeche Mode,1981
-Caribbean Blue,Enya,2005
-A Hard Day's Night,The Beatles,1964
-Californication,Red Hot Chili Peppers,1999
-"No Woman, No Cry",Bob Marley,1975
-Angels,Robbie Williams,1997
-I Get Around,The Beach Boys,1964
-Waterfalls,TLC,2016
-Crazy,Aerosmith,1975
-You Can Call Me Al,Paul Simon,1986
-That's the Way Love Goes,Janet Jackson,1993
-They Don't Care About Us,Michael Jackson,1995
-Every Little Thing She Does Is Magic,The Police,1981
-Twist and Shout,The Beatles,1963
-Black Dog,Led Zeppelin,1971
-Killing Me Softly,Fugees,1996
-Night Fever,Bee Gees,1979
-Bring Me to Life,Evanescence,2003
-Fix You,Coldplay,2000
-Oye Como Va,Santana,1970
-Hound Dog,Elvis Presley,1958
-Fallin',Alicia Keys,2001
-That Don't Impress Me Much,Shania Twain,1997
-One Of These Nights,Eagles,1975
-Flashdance... What a Feeling,Irene Cara,2007
-Crazy in Love,Beyonce ft. Jay-Z,2003
-Baby Love,The Supremes,1964
-Let It Go,Various Artists,2020
-Master Of Puppets,Metallica,1986
-Rock with You,Michael Jackson,1979
-Gimme Shelter,The Rolling Stones,1969
-Three Little Birds,Bob Marley,1977
-Hey Joe,Jimi Hendrix Experience,1967
-Hips Don't Lie,Shakira ft. Wyclef Jean,2005
-Brothers in Arms,Dire Straits,1985
-Can't Buy Me Love,The Beatles,1964
-The Trooper,Iron Maiden,1983
-Could You Be Loved,Bob Marley,1980
-Emotions,Mariah Carey,1991
-Stan,Eminem ft. Dido,2000
-The Thunder Rolls,Garth Brooks,2015
-Toxic,Britney Spears,2003
-White Room,Cream,2020
-Good Times Bad Times,Led Zeppelin,1969
-Brown Sugar,The Rolling Stones,1971
-Ramble On,Led Zeppelin,1969
-When Doves Cry,Prince and the Revolutions,1984
-Radio Ga Ga,Queen,2024
-Crazy Train,Ozzy Osbourne,2020
-Help!,The Beatles,2023
-Back for Good,Take That,1995
-Time,Pink Floyd,1973
-Bye Bye Bye,NSYNC,2000
-Wanted Dead or Alive,Bon Jovi,2015
-Numb,Linkin Park,2022
-Holiday,Madonna,2018
-Invisible Touch,Genesis,1986
-One More Night,Phil Collins,1985
-Patience,Guns N' Roses,2023
-Hells Bells,AC/DC,1980
-For Those About to Rock (We Salute You),AC/DC,1981
-The Times They Are a-Changin',Bob Dylan,1964
-Life In The Fast Lane,Eagles,1976
-Everybody Hurts,R.E.M.,1992
-Dirty Deeds Done Dirt Cheap,AC/DC,1976
-Maniac,Michael Sembello,1983
-Only Time,Enya,2018
-Set Fire To The Rain,Adele,2011
-Kiss,Prince and the Revolutions,1982
-Tragedy,Bee Gees,2021
-Sweet Emotion,Aerosmith,1975
-We Didn't Start the Fire,Billy Joel,1989
-Yeah!,Usher ft. Lil Jon & Ludacris,2004
-Into The Groove,Madonna,2009
-Thank You,Dido,2022
-Bed of Roses,Bon Jovi,2024
-T.N.T.,AC/DC,1976
-Cryin',Aerosmith,1993
-Highway Star,Deep Purple,2012
-Endless Love,Diana Ross & Lionel Richie,1992
-Blank Space,Taylor Swift,2023
-Sacrifice,Elton John,1989
-Love Story,Taylor Swift,2021
-Papa Don't Preach,Madonna,2013
-Let's Dance,David Bowie,1983
-Jamming,Bob Marley,1977
-Tell Him,Barbra Streisand & Celine Dion,2014
-Yellow Submarine,The Beatles,2014
-Rock and Roll,Led Zeppelin,1971
-Complicated,Avril Lavigne,2022
-Get Back,The Beatles,1970
-Perfect,Ed Sheeran,2021
-Roadhouse Blues,The Doors,1970
-I Can't Dance,Genesis,1991
-Breakfast in America,Supertramp,1979
-Last Christmas,Wham!,2022
-Killer Queen,Queen,2024
-Baby,Justin Bieber ft. Ludacris,2022
-Burning Love,Elvis Presley,1973
-Frozen,Madonna,1998
-If I Ain't Got You,Alicia Keys,2003
-Wild Horses,The Rolling Stones,1971
-I'm on Fire,Bruce Springsteen,1984
-Just the Way You Are,Bruno Mars,2010
-Woman,John Lennon,2020
-All You Need Is Love,The Beatles,1967
-She Loves You,The Beatles,1973
-It's Still Rock and Roll to Me,Billy Joel,1980
-Iron Man,Black Sabbath,1970
-Bad Romance,Lady Gaga,2023
-"Theme from New York, New York",Frank Sinatra,2008
-Any Man of Mine,Shania Twain,1995
-If I Could Turn Back Time,Cher,2023
-The Show Must Go On,Queen,2011
-Bad,Michael Jackson,1995
-Shake It Off,Taylor Swift,2023
-Hung Up,Madonna,2015
-Where Is the Love?,Black Eyed Peas ft. Justin Timberlake,2003
-Poker Face,Lady Gaga,2008
-Candle in the Wind,Elton John,1973
-I Gotta Feeling,Black Eyed Peas,2009
-The River,Bruce Springsteen,1980
-In the Ghetto,Elvis Presley,1969
-Dynamite,BTS,2022
-People Are Strange,The Doors,1967
-Love The Way You Lie,Eminem ft. Rihanna,2010
-ABC,The Jackson 5,1970
-Pride (in The Name Of Love),U2,2023
-Remember the Time,Michael Jackson,1991
-Greatest Love of All,Whitney Houston,1985
-Give a Little Bit,Supertramp,1977
-The River of Dreams,Billy Joel,1993
-Thinking Out Loud,Ed Sheeran,2014
-Can't Get You Out of My Head,Kylie Minogue,2001
-Don't Cry,Guns N' Roses,2018
-Crazy Little Thing Called Love,Queen,1980
-Sailing,Rod Stewart,1979
-We Belong Together,Mariah Carey,2005
-God Only Knows,The Beach Boys,1966
-Hurricane,Bob Dylan,1976
-Run to the Hills,Iron Maiden,1982
-If Tomorrow Never Comes,Garth Brooks,2024
-Vision of Love,Mariah Carey,2022
-Child in Time,Deep Purple,1970
-White Flag,Dido,2021
-P.Y.T. (Pretty Young Thing),Michael Jackson,1982
-Landslide,Fleetwood Mac,1975
-My Life,Billy Joel,1978
-Romeo and Juliet,Dire Straits,1998
-Halo,Beyonce,2014
-Don't Let the Sun Go Down on Me,Elton John,1974
-One Love / People Get Ready,Bob Marley,1977
-You Are Not Alone,Michael Jackson,1995
-Space Oddity,David Bowie,1969
-One Sweet Day,Boyz II Men & Mariah Carey,1995
-Summer Nights,John Travolta & Olivia Newton-John,1978
-Come Away with Me,Norah Jones,2002
-Because of You,Kelly Clarkson,2004
-Mockingbird,Eminem,2004
-Good Riddance (Time of Your Life),Green Day,1997
-I Say a Little Prayer,Aretha Franklin,1968
-Samba Pa Ti,Santana,1970
-Hero,Enrique Iglesias,2001
-Eight Days a Week,The Beatles,1964
-I Shot the Sheriff,Eric Clapton,1974
-Tearin' Up My Heart,NSYNC,2023
-Linger,The Cranberries,1993
-Blinding Lights,The Weeknd,2015
-Earth Song,Michael Jackson,1995
-Kashmir,Led Zeppelin,1975
-Feel Good Inc.,Gorillaz ft. De La Soul,2005
-Forever in Blue Jeans,Neil Diamond,1978
-Faithfully,Journey,1983
-Don't Stand So Close to Me,The Police,1980
-The Chain,Fleetwood Mac,1977
-Our House,"Crosby, Stills, Nash & Young",1970
-My Immortal,Evanescence,2003
-Crocodile Rock,Elton John,1972
-The Sign,Ace Of Base,2022
-Personal Jesus,Depeche Mode,1998
-Photograph,Def Leppard,1983
-Something,The Beatles,1969
-For What It's Worth,Buffalo Springfield,2009
-I'm Still Standing,Elton John,1983
-Don't Know Why,Norah Jones,2002
-Doo Wop (That Thing),Lauryn Hill,1998
-Suite: Judy Blue Eyes,"Crosby, Stills & Nash",1969
-That's All,Genesis,2022
-Knockin' on Heaven's Door,Bob Dylan,1973
-Me and Julio Down by the Schoolyard,Paul Simon,1972
-Sir Duke,Stevie Wonder,2021
-Otherside,Red Hot Chili Peppers,2003
-Give Me One Reason,Tracy Chapman,1995
-Eleanor Rigby,The Beatles,1966
-Rhiannon,Fleetwood Mac,1975
-You Should Be Dancing,Bee Gees,1976
-Rodeo,Garth Brooks,1993
-In My Life,The Beatles,1965
-Love Me Tender,Elvis Presley,2002
-Fields of Gold,Sting,2022
-Beauty and the Beast,Celine Dion & Peabo Bryson,1983
-My All,Mariah Carey,2008
-Buffalo Soldier,Bob Marley,1983
-California Love,2Pac ft. Dr. Dre & Roger Troutman,1998
-Hysteria,Def Leppard,1987
-All by Myself,Celine Dion,2024
-Heart-Shaped Box,Nirvana,1993
-Heal the World,Michael Jackson,1991
-Lithium,Nirvana,1993
-Lucy in the Sky with Diamonds,The Beatles,1967
-Two Out of Three Ain't Bad,Meat Loaf,1977
-Honky Tonk Women,The Rolling Stones,2023
-My Sweet Lord,George Harrison,1970
-No Ordinary Love,Sade,1994
-Radioactive,Imagine Dragons,2012
-Lyin' Eyes,Eagles,1975
-Hungry Eyes,Eric Carmen,2012
-The Sweetest Taboo,Sade,1985
-Everlong,Foo Fighters,1997
-Ticket to Ride,The Beatles,1965
-Panama,Van Halen,2023
-So What,P!nk,2023
-Lay Lady Lay,Bob Dylan,1969
-To Love Somebody,Bee Gees,1967
-Proud Mary,Creedence Clearwater Revival,1969
-Breathe,Pink Floyd,1973
-Music,Madonna,2022
-New Year's Day,U2,2020
-Live To Tell,Madonna,1986
-Shoot to Thrill,AC/DC,1980
-Hollaback Girl,Gwen Stefani,2004
-Heartbreak Hotel,Elvis Presley,1958
-Just Give Me a Reason,P!nk ft. Nate Ruess,2012
-Think Twice,Celine Dion,2023
-Old Man,Neil Young,1972
-Boy with Luv,BTS ft. Halsey,2022
-Wanna Be Startin' Somethin',Michael Jackson,2008
-Shape of My Heart,Backstreet Boys,2000
-Follow You Follow Me,Genesis,2020
-Goodbye Yellow Brick Road,Elton John,1973
-Before He Cheats,Carrie Underwood,2005
-You Make Me Wanna...,Usher,1997
-Little Wing,Jimi Hendrix Experience,1967
-Overload,Soundtrack,2023
-Survivor,Destiny's Child,2001
-The Unforgiven,Metallica,1997
-Shine On You Crazy Diamond (Parts I-V),Pink Floyd,1975
-Runnin' with the Devil,Van Halen,2023
-Sgt. Pepper's Lonely Hearts Club Band,The Beatles,1967
-Raspberry Beret,Prince and the Revolutions,1985
-More Than a Woman,Bee Gees,2020
-SexyBack,Justin Timberlake ft. Timbaland,2006
-Tiny Dancer,Elton John,1971
-Freedom! '90,George Michael,1990
-Sunrise,Norah Jones,2004
- Blinding Lights,The Weeknd ,2021
- Shape of You,Ed Sheeran ,2017
- Someone You Loved,Lewis Capaldi ,2019
- Sunflower,Post Malone ,2019
- Dance Monkey,Tones And I ,2021
- One Dance,Drake ,2016
- rockstar,Post Malone ,2018
- STAY,The Kid LAROI ,2021
- Starboy,The Weeknd ,2024
- Believer,Imagine Dragons ,2017
- As It Was,Harry Styles ,2022
- Heat Waves,Glass Animals ,2020
- Closer,The Chainsmokers ,2016
- Perfect,Ed Sheeran ,2024
- SeÃ±orita,Shawn Mendes ,2023
- Say You Won't Let Go,James Arthur ,2016
- lovely,Billie Eilish ,2018
- Watermelon Sugar,Harry Styles ,2019
- Sweater Weather,The Neighbourhood ,2014
- Don't Start Now,Dua Lipa ,2020
- bad guy,Billie Eilish ,2019
- Lucid Dreams,Juice WRLD ,2018
- Thinking out Loud,Ed Sheeran ,2014
- God's Plan,Drake ,2018
- Something Just Like This,The Chainsmokers ,2017
- Bohemian Rhapsody,Queen ,1975
- Shallow,Lady Gaga ,2018
- Take Me to Church,Hozier ,2024
- Circles,Post Malone ,2019
- Love Yourself,Justin Bieber ,2015
- All of Me,John Legend ,2013
- Thunder,Imagine Dragons ,2017
- SAD!,XXXTENTACION ,2018
- Riptide,Vance Joy ,2022
- 7 rings,Ariana Grande ,2019
- Counting Stars,OneRepublic ,2013
- goosebumps,Travis Scott ,2016
- Stressed Out,Twenty One Pilots ,2015
- Wake Me Up,Avicii ,2013
- Jocelyn Flores,XXXTENTACION ,2017
- Can't Hold Us,Macklemore & Ryan Lewis ,2012
- The Hills,The Weeknd ,2015
- Let Her Go,Passenger ,2012
- HUMBLE.,Kendrick Lamar ,2017
- XO Tour Llif3,Lil Uzi Vert ,2017
- One Kiss,Calvin Harris ,2018
- Havana,Camila Cabello ,2018
- New Rules,Dua Lipa ,2023
- good 4 u,Olivia Rodrigo ,2021
- Happier,Marshmello ,2018
- SICKO MODE,Travis Scott ,2018
- drivers license,Olivia Rodrigo ,2021
- Another Love,Tom Odell ,2013
- Demons,Imagine Dragons ,2020
- Treat You Better,Shawn Mendes ,2017
- Let Me Love You,DJ Snake ,2016
- Lose Yourself,Eminem ,2005
- Sorry,Justin Bieber ,2015
- No Role Modelz,J. Cole ,2014
- Levitating,Dua Lipa ,2020
- Stay With Me,Sam Smith ,2014
- INDUSTRY BABY,Lil Nas X ,2021
- Do I Wanna Know?,Arctic Monkeys ,2013
- Lean On,Major Lazer ,2015
- Without Me,Halsey ,2019
- Yellow,Coldplay ,2000
- Too Good At Goodbyes,Sam Smith ,2017
- Congratulations,Post Malone ,2016
- Better Now,Post Malone ,2018
- Roses,SAINt JHN ,2020
- DÃKITI,Bad Bunny ,2022
- Memories,Maroon 5 ,2018
- Uptown Funk,Mark Ronson ,2015
- Faded,Alan Walker ,2018
- I Took A Pill In Ibiza,Mike Posner ,2016
- MONTERO (Call Me By Your Name),Lil Nas X ,2021
- There's Nothing Holdin' Me Back,Shawn Mendes ,2017
- Unforgettable,French Montana ,2017
- That's What I Like,Bruno Mars ,2016
- Don't Let Me Down,The Chainsmokers ,2016
- Wonderwall,Oasis ,2024
- Without Me,Eminem ,2005
-" thank u, next",Ariana Grande ,2019
- Die For You,The Weeknd ,2016
- Smells Like Teen Spirit,Nirvana ,2021
- Till I Collapse,Eminem ,2002
- Mood,24kGoldn ,2022
- I Don't Care,Ed Sheeran ,2019
- Dynamite,BTS ,2017
- When I Was Your Man,Bruno Mars ,2012
- Moonlight,XXXTENTACION ,2023
- Just the Way You Are,Bruno Mars ,2010
- Stitches,Shawn Mendes ,2015
- Don't Stop Me Now,Queen ,1978
- The Box,Roddy Ricch ,2019
- In the End,Linkin Park ,2024
- Cold Heart,Elton John ,2022
- Viva La Vida,Coldplay ,2008
- Someone Like You,Adele ,2011
- I'm Yours,Jason Mraz ,2008
- 7 Years,Lukas Graham ,2016
- Cheap Thrills,Sia ,2022
- Before You Go,Lewis Capaldi ,2019
- Every Breath You Take,The Police ,1983
- Sugar,Maroon 5 ,2022
- Despacito,Luis Fonsi ,2017
- Don't Stop Believin',Journey ,1981
- Save Your Tears,The Weeknd ,2020
- The Scientist,Coldplay ,2002
- I'm Not The Only One,Sam Smith ,2014
- We Don't Talk Anymore,Charlie Puth ,2015
- I Like Me Better,Lauv ,2022
- when the party's over,Billie Eilish ,2019
- Despacito (Featuring Daddy Yankee),Luis Fonsi ,2019
- Radioactive,Imagine Dragons ,2012
- Kiss Me More,Doja Cat ,2021
- Another One Bites The Dust,Queen ,1980
- Youngblood,5 Seconds of Summer ,2018
- Sweet Child O' Mine,Guns N' Roses ,1987
- Attention,Charlie Puth ,2018
- Bad Habits,Ed Sheeran ,2021
-" CAN'T STOP THE FEELING! (from DreamWorks Animation's ""TROLLS"")",Justin Timberlake ,2016
- Heathens,Twenty One Pilots ,2016
- Me RehÃºso,Danny Ocean ,2019
- Girls Like You,Maroon 5 ,2018
- ROCKSTAR,DaBaby ,2020
- Eastside,benny blanco ,2018
- I Feel It Coming,The Weeknd ,2024
- Be Alright,Dean Lewis ,2018
- Can't Feel My Face,The Weeknd ,2015
- Ride,Twenty One Pilots ,2015
- Locked out of Heaven,Bruno Mars ,2012
- Pumped Up Kicks,Foster The People ,2011
- I Like It,Cardi B ,2018
- I Fall Apart,Post Malone ,2016
- Chandelier,Sia ,2021
-ha ,a,2022
- This Is What You Came For,Calvin Harris ,2016
- Payphone,Maroon 5 ,2012
- Africa,TOTO ,2024
- Rolling in the Deep,Adele ,2011
- Wow.,Post Malone ,2018
- Dusk Till Dawn,ZAYN ,2019
- Cheerleader,OMI ,2015
- Me Porto Bonito,Bad Bunny ,2022
- death bed (coffee for your head),Powfu ,2020
- The Nights,Avicii ,2014
- Call Out My Name,The Weeknd ,2017
- Somebody That I Used To Know,Gotye ,2011
- Sweet but Psycho,Ava Max ,2020
- Billie Jean,Michael Jackson ,1982
- Falling,Trevor Daniel ,2018
- The Night We Met,Lord Huron ,2015
- Taki Taki,DJ Snake ,2019
- LA CANCIÃN,J Balvin ,2020
- Adore You,Harry Styles ,2019
- Peaches,Justin Bieber ,2021
- The Real Slim Shady,Eminem ,2000
- Earned It (Fifty Shades Of Grey),The Weeknd ,2015
- Blank Space,Taylor Swift ,2023
- IDGAF,Dua Lipa ,2023
- Old Town Road,Lil Nas X ,2019
- What Do You Mean?,Justin Bieber ,2015
- All I Want for Christmas Is You,Mariah Carey ,1994
- I Donât Wanna Live Forever (Fifty Shades Darker),ZAYN ,2017
- Easy On Me,Adele ,2021
- High Hopes,Panic! At The Disco ,2018
- Flowers,Miley Cyrus ,2024
- Cake By The Ocean,DNCE ,2016
- Hello,Adele ,2021
- Shut Up and Dance,WALK THE MOON ,2014
- Psycho,Post Malone ,2018
- Redbone,Childish Gambino ,2016
- Mask Off,Future ,2017
-" Quevedo: Bzrp Music Sessions, Vol. 52",Bizarrap ,2022
- Titanium,David Guetta ,2011
- Silence,Marshmello ,2017
- Love Me Like You Do,Ellie Goulding ,2018
- Let Me Down Slowly,Alec Benjamin ,2018
- Cold Water,Major Lazer ,2016
- HIGHEST IN THE ROOM,Travis Scott ,2019
- I Wanna Be Yours,Arctic Monkeys ,2013
- everything i wanted,Billie Eilish ,2019
- A Thousand Years,Christina Perri ,2011
- Everybody Dies In Their Nightmares,XXXTENTACION ,2017
- Tusa,KAROL G ,2021
- Numb,Linkin Park ,2019
- Gangsta's Paradise,Coolio ,1995
- ROXANNE,Arizona Zervas ,2019
- Beggin',MÃ¥neskin ,2023
- Passionfruit,Drake ,2017
- Fuck Love,XXXTENTACION ,2017
- Rockabye,Clean Bandit ,2019
- The Middle,Zedd ,2018
- Under Pressure,Queen ,2022
- Seven Nation Army,The White Stripes ,2003
- Hotel California,Eagles ,1976
- Young Dumb & Broke,Khalid ,2017
- All Girls Are The Same,Juice WRLD ,2018
-Marie ,Anne,2022
- Halo,BeyoncÃ© ,2014
- Pompeii,Bastille ,2013
- Mi Gente,J Balvin ,2020
- The Less I Know The Better,Tame Impala ,2015
- Woman,Doja Cat ,2021
- Maps,Maroon 5 ,2023
- Hips Don't Lie,Shakira ,2005
- Clean White Noise,White Noise Baby Sleep ,2017
- Sign of the Times,Harry Styles ,2017
- Shivers,Ed Sheeran ,2021
- Let You Down,NF ,2021
- September,"Earth, Wind & Fire ",1978
- FRIENDS,Marshmello ,2018
- Heather,Conan Gray ,2020
- Pepas,Farruko ,2021
- All The Stars,Kendrick Lamar ,2018
- Dreams,Fleetwood Mac ,1977
- Danza Kuduro,Don Omar ,2010
- Back In Black,AC/DC ,1980
- Work from Home,Fifth Harmony ,2016
- Callaita,Bad Bunny ,2023
- Creep,Radiohead ,1993
- In My Feelings,Drake ,2018
-" i hate u, i love u",gnash ,2020
- Why'd You Only Call Me When You're High?,Arctic Monkeys ,2013
- Livin' On A Prayer,Bon Jovi ,2023
- It Ainât Me,Kygo ,2018
- Danza Kuduro,Champs United ,2018
- Symphony,Clean Bandit ,2019
- In the Name of Love,Martin Garrix ,2016
- Highway to Hell,AC/DC ,1979
- Beautiful People,Ed Sheeran ,2019
- In My Mind,Dynoro ,2023
- TitÃ­ Me PreguntÃ³,Bad Bunny ,2021
- Side To Side,Ariana Grande ,2016
- Party In The U.S.A.,Miley Cyrus ,2009
- deja vu,Olivia Rodrigo ,2021
- Mockingbird,Eminem ,2019
- La Bachata,Manuel Turizo ,2023
- Summer,Calvin Harris ,2014
- Sucker,Jonas Brothers ,2019
- Unholy,Sam Smith ,2022
- Kill Bill,SZA ,2022
- Drip Too Hard (Lil Baby & Gunna),Lil Baby ,2017
-PUFFIN ON ZOOTIES,Future ,2022
+Song,Artist,release_date,original_album
+My Heart Will Go On,Céline Dion,1996,My Heart Will Go On
+Hotel California,Eagles,2007,Long Road out of Eden
+Billie Jean,Michael Jackson,1982,Thriller
+I Will Always Love You,Whitney Houston,1985,Whitney Houston
+Sweet Caroline,Neil Diamond,1969,Sweet Caroline
+Every Breath You Take,The Police,2024,Every Breath You Take (Demo)
+Bohemian Rhapsody,Queen,1974,Sheer Heart Attack
+Stayin' Alive,Bee Gees,1998,One Night Only
+The Sound of Silence,Simon & Garfunkel,1964,"Wednesday Morning, 3 A.M."
+Don't Stop Believin',Journey,1979,Evolution
+Can't Help Falling in Love,Elvis Presley,1957,Loving You
+Beat It,Michael Jackson,1975,"Forever, Michael"
+Stairway To Heaven,Led Zeppelin,1969,Led Zeppelin
+Maggie May,Rod Stewart,1971,Every Picture Tells A Story
+Dancing Queen,ABBA,1975,Abba
+In the Air Tonight,Phil Collins,2021,In The Air Tonight (Epic Version)
+What's Love Got to Do with It,Tina Turner,2020,What's Love Got to Do with It
+Thriller,Michael Jackson,1982,Thriller
+Smoke on the Water,Deep Purple,1973,Smoke on the Water / Smoke on the Water (45 Version) [Edit]
+Another One Bites the Dust,Queen,1980,The Game
+Back in Black,AC/DC,1976,High Voltage
+Wish You Were Here,Pink Floyd,1967,The Piper at the Gates of Dawn
+Black Magic Woman / Gypsy Queen,Santana,1969,Santana
+Sultans of Swing,Dire Straits,1978,Dire Straits
+Wannabe,Spice Girls,1996,Spice
+Imagine,John Lennon,1969,Wedding Album
+(Everything I Do) I Do It for You,Bryan Adams,1991,Waking Up The Neighbours
+Go Your Own Way,Fleetwood Mac,1969,The Pious Bird of Good Omen
+I Wanna Dance with Somebody (Who Loves Me),Whitney Houston,1985,Whitney Houston
+Sweet Child O' Mine,Guns N' Roses,1987,Appetite For Destruction
+Smells Like Teen Spirit,Nirvana,1991,Nevermind
+Your Song,Elton John,1970,Elton John
+Highway to Hell,AC/DC,1976,High Voltage
+You Shook Me All Night Long,AC/DC,1977,Let There Be Rock
+I Want It That Way,Backstreet Boys,1996,Backstreet Boys
+Losing My Religion,R.E.M.,2012,Africa
+Mrs. Robinson,Simon & Garfunkel,1964,"Wednesday Morning, 3 A.M."
+Black or White,Michael Jackson,1972,Ben
+...Baby One More Time,Britney Spears,2011,Till The World Ends The Remixes
+Like A Prayer,Madonna,1984,Like a Virgin
+Jailhouse Rock,Elvis Presley,1959,For LP Fans Only
+Walk This Way,Aerosmith,1973,Aerosmith
+We Will Rock You,Queen,1977,News of the World
+Blue Christmas,Elvis Presley,1956,Elvis Presley
+Another Brick in the Wall (Part II),Pink Floyd,1970,Atom Heart Mother
+Lose Yourself,Eminem,1999,The Slim Shady LP
+Under the Bridge,Red Hot Chili Peppers,1991,Blood Sugar Sex Magik
+Thunderstruck,AC/DC,1976,Dirty Deeds Done Dirt Cheap
+Don't Stop Me Now,Queen,1978,Jazz
+Paranoid,Black Sabbath,2013,13
+Zombie,The Cranberries,1993,"Everybody Else Is Doing It, So Why Can't We?"
+Let It Be,The Beatles,2018,The Beatles
+Paint It Black,The Rolling Stones,1964,12 X 5
+Ironic,Alanis Morissette,1995,Jagged Little Pill
+Dream On,Aerosmith,1973,Aerosmith
+How Deep Is Your Love,Bee Gees,1998,One Night Only
+Nothing Else Matters,Metallica,1997,Reload
+"Rocket Man (I Think It's Going to Be a Long, Long Time)",Elton John,1972,Honky Chateau
+Somebody to Love,Queen,1976,A Day At The Races
+You Can't Hurry Love,The Supremes,1964,Where Did Our Love Go
+Enter Sandman,Metallica,1997,Reload
+Piano Man,Billy Joel,1973,Piano Man
+Dreams,Fleetwood Mac,1973,Mystery to Me
+Wonderful Tonight,Eric Clapton,1970,Eric Clapton
+I Want to Hold Your Hand,The Beatles,2018,The Beatles
+Everybody (Backstreet's Back),Backstreet Boys,1996,Backstreet Boys
+Money for Nothing,Dire Straits,1978,Dire Straits
+Pour Some Sugar on Me,Def Leppard,1980,On Through The Night
+Hero,Mariah Carey,1990,Mariah Carey
+Like A Virgin,Madonna,1984,Like a Virgin
+Come As You Are,Nirvana,1989,Bleach
+Mamma Mia,ABBA,1975,Abba
+Born in the U.S.A.,Bruce Springsteen,1973,"Greetings from Asbury Park, N.J."
+Have You Ever Seen The Rain,Creedence Clearwater Revival,1970,Cosmo's Factory
+Good Vibrations,The Beach Boys,1963,Surfer Girl (Mono & Stereo)
+Da Ya Think I'm Sexy?,Rod Stewart,1976,A Night on the Town
+(I Can't Get No) Satisfaction,The Rolling Stones,1964,12 X 5
+Whole Lotta Love,Led Zeppelin,2012,Celebration Day
+Rolling In The Deep,Adele,2008,19
+Man in the Mirror,Michael Jackson,1991,Dangerous
+Oops!... I Did It Again,Britney Spears,2000,Oops!... I Did It Again
+Money,Pink Floyd,1967,The Piper at the Gates of Dawn
+Uptown Girl,Billy Joel,1971,Cold Spring Harbor
+La Isla Bonita,Madonna,1986,True Blue
+Fortunate Son,Creedence Clearwater Revival,1969,Bayou Country
+Wouldn't It Be Nice,The Beach Boys,1964,The Beach Boys' Christmas Album
+Tears in Heaven,Eric Clapton,1970,Eric Clapton
+Light My Fire,The Doors,1967,Light My Fire / Crystal Ship
+Surfin' U.S.A.,The Beach Boys,1963,Surfin' USA (Mono & Stereo)
+Start Me Up,The Rolling Stones,1964,12 X 5
+Don't Stop 'Til You Get Enough,Michael Jackson,1975,"Forever, Michael"
+Like a Rolling Stone,Bob Dylan,1962,Bob Dylan
+Come Together,The Beatles,2014,Yellow Submarine Songtrack
+Basket Case,Green Day,1991,"1,039 / Smoothed out Slappy Hours"
+Dancing in the Dark,Bruce Springsteen,1973,"The Wild, the Innocent & The E Street Shuffle"
+Careless Whisper,George Michael,1984,Make It Big
+Without You,Mariah Carey,2005,The Emancipation of Mimi
+Yesterday,The Beatles,2018,The Beatles
+I Want to Break Free,Queen,1984,The Works
+Man! I Feel Like a Woman!,Shania Twain,1995,The Woman In Me
+Woman in Love,Barbra Streisand,1963,The Second Barbra Streisand Album
+Suspicious Minds,Elvis Presley,1959,For LP Fans Only
+Fantasy,Mariah Carey,1990,Mariah Carey
+Bennie and the Jets,Elton John,1970,Tumbleweed Connection
+Smooth Criminal,Michael Jackson,1973,Music and Me
+We Are the Champions,Queen,2007,Queen Rock Montreal
+Riders on the Storm,The Doors,1971,L.A. Woman
+I Want You Back,The Jackson 5,1969,Diana Ross Presents The Jackson 5
+Sympathy For The Devil,The Rolling Stones,1991,Flashpoint
+Fly Me to the Moon,Frank Sinatra,1962,Sinatra/Basie: The Complete Reprise Studio Recordings
+The Real Slim Shady,Eminem,1999,The Slim Shady LP
+Welcome to the Jungle,Guns N' Roses,1987,Appetite For Destruction
+The Way You Make Me Feel,Michael Jackson,1972,Ben
+Bad Moon Rising,Creedence Clearwater Revival,1969,Bayou Country
+The Logical Song,Supertramp,1975,Crisis? What Crisis?
+The Boxer,Simon & Garfunkel,1964,"Wednesday Morning, 3 A.M."
+Superstition,Stevie Wonder,1973,Innervisions
+Faith,George Michael,1987,Faith
+Beast Of Burden,The Rolling Stones,1967,Between The Buttons
+Always Be My Baby,Mariah Carey,1990,Mariah Carey
+Without Me,Eminem,1999,2001
+Bridge over Troubled Water,Simon & Garfunkel,1966,"Parsley, Sage, Rosemary And Thyme"
+Hey Jude,The Beatles,2018,The Beatles
+I Have Nothing,Whitney Houston,1990,I'm Your Baby Tonight
+Vogue,Madonna,1984,Like a Virgin
+One,Metallica,1996,Load
+"Whenever, Wherever",Shakira,1995,Pies Descalzos
+Viva La Vida,Coldplay,2008,Viva La Vida or Death and All His Friends
+Paradise by the Dashboard Light,Meat Loaf,1977,Bat Out Of Hell
+Everywhere,Fleetwood Mac,1990,Behind the Mask
+Enjoy the Silence,Depeche Mode,1990,Violator
+How Will I Know,Whitney Houston,1985,Whitney Houston
+Hello,Adele,2011,21
+Respect,Aretha Franklin,1967,I Never Loved a Man the Way I Love You
+Love Me Do,The Beatles,2018,The Beatles
+Comfortably Numb,Pink Floyd,1971,Meddle
+Cocaine,Eric Clapton,1970,Eric Clapton
+Born to Run,Bruce Springsteen,1973,"Greetings from Asbury Park, N.J."
+Yellow,Coldplay,2011,Mylo Xyloto
+Englishman in New York,Sting,1987,...Nothing Like The Sun
+Smooth Operator,Sade,1984,Diamond Life
+Say My Name,Destiny's Child,1999,The Writing's On The Wall
+Shape of You,Ed Sheeran,2014,5
+You Don't Bring Me Flowers,Barbra Streisand,1963,The Second Barbra Streisand Album
+Angie,The Rolling Stones,1964,The Rolling Stones
+Heart of Gold,Neil Young,1969,Everybody Knows This Is Nowhere
+I Just Called to Say I Love You,Stevie Wonder,1966,Down To Earth
+Cecilia,Simon & Garfunkel,1964,"Wednesday Morning, 3 A.M."
+You're Beautiful,James Blunt,2005,Back to Bedlam
+The Scientist,Coldplay,2000,Parachutes
+Just Can't Get Enough,Depeche Mode,1981,Speak & Spell
+A Hard Day's Night,The Beatles,2018,The Beatles
+Californication,Red Hot Chili Peppers,1991,Blood Sugar Sex Magik
+Angels,Robbie Williams,1997,Life Thru A Lens
+I Get Around,The Beach Boys,1964,All Summer Long (Mono & Stereo)
+Crazy,Aerosmith,1973,Aerosmith
+You Can Call Me Al,Paul Simon,1972,Paul Simon
+That's the Way Love Goes,Janet Jackson,1986,Control
+They Don't Care About Us,Michael Jackson,1973,Music and Me
+Every Little Thing She Does Is Magic,The Police,1981,Ghost In The Machine (Alternate Sequence)
+Twist and Shout,The Beatles,2018,The Beatles
+Black Dog,Led Zeppelin,1969,Led Zeppelin
+Killing Me Softly,Fugees,1996,The Score
+Night Fever,Bee Gees,1968,Horizontal
+Bring Me to Life,Evanescence,2003,Fallen
+Fix You,Coldplay,2000,Shiver
+Oye Como Va,Santana,1969,Santana
+Hound Dog,Elvis Presley,1959,For LP Fans Only
+Fallin',Alicia Keys,2001,Songs In A Minor
+That Don't Impress Me Much,Shania Twain,1993,Shania Twain
+Flashdance... What a Feeling,Irene Cara,1983,What a Feelin'
+Baby Love,The Supremes,1964,Where Did Our Love Go
+Master Of Puppets,Metallica,1997,Reload
+Rock with You,Michael Jackson,1979,Off the Wall
+Gimme Shelter,The Rolling Stones,1965,Out Of Our Heads
+Three Little Birds,Bob Marley,2015,Bob Marley Interviews: So Much Things to Say
+Brothers in Arms,Dire Straits,1985,Brothers in Arms
+Can't Buy Me Love,The Beatles,2018,The Beatles
+The Trooper,Iron Maiden,2021,Senjutsu
+Could You Be Loved,Bob Marley,1996,Bob Marley emlékére
+Emotions,Mariah Carey,1990,Mariah Carey
+Toxic,Britney Spears,1999,Drive Me Crazy
+Good Times Bad Times,Led Zeppelin,1969,Led Zeppelin
+Brown Sugar,The Rolling Stones,1964,12 X 5
+Ramble On,Led Zeppelin,1969,Led Zeppelin
+Radio Ga Ga,Queen,1973,At The BBC
+Crazy Train,Ozzy Osbourne,1981,Diary Of A Madman
+Help!,The Beatles,2018,The Beatles
+Back for Good,Take That,2018,Odyssey
+Time,Pink Floyd,1968,A Saucerful of Secrets
+Holiday,Madonna,1983,Madonna
+Invisible Touch,Genesis,1986,Invisible Touch
+Hells Bells,AC/DC,1976,High Voltage
+For Those About to Rock (We Salute You),AC/DC,1976,Dirty Deeds Done Dirt Cheap
+The Times They Are a-Changin',Bob Dylan,1962,Bob Dylan
+Everybody Hurts,R.E.M.,1992,Automatic For The People
+Dirty Deeds Done Dirt Cheap,AC/DC,1976,Dirty Deeds Done Dirt Cheap
+Maniac,Michael Sembello,1983,Bossa Nova Hotel
+Only Time,Enya,1995,The Memory of Trees
+Set Fire To The Rain,Adele,2008,19
+Sweet Emotion,Aerosmith,1973,Aerosmith
+We Didn't Start the Fire,Billy Joel,1974,Streetlife Serenade
+Into The Groove,Madonna,1985,Angel
+T.N.T.,AC/DC,1976,High Voltage
+Cryin',Aerosmith,1973,Aerosmith
+Blank Space,Taylor Swift,2006,Taylor Swift (Big Machine Radio Release Special)
+Sacrifice,Elton John,2000,One Night Only
+Love Story,Taylor Swift,2006,Taylor Swift
+Papa Don't Preach,Madonna,1986,Papa Don't Preach
+Let's Dance,David Bowie,1967,David Bowie
+Jamming,Bob Marley,2023,Stir It Up
+Yellow Submarine,The Beatles,2014,Yellow Submarine Songtrack
+Rock and Roll,Led Zeppelin,1969,Led Zeppelin
+Get Back,The Beatles,2018,The Beatles
+Perfect,Ed Sheeran,2014,Don't
+Roadhouse Blues,The Doors,1970,Morrison Hotel
+I Can't Dance,Genesis,1991,We Can't Dance
+Breakfast in America,Supertramp,1975,Crisis? What Crisis?
+Killer Queen,Queen,1974,Sheer Heart Attack
+Burning Love,Elvis Presley,1957,Loving You
+Frozen,Madonna,1989,Express Yourself
+If I Ain't Got You,Alicia Keys,2001,Songs In A Minor
+Wild Horses,The Rolling Stones,1964,12 X 5
+I'm on Fire,Bruce Springsteen,1973,"Greetings from Asbury Park, N.J."
+Just the Way You Are,Bruno Mars,2010,Doo-Wops & Hooligans
+Woman,John Lennon,1970,Plastic Ono Band
+All You Need Is Love,The Beatles,2014,Yellow Submarine Songtrack
+She Loves You,The Beatles,2018,The Beatles
+It's Still Rock and Roll to Me,Billy Joel,1973,Piano Man
+Iron Man,Black Sabbath,2013,13
+Bad Romance,Lady Gaga,2009,Bad Romance Remixes
+"Theme from New York, New York",Frank Sinatra,1958,Come Fly With Me (Mono Version)
+Any Man of Mine,Shania Twain,1995,The Woman In Me
+The Show Must Go On,Queen,1991,Innuendo
+Bad,Michael Jackson,1972,Ben
+Shake It Off,Taylor Swift,2014,1989 (Big Machine Radio Release Special)
+Hung Up,Madonna,1990,Keep It Together
+Poker Face,Lady Gaga,2008,The Fame
+Candle in the Wind,Elton John,1970,Tumbleweed Connection
+I Gotta Feeling,Black Eyed Peas,2003,Elephunk
+The River,Bruce Springsteen,1973,"Greetings from Asbury Park, N.J."
+In the Ghetto,Elvis Presley,1957,Elvis' Christmas Album
+People Are Strange,The Doors,1967,The Doors
+ABC,The Jackson 5,1970,ABC
+Remember the Time,Michael Jackson,1972,Ben
+Greatest Love of All,Whitney Houston,1985,Whitney Houston
+Give a Little Bit,Supertramp,1975,Crisis? What Crisis?
+The River of Dreams,Billy Joel,1971,Cold Spring Harbor
+Thinking Out Loud,Ed Sheeran,2024,kiss me under the light of a thousand stars
+Can't Get You Out of My Head,Kylie Minogue,2001,Can't Get You out of My Head
+Crazy Little Thing Called Love,Queen,1980,The Game
+Sailing,Rod Stewart,1975,Atlantic Crossing
+We Belong Together,Mariah Carey,1990,Mariah Carey
+God Only Knows,The Beach Boys,1964,All Summer Long (Mono & Stereo)
+Hurricane,Bob Dylan,1976,Desire
+Run to the Hills,Iron Maiden,2005,Death On the Road
+If Tomorrow Never Comes,Garth Brooks,2006,Have Guitar-Will Travel
+Vision of Love,Mariah Carey,1990,Mariah Carey
+Child in Time,Deep Purple,1975,Come Taste the Band
+P.Y.T. (Pretty Young Thing),Michael Jackson,1972,Ben
+Landslide,Fleetwood Mac,1969,The Pious Bird of Good Omen
+My Life,Billy Joel,1974,Streetlife Serenade
+Romeo and Juliet,Dire Straits,1980,Making Movies
+Don't Let the Sun Go Down on Me,Elton John,1970,Elton John
+One Love / People Get Ready,Bob Marley,1996,Bob Marley emlékére
+You Are Not Alone,Michael Jackson,1995,"HIStory - PAST, PRESENT AND FUTURE - BOOK I"
+Space Oddity,David Bowie,1969,Space Oddity (2019 Mix)
+Come Away with Me,Norah Jones,2004,Feels Like Home
+Because of You,Kelly Clarkson,2003,Thankful
+Mockingbird,Eminem,2004,Encore
+Good Riddance (Time of Your Life),Green Day,1997,Nimrod
+I Say a Little Prayer,Aretha Franklin,1967,I Never Loved a Man the Way I Love You
+Samba Pa Ti,Santana,1969,Santana
+Hero,Enrique Iglesias,1995,Enrique Iglesias
+I Shot the Sheriff,Eric Clapton,1970,Eric Clapton
+Linger,The Cranberries,1993,"Everybody Else Is Doing It, So Why Can't We?"
+Blinding Lights,The Weeknd,2011,House Of Balloons (Original)
+Earth Song,Michael Jackson,1972,Ben
+Kashmir,Led Zeppelin,1969,Led Zeppelin
+Forever in Blue Jeans,Neil Diamond,1972,Moods
+Faithfully,Journey,1975,Journey
+The Chain,Fleetwood Mac,1969,The Pious Bird of Good Omen
+Our House,"Crosby, Stills, Nash & Young",1970,Deja Vu
+My Immortal,Evanescence,2003,Fallen
+Crocodile Rock,Elton John,1970,Tumbleweed Connection
+Personal Jesus,Depeche Mode,1990,Violator
+Photograph,Def Leppard,1980,On Through The Night
+Something,The Beatles,2018,The Beatles
+For What It's Worth,Buffalo Springfield,2018,Stop! Hey! What's That Sound?
+I'm Still Standing,Elton John,1972,Honky Chateau
+Don't Know Why,Norah Jones,2002,Don't Know Why
+Suite: Judy Blue Eyes,"Crosby, Stills & Nash",1969,Suite: Judy Blue Eyes / Long Time Gone
+That's All,Genesis,1969,From Genesis to Revelation
+Knockin' on Heaven's Door,Bob Dylan,1965,Highway 61 Revisited
+Me and Julio Down by the Schoolyard,Paul Simon,1972,Paul Simon
+Sir Duke,Stevie Wonder,1972,Talking Book
+Give Me One Reason,Tracy Chapman,1995,New Beginning
+Eleanor Rigby,The Beatles,2014,Yellow Submarine Songtrack
+Rhiannon,Fleetwood Mac,1969,The Pious Bird of Good Omen
+You Should Be Dancing,Bee Gees,1976,Children Of The World
+Rodeo,Garth Brooks,2019,Every Girl
+In My Life,The Beatles,2018,The Beatles
+Love Me Tender,Elvis Presley,1956,Elvis
+My All,Mariah Carey,1990,Mariah Carey
+Buffalo Soldier,Bob Marley,1996,Bob Marley emlékére
+Hysteria,Def Leppard,1987,Hysteria
+Heart-Shaped Box,Nirvana,1989,Bleach
+Heal the World,Michael Jackson,1972,Ben
+Lithium,Nirvana,1989,Bleach
+Lucy in the Sky with Diamonds,The Beatles,2014,Yellow Submarine Songtrack
+Two Out of Three Ain't Bad,Meat Loaf,1971,Stoney & Meat Loaf
+Honky Tonk Women,The Rolling Stones,1969,Let It Bleed
+My Sweet Lord,George Harrison,1973,Living in the Material World
+No Ordinary Love,Sade,1984,Diamond Life
+Radioactive,Imagine Dragons,2012,Night Visions
+The Sweetest Taboo,Sade,1984,Diamond Life
+Everlong,Foo Fighters,1995,Foo Fighters
+Ticket to Ride,The Beatles,2018,The Beatles
+Lay Lady Lay,Bob Dylan,1963,The Freewheelin' Bob Dylan
+To Love Somebody,Bee Gees,1967,Bee Gees' 1st
+Proud Mary,Creedence Clearwater Revival,1969,Bayou Country
+Breathe,Pink Floyd,1969,Ummagumma
+Music,Madonna,1989,Express Yourself
+Shoot to Thrill,AC/DC,1976,Dirty Deeds Done Dirt Cheap
+Hollaback Girl,Gwen Stefani,2005,Hollaback Girl
+Heartbreak Hotel,Elvis Presley,1959,For LP Fans Only
+Wanna Be Startin' Somethin',Michael Jackson,1972,Got To Be There
+Shape of My Heart,Backstreet Boys,1996,Backstreet Boys
+Goodbye Yellow Brick Road,Elton John,2000,One Night Only
+Before He Cheats,Carrie Underwood,2005,Some Hearts
+You Make Me Wanna...,Usher,1997,You Make Me Wanna... (Remix)
+Survivor,Destiny's Child,1998,Destiny's Child
+The Unforgiven,Metallica,1996,Load
+Shine On You Crazy Diamond (Parts I-V),Pink Floyd,1972,Obscured by Clouds
+Sgt. Pepper's Lonely Hearts Club Band,The Beatles,2014,Yellow Submarine Songtrack
+More Than a Woman,Bee Gees,2021,More Than A Woman (SG's Paradise Edit)
+Tiny Dancer,Elton John,1969,Empty Sky
+Freedom! '90,George Michael,1987,Faith
+Sunrise,Norah Jones,2004,Feels Like Home
+Blinding Lights,The Weeknd,2011,House Of Balloons (Original)
+Shape of You,Ed Sheeran,2014,5
+Someone You Loved,Lewis Capaldi,2017,Bloom - EP
+Sunflower,Post Malone,2019,Hollywood's Bleeding
+One Dance,Drake,2009,So Far Gone
+rockstar,Post Malone,2017,Congratulations (Remix)
+STAY,The Kid LAROI,2020,Diva (feat. Lil Tecca)
+Starboy,The Weeknd,2012,Trilogy
+Believer,Imagine Dragons,2017,Believer (Kaskade Remix)
+As It Was,Harry Styles,2017,Harry Styles
+Heat Waves,Glass Animals,2012,Leaflings
+Closer,The Chainsmokers,2014,#SELFIE
+Perfect,Ed Sheeran,2014,Don't
+SeÃ±orita,Shawn Mendes,2015,Handwritten
+Say You Won't Let Go,James Arthur,2016,Say You Won't Let Go
+lovely,Billie Eilish,2017,Ocean Eyes (The Remixes)
+Watermelon Sugar,Harry Styles,2017,Harry Styles
+Sweater Weather,The Neighbourhood,2012,I'm Sorry...
+bad guy,Billie Eilish,2016,Ocean Eyes
+Lucid Dreams,Juice WRLD,2018,Lucid Dreams
+Thinking out Loud,Ed Sheeran,2024,songs I wrote that almost didn't make it
+God's Plan,Drake,2009,So Far Gone
+Something Just Like This,The Chainsmokers,2013,Dreaming Remix EP
+Bohemian Rhapsody,Queen,1974,Sheer Heart Attack
+Take Me to Church,Hozier,2013,Take Me to Church EP
+Circles,Post Malone,2018,beerbongs & bentleys
+Love Yourself,Justin Bieber,2012,Believe
+All of Me,John Legend,2014,All of Me (Tiësto's Birthday Treatment Remix - Radio Edit)
+Thunder,Imagine Dragons,2017,Evolve
+SAD!,XXXTENTACION,2017,A GHETTO CHRISTMAS CAROL
+7 rings,Ariana Grande,2013,Yours Truly
+Counting Stars,OneRepublic,2007,Dreaming Out Loud
+goosebumps,Travis Scott,2014,DAYS BEFORE RODEO
+Stressed Out,Twenty One Pilots,2009,Twenty One Pilots
+Wake Me Up,Avicii,2011,Levels
+Jocelyn Flores,XXXTENTACION,2015,WitDemDicks!
+Can't Hold Us,Macklemore & Ryan Lewis,2010,VS. Redux
+The Hills,The Weeknd,2011,Echoes Of Silence (Original)
+HUMBLE.,Kendrick Lamar,2010,Overly Dedicated
+XO Tour Llif3,Lil Uzi Vert,2015,Luv Is Rage
+One Kiss,Calvin Harris,2012,Let's Go (feat. Ne-Yo) [Radio Edit]
+Havana,Camila Cabello,2017,Havana (Remix)
+good 4 u,Olivia Rodrigo,2019,"Wondering (From ""High School Musical: The Musical: The Series"")"
+Happier,Marshmello,2016,Joytime
+SICKO MODE,Travis Scott,2014,DAYS BEFORE RODEO
+drivers license,Olivia Rodrigo,2021,SOUR
+Another Love,Tom Odell,2012,Songs from Another Love
+Demons,Imagine Dragons,2013,Demons
+Treat You Better,Shawn Mendes,2017,Illuminate
+Let Me Love You,DJ Snake,2016,Encore
+Lose Yourself,Eminem,1999,The Slim Shady LP
+Sorry,Justin Bieber,2015,Sorry (Latino Remix)
+No Role Modelz,J. Cole,2011,Cole World: The Sideline Story
+Stay With Me,Sam Smith,2013,Nirvana
+INDUSTRY BABY,Lil Nas X,2019,Old Town Road (Diplo Remix)
+Do I Wanna Know?,Arctic Monkeys,2005,Five Minutes With Arctic Monkeys
+Lean On,Major Lazer,2009,Guns Don't Kill People... Lazers Do
+Without Me,Halsey,2016,Castle (The Huntsman: Winter’s War Version)
+Yellow,Coldplay,2011,Mylo Xyloto
+Too Good At Goodbyes,Sam Smith,2014,In The Lonely Hour
+Congratulations,Post Malone,2017,Congratulations (Remix)
+Better Now,Post Malone,2018,beerbongs & bentleys
+Roses,SAINt JHN,2016,1999
+Memories,Maroon 5,2019,Memories (Devault Remix)
+Uptown Funk,Mark Ronson,2015,Uptown Special
+Faded,Alan Walker,2015,Faded
+I Took A Pill In Ibiza,Mike Posner,2016,"At Night, Alone."
+MONTERO (Call Me By Your Name),Lil Nas X,2019,Old Town Road (Diplo Remix)
+There's Nothing Holdin' Me Back,Shawn Mendes,2015,Handwritten
+Unforgettable,French Montana,2017,Unforgettable (feat. Swae Lee) [J Hus & Jae5 Remix]
+That's What I Like,Bruno Mars,2010,Doo-Wops & Hooligans
+Don't Let Me Down,The Chainsmokers,2014,#SELFIE
+Wonderwall,Oasis,1995,(What's The Story) Morning Glory?
+Without Me,Eminem,1999,2001
+"thank u, next",Ariana Grande,2013,Yours Truly
+Die For You,The Weeknd,2016,Starboy
+Smells Like Teen Spirit,Nirvana,1991,Nevermind
+Till I Collapse,Eminem,1999,The Slim Shady LP
+I Don't Care,Ed Sheeran,2019,I Don't Care (Acoustic)
+When I Was Your Man,Bruno Mars,2012,Unorthodox Jukebox
+Moonlight,XXXTENTACION,2017,A GHETTO CHRISTMAS CAROL
+Just the Way You Are,Bruno Mars,2010,Doo-Wops & Hooligans
+Don't Stop Me Now,Queen,1978,Jazz
+The Box,Roddy Ricch,2018,Die Young
+Cold Heart,Elton John,1970,Elton John
+Viva La Vida,Coldplay,2008,Viva La Vida or Death and All His Friends
+I'm Yours,Jason Mraz,2008,We Sing. We Dance. We Steal Things.
+7 Years,Lukas Graham,2015,7 Years (feat. Lukas Graham) [Sped Up Version]
+Before You Go,Lewis Capaldi,2017,Bloom - EP
+Every Breath You Take,The Police,2024,Every Breath You Take (Demo)
+Sugar,Maroon 5,2014,V
+Don't Stop Believin',Journey,1979,Evolution
+Save Your Tears,The Weeknd,2020,After Hours
+The Scientist,Coldplay,2000,Parachutes
+I'm Not The Only One,Sam Smith,2012,Latch
+We Don't Talk Anymore,Charlie Puth,2015,Some Type of Love
+when the party's over,Billie Eilish,2017,Ocean Eyes (The Remixes)
+Despacito (Featuring Daddy Yankee),Luis Fonsi,2017,Despacito (Versión Pop)
+Radioactive,Imagine Dragons,2012,Night Visions
+Kiss Me More,Doja Cat,2018,Amala
+Another One Bites The Dust,Queen,2007,Queen Rock Montreal
+Youngblood,5 Seconds of Summer,2014,5 Seconds Of Summer (B-Sides And Rarities)
+Sweet Child O' Mine,Guns N' Roses,1987,Appetite For Destruction
+Attention,Charlie Puth,2016,Nine Track Mind
+Bad Habits,Ed Sheeran,2021,Bad Habits (Acoustic Version)
+Heathens,Twenty One Pilots,2009,Twenty One Pilots
+Me RehÃºso,Danny Ocean,2017,Baby I Won't
+Girls Like You,Maroon 5,2018,Wait (feat. A Boogie Wit da Hoodie)
+Eastside,benny blanco,2007,Bangers & Cash
+I Feel It Coming,The Weeknd,2017,HNDRXX
+Can't Feel My Face,The Weeknd,2011,Echoes Of Silence (Original)
+Ride,Twenty One Pilots,2009,Twenty One Pilots
+Locked out of Heaven,Bruno Mars,2012,Unorthodox Jukebox
+Pumped Up Kicks,Foster The People,2011,Torches
+I Like It,Cardi B,2024,Like What (Freestyle)
+I Fall Apart,Post Malone,2018,beerbongs & bentleys
+This Is What You Came For,Calvin Harris,2009,Ready For The Weekend
+Payphone,Maroon 5,2008,Call And Response: The Remix Album
+Rolling in the Deep,Adele,2011,Rolling in the Deep
+Wow.,Post Malone,2018,Culture II
+Me Porto Bonito,Bad Bunny,2018,Amorfoda
+death bed (coffee for your head),Powfu,2020,death bed (coffee for your head)
+The Nights,Avicii,2011,Fade Into Darkness
+Call Out My Name,The Weeknd,2011,House Of Balloons (Original)
+Somebody That I Used To Know,Gotye,2011,Making Mirrors
+Sweet but Psycho,Ava Max,2019,Sweet but Psycho (The Remixes)
+Billie Jean,Michael Jackson,1982,Thriller
+Falling,Trevor Daniel,2018,Wake Up
+The Night We Met,Lord Huron,2010,Into the Sun
+Taki Taki,DJ Snake,2019,Carte Blanche
+LA CANCIÃN,J Balvin,2013,La Familia
+Adore You,Harry Styles,2017,Harry Styles
+Peaches,Justin Bieber,2012,Believe
+The Real Slim Shady,Eminem,1999,The Slim Shady LP
+Earned It (Fifty Shades Of Grey),The Weeknd,2012,Trilogy
+Blank Space,Taylor Swift,2006,Taylor Swift (Big Machine Radio Release Special)
+Old Town Road,Lil Nas X,2019,Old Town Road (Diplo Remix)
+What Do You Mean?,Justin Bieber,2010,My Worlds Acoustic
+All I Want for Christmas Is You,Mariah Carey,1994,Merry Christmas
+I Donât Wanna Live Forever (Fifty Shades Darker),ZAYN,2017,reputation Stadium Tour Surprise Song Playlist
+Easy On Me,Adele,2015,25
+High Hopes,Panic! At The Disco,2011,Vices & Virtues
+Flowers,Miley Cyrus,2007,Meet Miley Cyrus
+Cake By The Ocean,DNCE,2016,DNCE
+Hello,Adele,2011,21
+Shut Up and Dance,WALK THE MOON,2014,TALKING IS HARD
+Psycho,Post Malone,2018,beerbongs & bentleys
+Redbone,Childish Gambino,2011,Camp
+Mask Off,Future,2020,Pluto x Baby Pluto
+"Quevedo: Bzrp Music Sessions, Vol. 52",Bizarrap,2022,Quédate (Tiësto Remix)
+Titanium,David Guetta,2011,Nothing but the Beat - The Electronic Album
+Silence,Marshmello,2016,Joytime
+Love Me Like You Do,Ellie Goulding,2010,An Introduction To Ellie Goulding EP
+Let Me Down Slowly,Alec Benjamin,2019,Let Me Down Slowly (feat. Alessia Cara)
+Cold Water,Major Lazer,2009,Guns Don't Kill People... Lazers Do
+HIGHEST IN THE ROOM,Travis Scott,2014,DAYS BEFORE RODEO
+I Wanna Be Yours,Arctic Monkeys,2006,"Whatever People Say I Am, That's What I'm Not"
+everything i wanted,Billie Eilish,2017,Ocean Eyes (The Remixes)
+A Thousand Years,Christina Perri,2011,lovestrong.
+Everybody Dies In Their Nightmares,XXXTENTACION,2017,Revenge
+Tusa,KAROL G,2017,Ahora Me Llama (Remix)
+Gangsta's Paradise,Coolio,1995,Gangsta's Paradise
+ROXANNE,Arizona Zervas,2016,Don't Hit My Line
+Passionfruit,Drake,2017,More Life
+Fuck Love,XXXTENTACION,2017,17
+Rockabye,Clean Bandit,2015,Stronger
+Seven Nation Army,The White Stripes,1999,The White Stripes
+Hotel California,Eagles,2007,Long Road out of Eden
+Young Dumb & Broke,Khalid,2016,Coaster
+All Girls Are The Same,Juice WRLD,2018,Legends
+Pompeii,Bastille,2013,Remixed
+The Less I Know The Better,Tame Impala,2008,Tame Impala
+Woman,Doja Cat,2014,Purrr!
+Hips Don't Lie,Shakira,1995,Pies Descalzos
+Clean White Noise,White Noise Baby Sleep,2023,Peaceful Sleep Noise
+Sign of the Times,Harry Styles,2017,Harry Styles
+Shivers,Ed Sheeran,2015,Bloodstream (Arty Remix)
+September,"Earth, Wind & Fire",1973,Head To The Sky
+FRIENDS,Marshmello,2016,Joytime
+Heather,Conan Gray,2018,Sunset Season
+Pepas,Farruko,2015,Visionary
+All The Stars,Kendrick Lamar,2011,Section.80
+Dreams,Fleetwood Mac,1973,Mystery to Me
+Danza Kuduro,Don Omar,2010,Meet The Orphans
+Back In Black,AC/DC,1976,High Voltage
+Work from Home,Fifth Harmony,2013,Miss Movin' On
+Creep,Radiohead,1992,Creep EP
+In My Feelings,Drake,2010,Thank Me Later
+"i hate u, i love u",gnash,2016,us
+Why'd You Only Call Me When You're High?,Arctic Monkeys,2006,Who The F*** Are Arctic Monkeys?
+In the Name of Love,Martin Garrix,2013,Animals
+Highway to Hell,AC/DC,1976,High Voltage
+Beautiful People,Ed Sheeran,2019,Beautiful People (feat. Khalid)
+Side To Side,Ariana Grande,2013,Yours Truly
+Party In The U.S.A.,Miley Cyrus,2007,Meet Miley Cyrus
+deja vu,Olivia Rodrigo,2020,All I Want (Love That Lasts Mix)
+Mockingbird,Eminem,2004,Encore
+La Bachata,Manuel Turizo,2019,ADN
+Summer,Calvin Harris,2012,Let's Go (feat. Ne-Yo) [Radio Edit]
+Sucker,Jonas Brothers,2006,It's About Time
+Unholy,Sam Smith,2012,Latch
+Drip Too Hard (Lil Baby & Gunna),Lil Baby,2017,Perfect Timing
+PUFFIN ON ZOOTIES,Future,2020,Pluto x Baby Pluto
