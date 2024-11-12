@@ -4,8 +4,19 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { SpotifyPlayer } from './spotify-player';
 
+export interface Song {
+	title: string;
+	artist: string;
+	year: number;
+	released?: string;
+};
+
+export interface Timeline {
+	[player: string]: Song[]
+};
+
 // Parse and clean release dates to get years only
-const parseSongData = (song) => {
+const parseSongData = (song: Song) => {
 	const releaseDateMatch = song.released?.match(/\d{4}/);
 	return {
 		title: song.title,
@@ -15,7 +26,7 @@ const parseSongData = (song) => {
 };
 
 // Component to display the current player's timeline
-const Timeline = ({ guessedSongs }) => {
+const Timeline = ({ guessedSongs }: { guessedSongs: Song[] }) => {
 	const sortedSongs = [...guessedSongs].sort((a, b) => a.year - b.year);
 
 	return (
@@ -31,12 +42,11 @@ const Timeline = ({ guessedSongs }) => {
 };
 
 // Main game component
-export default function GuessSongGame({ songsData }) {
-	const [players, setPlayers] = useState([]);
+export default function GuessSongGame({ songsData }: { songsData: Song[] }) {
+	const [players, setPlayers] = useState<string[]>([]);
 	const [currentPlayer, setCurrentPlayer] = useState(0);
-	const [currentSong, setCurrentSong] = useState(null);
-	console.log(currentSong)
-	const [playerTimelines, setPlayerTimelines] = useState({});
+	const [currentSong, setCurrentSong] = useState<Song | null>(null);
+	const [playerTimelines, setPlayerTimelines] = useState<Timeline>({});
 
 	// Initialize game state
 	useEffect(() => {
@@ -54,7 +64,7 @@ export default function GuessSongGame({ songsData }) {
 
 		if (availableSongs.length) {
 			const randomIndex = Math.floor(Math.random() * availableSongs.length);
-			setCurrentSong(parseSongData(availableSongs[randomIndex]));
+			setCurrentSong(parseSongData(availableSongs[randomIndex]) as Song);
 		}
 	};
 
@@ -68,11 +78,12 @@ export default function GuessSongGame({ songsData }) {
 	};
 
 	// Handle player's guess
-	const makeGuess = (position) => {
+	const makeGuess = (position: string) => {
 		const player = players[currentPlayer];
 		const timeline = playerTimelines[player];
 
 		// Validate guess
+		if (!currentSong) return;
 		const isCorrect = validateGuess(timeline, currentSong, position);
 
 		if (isCorrect) {
@@ -100,7 +111,7 @@ export default function GuessSongGame({ songsData }) {
 	};
 
 	// Validate if the guess is correct based on the timeline
-	const validateGuess = (timeline, song, position) => {
+	const validateGuess = (timeline: Song[], song: Song, position: string) => {
 		if (timeline.length === 0) return true;
 
 		const sortedTimeline = [...timeline].sort((a, b) => a.year - b.year);
@@ -111,14 +122,13 @@ export default function GuessSongGame({ songsData }) {
 			return song.year > sortedTimeline[sortedTimeline.length - 1].year;
 		} else {
 			const index = parseInt(position);
-			console.log(sortedTimeline, index)
 			return song.year > sortedTimeline[index].year &&
 				song.year < sortedTimeline[index + 1].year;
 		}
 	};
 
 	// Generate guess options based on current timeline
-	const getGuessOptions = (timeline) => {
+	const getGuessOptions = (timeline: Song[]) => {
 		if (timeline.length === 0) {
 			return [
 				<Button key="first" onClick={() => makeGuess('first')}>
@@ -140,7 +150,7 @@ export default function GuessSongGame({ songsData }) {
 		// Add "between" options
 		for (let i = 0; i < sortedTimeline.length - 1; i++) {
 			options.push(
-				<Button key={i} onClick={() => makeGuess(i)}>
+				<Button key={i} onClick={() => makeGuess(i as unknown as string)}>
 					Between {sortedTimeline[i].year} and {sortedTimeline[i + 1].year}
 				</Button>
 			);

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, Music2 } from 'lucide-react';
+import { Play, Pause, Music2, ExternalLink } from 'lucide-react';
 
 export function SpotifyPlayer({ title, artist }) {
 	const [track, setTrack] = useState(null);
@@ -13,7 +13,6 @@ export function SpotifyPlayer({ title, artist }) {
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
-		// Cleanup previous audio element when component unmounts
 		return () => {
 			if (audioElement) {
 				audioElement.pause();
@@ -28,7 +27,6 @@ export function SpotifyPlayer({ title, artist }) {
 				setLoading(true);
 				setError(null);
 
-				// Stop any currently playing audio
 				if (audioElement) {
 					audioElement.pause();
 					setAudioElement(null);
@@ -77,29 +75,39 @@ export function SpotifyPlayer({ title, artist }) {
 		}
 	};
 
+	const openInSpotify = () => {
+		if (track?.external_urls?.spotify) {
+			window.open(track.external_urls.spotify, '_blank');
+		}
+	};
+
 	if (loading) {
 		return (
-			<Card className="p-4 flex items-center justify-center">
-				<span className="animate-spin mr-2">
-					<Music2 className="h-5 w-5" />
-				</span>
-				Loading...
+			<Card className="p-4">
+				<div className="flex items-center justify-center space-x-2">
+					<Music2 className="h-5 w-5 animate-spin" />
+					<span>Finding song...</span>
+				</div>
 			</Card>
 		);
 	}
 
 	if (error) {
 		return (
-			<Card className="p-4 text-red-500">
-				Failed to load preview
+			<Card className="p-4">
+				<div className="text-center text-red-500">
+					<p>Couldnt find song on Spotify</p>
+				</div>
 			</Card>
 		);
 	}
 
-	if (!track?.preview_url) {
+	if (!track) {
 		return (
 			<Card className="p-4">
-				No preview available
+				<div className="text-center text-gray-500">
+					<p>No Spotify match found</p>
+				</div>
 			</Card>
 		);
 	}
@@ -111,25 +119,49 @@ export function SpotifyPlayer({ title, artist }) {
 					<img
 						src={track.album.images[0].url}
 						alt={track.name}
-						className="w-16 h-16 rounded"
+						className="w-16 h-16 rounded shadow-sm"
 					/>
 				)}
-				<div className="flex-grow">
-					<h3 className="font-semibold">{track.name}</h3>
-					<p className="text-sm text-gray-500">{track.artists[0].name}</p>
+				<div className="flex-grow min-w-0">
+					<h3 className="font-semibold truncate">{track.name}</h3>
+					<p className="text-sm text-gray-500 truncate">
+						{track.artists.map(a => a.name).join(', ')}
+					</p>
 				</div>
-				<Button
-					onClick={togglePlay}
-					size="icon"
-					variant={isPlaying ? "secondary" : "default"}
-				>
-					{isPlaying ? (
-						<Pause className="h-5 w-5" />
-					) : (
-						<Play className="h-5 w-5" />
-					)}
-				</Button>
+				<div className="flex items-center space-x-2">
+					{track.preview_url ? (
+						<Button
+							onClick={togglePlay}
+							size="icon"
+							variant={isPlaying ? "secondary" : "default"}
+							title={isPlaying ? "Pause preview" : "Play preview"}
+						>
+							{isPlaying ? (
+								<Pause className="h-5 w-5" />
+							) : (
+								<Play className="h-5 w-5" />
+							)}
+						</Button>
+					) : null}
+					<Button
+						onClick={openInSpotify}
+						size="icon"
+						variant="outline"
+						title="Open in Spotify"
+					>
+						<ExternalLink className="h-5 w-5" />
+					</Button>
+				</div>
 			</div>
+			{track.preview_url ? (
+				<p className="text-xs text-gray-400 mt-2 text-center">
+					30 second preview available
+				</p>
+			) : (
+				<p className="text-xs text-gray-400 mt-2 text-center">
+					Full song available on Spotify
+				</p>
+			)}
 		</Card>
 	);
 }
