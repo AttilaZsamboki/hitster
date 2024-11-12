@@ -122,8 +122,8 @@ export default function GuessSongGame({ songsData }: { songsData: Song[] }) {
 			return song.year >= sortedTimeline[sortedTimeline.length - 1].year;
 		} else {
 			const index = parseInt(position);
-			return song.year > sortedTimeline[index].year &&
-				song.year < sortedTimeline[index + 1].year;
+			return song.year >= sortedTimeline[index].year &&
+				song.year <= sortedTimeline[index + 1].year;
 		}
 	};
 
