@@ -117,9 +117,9 @@ export default function GuessSongGame({ songsData }: { songsData: Song[] }) {
 		const sortedTimeline = [...timeline].sort((a, b) => a.year - b.year);
 
 		if (position === 'older') {
-			return song.year < sortedTimeline[0].year;
+			return song.year <= sortedTimeline[0].year;
 		} else if (position === 'newer') {
-			return song.year > sortedTimeline[sortedTimeline.length - 1].year;
+			return song.year >= sortedTimeline[sortedTimeline.length - 1].year;
 		} else {
 			const index = parseInt(position);
 			return song.year > sortedTimeline[index].year &&
