@@ -4,7 +4,7 @@ import { useSocket } from "@/hooks/useSocket";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpotifyPlayer } from "./spotify-player";
-import { GameState, Player } from "@/types/game";
+import { GameState } from "@/types/game";
 import { Timeline } from "@/components/timeline";
 
 export interface Song {
@@ -87,7 +87,11 @@ export default function Game({ sessionId }: { sessionId: string }) {
 		);
 	}
 
-	return <GuessSongGame sessionId={sessionId} playerId={playerId} />;
+	return (
+		<div className='p-4'>
+			<GuessSongGame sessionId={sessionId} playerId={playerId} />
+		</div>
+	);
 }
 
 function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: string }) {
@@ -149,6 +153,9 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 			isCorrect =
 				currentSongYear >= sortedTimeline[index].year && currentSongYear <= sortedTimeline[index + 1].year;
 		}
+		if (!isCorrect) {
+			alert("Incorrect guess!");
+		}
 
 		socket.emit("makeGuess", {
 			sessionId,
@@ -188,22 +195,15 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 			{/* Current Song (hidden for current player) */}
 			{!isCurrentPlayersTurn && gameState?.currentSong && (
 				<Card className='p-4'>
-					<h3>Current Song</h3>
-					<p>
-						{gameState.currentSong.title} - {gameState.currentSong.artist}
-					</p>
-					{gameState.currentSong.previewUrl ? (
-						<SpotifyPlayer artist={gameState.currentSong.artist} title={gameState.currentSong.title} />
-					) : (
-						<Button onClick={() => window.open(gameState.currentSong?.spotifyUrl)}>Open in Spotify</Button>
-					)}
+					<h3 className='font-bold mb-4'>Current Song</h3>
+					<SpotifyPlayer artist={gameState.currentSong.artist} title={gameState.currentSong.title} />
 				</Card>
 			)}
 
 			{/* Timeline Display */}
 			{gameState?.players.map((player) => (
 				<Card key={player.id} className='p-4'>
-					<h3 className='font-bold mb-4'>{player.name}'s Timeline</h3>
+					<h3 className='font-bold mb-4'>{player.name}s Timeline</h3>
 					<Timeline
 						songs={player.timeline}
 						onGuess={player.id === playerId && isCurrentPlayersTurn ? handleGuess : undefined}

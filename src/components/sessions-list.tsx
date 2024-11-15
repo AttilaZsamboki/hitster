@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Player } from "@/types/game";
 
 interface Session {
 	id: string;
 	name: string;
-	players: any[];
+	players: Player[];
 }
 
 export default function SessionsList() {

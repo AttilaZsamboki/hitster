@@ -4,7 +4,7 @@ import next from "next";
 import { Server } from "socket.io";
 import { db } from "./db";
 import { sessions, players, currentSongs, timelines } from "./db/schema";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { GameState, Player } from "./types/game";
 import { getSongs } from "./lib/songs";
 
@@ -30,7 +30,6 @@ app.prepare().then(() => {
 
 	async function getGameState(sessionId: string): Promise<GameState | null> {
 		try {
-			console.log("sessionId", sessionId);
 			const session = await db.query.sessions.findFirst({
 				where: eq(sessions.id, parseInt(sessionId)),
 				with: {
@@ -46,25 +45,28 @@ app.prepare().then(() => {
 				where: eq(currentSongs.sessionId, parseInt(sessionId)),
 			});
 
-			// Get timelines for all players
-			const playerTimelines = await db.query.timelines.findMany({
-				where: eq(timelines.playerId, session.id),
-				orderBy: (timelines, { asc }) => [asc(timelines.position)],
-			});
-
 			// Map players with their timelines
-			const playersWithTimelines = session.players.map((player) => ({
-				id: player.id.toString(),
-				name: player.name,
-				score: player.score,
-				timeline: playerTimelines
-					.filter((t) => t.playerId === player.id)
-					.map((t) => ({
-						title: t.songTitle,
-						artist: t.songArtist,
-						year: t.songYear,
-					})),
-			}));
+			const playersWithTimelines = await Promise.all(
+				session.players.map(async (player) => {
+					const playerTimelines = await db.query.timelines.findMany({
+						where: eq(timelines.playerId, player.id),
+						orderBy: (timelines, { asc }) => [asc(timelines.position)],
+					});
+					return {
+						id: player.id.toString(),
+						name: player.name,
+						score: player.score,
+						timeline: playerTimelines
+							.filter((t) => t.playerId === player.id)
+							.map((t) => ({
+								title: t.songTitle,
+								artist: t.songArtist,
+								year: t.songYear,
+							})),
+					};
+				})
+			);
+			console.log("playersWithTimelines", playersWithTimelines);
 
 			return {
 				sessionId: session.id.toString(),
@@ -94,7 +96,8 @@ app.prepare().then(() => {
 
 		// Set new current song
 		await db.insert(currentSongs).values({
-			sessionId: parseInt(sessionId ?? "0"),
+			// @ts-expect-error: I don't know why this is happening
+			sessionId: parseInt(sessionId ?? "0") as unknown as number,
 			songTitle: song.title,
 			songArtist: song.artist,
 			songYear: song.year,
@@ -160,21 +163,20 @@ app.prepare().then(() => {
 						.where(eq(players.id, parseInt(playerId)));
 
 					// Move to next player
-					const session = await db.query.sessions.findFirst({
-						where: eq(sessions.id, parseInt(sessionId)),
-						with: { players: true },
-					});
+				}
+				const session = await db.query.sessions.findFirst({
+					where: eq(sessions.id, parseInt(sessionId)),
+					with: { players: true },
+				});
+				if (session) {
+					const playerIds = session.players.map((p) => p.id);
+					const currentIndex = playerIds.indexOf(parseInt(playerId));
+					const nextPlayerId = playerIds[(currentIndex + 1) % playerIds.length];
 
-					if (session) {
-						const playerIds = session.players.map((p) => p.id);
-						const currentIndex = playerIds.indexOf(parseInt(playerId));
-						const nextPlayerId = playerIds[(currentIndex + 1) % playerIds.length];
-
-						await db
-							.update(sessions)
-							.set({ currentPlayerId: nextPlayerId })
-							.where(eq(sessions.id, parseInt(sessionId)));
-					}
+					await db
+						.update(sessions)
+						.set({ currentPlayerId: nextPlayerId })
+						.where(eq(sessions.id, parseInt(sessionId)));
 				}
 				await updateCurrentSong(sessionId);
 
@@ -192,7 +194,6 @@ app.prepare().then(() => {
 			console.log("startGame", sessionId);
 			try {
 				// Select random song
-				const song = await selectRandomSong();
 
 				// Update session status and set first player
 				await db
@@ -207,18 +208,7 @@ app.prepare().then(() => {
 					})
 					.where(eq(sessions.id, parseInt(sessionId)));
 
-				// Delete any existing current song
-				await db.delete(currentSongs).where(eq(currentSongs.sessionId, parseInt(sessionId)));
-
-				// Set new current song
-				await db.insert(currentSongs).values({
-					sessionId: parseInt(sessionId ?? "0"),
-					songTitle: song.title,
-					songArtist: song.artist,
-					songYear: song.year,
-					previewUrl: song.previewUrl,
-					spotifyUrl: song.spotifyUrl,
-				});
+				await updateCurrentSong(sessionId);
 
 				// Emit updated game state
 				const newState = await getGameState(sessionId);
