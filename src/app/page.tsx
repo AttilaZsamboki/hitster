@@ -1,12 +1,10 @@
-import { getSongs } from '@/lib/songs';
-import Game, { Song } from '@/components/game';
+import SessionsList from '@/components/sessions-list';
 
-export default async function Home() {
-  const songs = await getSongs();
-
+export default function Home() {
   return (
     <main className="container mx-auto p-4">
-      <Game songsData={songs as Song[]} />
+      <h1 className="text-2xl font-bold mb-8">Music Timeline Game</h1>
+      <SessionsList />
     </main>
   );
 }

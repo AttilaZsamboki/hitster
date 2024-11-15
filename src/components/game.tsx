@@ -1,207 +1,217 @@
-"use client"
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { SpotifyPlayer } from './spotify-player';
+"use client";
+import { useState, useEffect } from "react";
+import { useSocket } from "@/hooks/useSocket";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { SpotifyPlayer } from "./spotify-player";
+import { GameState, Player } from "@/types/game";
+import { Timeline } from "@/components/timeline";
 
 export interface Song {
 	title: string;
 	artist: string;
 	year: number;
 	released?: string;
-};
+}
 
 export interface Timeline {
-	[player: string]: Song[]
-};
+	[player: string]: Song[];
+}
 
-// Parse and clean release dates to get years only
-const parseSongData = (song: Song) => {
-	const releaseDateMatch = song.released?.match(/\d{4}/);
-	return {
-		title: song.title,
-		artist: song.artist,
-		year: releaseDateMatch ? parseInt(releaseDateMatch[0]) : null
-	};
-};
+interface JoinSessionResponse {
+	playerId: string;
+	playerName: string;
+}
 
-// Component to display the current player's timeline
-const Timeline = ({ guessedSongs }: { guessedSongs: Song[] }) => {
-	const sortedSongs = [...guessedSongs].sort((a, b) => a.year - b.year);
+export default function Game({ sessionId }: { sessionId: string }) {
+	const [playerId, setPlayerId] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
-	return (
-		<div className="flex flex-col gap-2 my-4">
-			{sortedSongs.map((song, index) => (
-				<div key={index} className="flex items-center gap-2 p-2 bg-gray-100 rounded">
-					<span className="text-gray-600">{song.year}</span>
-					<span>{song.title} - {song.artist}</span>
-				</div>
-			))}
-		</div>
-	);
-};
-
-// Main game component
-export default function GuessSongGame({ songsData }: { songsData: Song[] }) {
-	const [players, setPlayers] = useState<string[]>([]);
-	const [currentPlayer, setCurrentPlayer] = useState(0);
-	const [currentSong, setCurrentSong] = useState<Song | null>(null);
-	const [playerTimelines, setPlayerTimelines] = useState<Timeline>({});
-
-	// Initialize game state
 	useEffect(() => {
-		if (songsData) {
-			getNextSong();
+		// Check if player is already in session (from localStorage)
+		const storedPlayerId = localStorage.getItem(`player_${sessionId}`);
+		if (storedPlayerId) {
+			setPlayerId(storedPlayerId);
+			return;
 		}
-	}, [songsData]);
 
-	// Get a random song that hasn't been used
-	const getNextSong = () => {
-		const usedSongs = Object.values(playerTimelines).flat();
-		const availableSongs = songsData.filter(song =>
-			!usedSongs.find(used => used.title === song.title)
-		);
-
-		if (availableSongs.length) {
-			const randomIndex = Math.floor(Math.random() * availableSongs.length);
-			setCurrentSong(parseSongData(availableSongs[randomIndex]) as Song);
+		// If not, prompt for name and join session
+		const playerName = prompt("Enter your name to join the session:");
+		if (!playerName) {
+			setError("Name is required to join the session");
+			return;
 		}
-	};
 
-	// Add a new player
-	const addPlayer = () => {
-		const playerName = prompt("Enter player name:");
-		if (playerName) {
-			setPlayers([...players, playerName]);
-			setPlayerTimelines(prev => ({ ...prev, [playerName]: [] }));
-		}
-	};
+		joinSession(playerName);
+	}, [sessionId]);
 
-	// Handle player's guess
-	const makeGuess = (position: string) => {
-		const player = players[currentPlayer];
-		const timeline = playerTimelines[player];
+	const joinSession = async (playerName: string) => {
+		try {
+			const response = await fetch(`/api/sessions/${sessionId}/players`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ name: playerName }),
+			});
 
-		// Validate guess
-		if (!currentSong) return;
-		const isCorrect = validateGuess(timeline, currentSong, position);
-
-		if (isCorrect) {
-			// Update player's timeline
-			const newTimeline = [...timeline, currentSong];
-			setPlayerTimelines(prev => ({
-				...prev,
-				[player]: newTimeline
-			}));
-
-			// Check win condition
-			if (newTimeline.length >= 10) {
-				alert(`${player} wins!`);
-				return;
+			if (!response.ok) {
+				throw new Error("Failed to join session");
 			}
 
-			// Next turn
-			getNextSong();
-			setCurrentPlayer((currentPlayer + 1) % players.length);
-		} else {
-			alert("Incorrect! Next player's turn");
-			setCurrentPlayer((currentPlayer + 1) % players.length);
-			getNextSong();
+			const data: JoinSessionResponse = await response.json();
+			setPlayerId(data.playerId);
+			localStorage.setItem(`player_${sessionId}`, data.playerId);
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "Failed to join session");
 		}
 	};
 
-	// Validate if the guess is correct based on the timeline
-	const validateGuess = (timeline: Song[], song: Song, position: string) => {
-		if (timeline.length === 0) return true;
+	if (error) {
+		return (
+			<Card className='p-4 max-w-md mx-auto mt-8'>
+				<h2 className='text-red-500 mb-4'>Error</h2>
+				<p>{error}</p>
+				<Button onClick={() => window.location.reload()} className='mt-4'>
+					Try Again
+				</Button>
+			</Card>
+		);
+	}
 
-		const sortedTimeline = [...timeline].sort((a, b) => a.year - b.year);
+	if (!playerId) {
+		return (
+			<Card className='p-4 max-w-md mx-auto mt-8'>
+				<h2>Joining session...</h2>
+			</Card>
+		);
+	}
 
-		if (position === 'older') {
-			return song.year <= sortedTimeline[0].year;
-		} else if (position === 'newer') {
-			return song.year >= sortedTimeline[sortedTimeline.length - 1].year;
-		} else {
-			const index = parseInt(position);
-			return song.year >= sortedTimeline[index].year &&
-				song.year <= sortedTimeline[index + 1].year;
+	return <GuessSongGame sessionId={sessionId} playerId={playerId} />;
+}
+
+function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: string }) {
+	const socket = useSocket();
+	const [gameState, setGameState] = useState<GameState | null>(null);
+	const [socketConnected, setSocketConnected] = useState(false);
+
+	useEffect(() => {
+		if (!socket) {
+			console.log("Socket not yet connected...");
+			return;
 		}
+
+		console.log("Socket connected, joining session:", sessionId);
+		setSocketConnected(true);
+
+		// Join session
+		socket.emit("joinSession", sessionId);
+
+		// Set up event listeners
+		socket.on("gameStateUpdate", (newState: GameState) => {
+			console.log("Received game state update:", newState);
+			setGameState(newState);
+		});
+
+		return () => {
+			console.log("Cleaning up game component...");
+			socket.off("gameStateUpdate");
+			socket.emit("leaveSession", sessionId);
+		};
+	}, [socket, sessionId]);
+
+	if (!socketConnected) {
+		return (
+			<Card className='p-4'>
+				<h2>Connecting to game...</h2>
+			</Card>
+		);
+	}
+
+	const isCurrentPlayersTurn = gameState?.currentPlayerId === playerId;
+
+	const handleGuess = (position: string) => {
+		if (!socket || !gameState?.currentSong) return;
+
+		const currentPlayerTimeline = gameState.players.find((p) => p.id === playerId)?.timeline || [];
+		const sortedTimeline = [...currentPlayerTimeline].sort((a, b) => a.year - b.year);
+
+		let isCorrect = false;
+		const currentSongYear = gameState.currentSong.year;
+
+		if (position === "first" || position === "older") {
+			isCorrect = sortedTimeline.length === 0 || currentSongYear <= sortedTimeline[0].year;
+		} else if (position.startsWith("newer:")) {
+			const index = parseInt(position.split(":")[1]);
+			isCorrect = currentSongYear >= sortedTimeline[index].year;
+		} else if (position.startsWith("between:")) {
+			const index = parseInt(position.split(":")[1]);
+			isCorrect =
+				currentSongYear >= sortedTimeline[index].year && currentSongYear <= sortedTimeline[index + 1].year;
+		}
+
+		socket.emit("makeGuess", {
+			sessionId,
+			playerId,
+			guess: {
+				position,
+				song: gameState.currentSong,
+				isCorrect,
+			},
+		});
 	};
 
-	// Generate guess options based on current timeline
-	const getGuessOptions = (timeline: Song[]) => {
-		if (timeline.length === 0) {
-			return [
-				<Button key="first" onClick={() => makeGuess('first')}>
-					Make First Guess
-				</Button>
-			];
-		}
-
-		const sortedTimeline = [...timeline].sort((a, b) => a.year - b.year);
-		const options = [
-			<Button key="older" onClick={() => makeGuess('older')}>
-				Older than {sortedTimeline[0].year}
-			</Button>,
-			<Button key="newer" onClick={() => makeGuess('newer')}>
-				Newer than {sortedTimeline[sortedTimeline.length - 1].year}
-			</Button>
-		];
-
-		// Add "between" options
-		for (let i = 0; i < sortedTimeline.length - 1; i++) {
-			options.push(
-				<Button key={i} onClick={() => makeGuess(i as unknown as string)}>
-					Between {sortedTimeline[i].year} and {sortedTimeline[i + 1].year}
-				</Button>
-			);
-		}
-
-		return options;
+	const handleStartGame = () => {
+		if (!socket) return;
+		socket.emit("startGame", { sessionId });
 	};
 
 	return (
-		<div className="max-w-4xl mx-auto p-4">
-			<Card>
-				<CardHeader>
-					<h1 className="text-2xl font-bold">Guess the Song Timeline</h1>
-				</CardHeader>
-				<CardContent>
-					<div className="mb-4">
-						<Button onClick={addPlayer}>Add Player</Button>
+		<div className='space-y-8'>
+			{/* Session Info */}
+			<Card className='p-4'>
+				<h2>Session: {gameState?.sessionName}</h2>
+				<div className='flex gap-4 justify-between items-center'>
+					<div className='flex gap-4'>
+						{gameState?.players.map((player) => (
+							<div
+								key={player.id}
+								className={player.id === gameState?.currentPlayerId ? "font-bold" : ""}>
+								{player.name}: {player.score}
+							</div>
+						))}
 					</div>
-
-					{players.length > 0 && currentSong && (
-						<div>
-							<h2 className="text-xl mb-2">
-								Current Player: {players[currentPlayer]}
-							</h2>
-							<div className="mb-4">
-								<h3 className="font-bold">Current Song:</h3>
-							</div>
-							<div className="space-y-4">
-								<div className="p-4 bg-gray-100 rounded">
-									<p className="font-bold">{currentSong.title}</p>
-									<p>by {currentSong.artist}</p>
-								</div>
-								<SpotifyPlayer
-									title={currentSong.title}
-									artist={currentSong.artist}
-								/>
-							</div>
-
-							<div className="mb-4">
-								<Timeline
-									guessedSongs={playerTimelines[players[currentPlayer]] || []}
-								/>
-							</div>
-
-							<div className="flex flex-wrap gap-2">
-								{getGuessOptions(playerTimelines[players[currentPlayer]] || [])}
-							</div>
-						</div>
-					)}
-				</CardContent>
+					{gameState?.status === "waiting" && <Button onClick={handleStartGame}>Start Game</Button>}
+				</div>
 			</Card>
+
+			{/* Current Song (hidden for current player) */}
+			{!isCurrentPlayersTurn && gameState?.currentSong && (
+				<Card className='p-4'>
+					<h3>Current Song</h3>
+					<p>
+						{gameState.currentSong.title} - {gameState.currentSong.artist}
+					</p>
+					{gameState.currentSong.previewUrl ? (
+						<SpotifyPlayer artist={gameState.currentSong.artist} title={gameState.currentSong.title} />
+					) : (
+						<Button onClick={() => window.open(gameState.currentSong?.spotifyUrl)}>Open in Spotify</Button>
+					)}
+				</Card>
+			)}
+
+			{/* Timeline Display */}
+			{gameState?.players.map((player) => (
+				<Card key={player.id} className='p-4'>
+					<h3 className='font-bold mb-4'>{player.name}'s Timeline</h3>
+					<Timeline
+						songs={player.timeline}
+						onGuess={player.id === playerId && isCurrentPlayersTurn ? handleGuess : undefined}
+						isCurrentPlayer={player.id === playerId && isCurrentPlayersTurn}
+						currentSong={gameState?.currentSong}
+					/>
+				</Card>
+			))}
 		</div>
 	);
 }
