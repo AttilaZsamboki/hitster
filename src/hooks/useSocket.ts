@@ -7,7 +7,7 @@ export function useSocket() {
 	useEffect(() => {
 		console.log("Initializing socket connection...");
 
-		const newSocket = io(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000", {
+		const newSocket = io(process.env.NEXT_PUBLIC_APP_URL || "http://hitster.dataupload.xyz/", {
 			path: "/socket.io",
 			transports: ["websocket", "polling"],
 			reconnectionAttempts: 5,
