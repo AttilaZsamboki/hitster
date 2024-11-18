@@ -28,6 +28,7 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong }: Timel
 
 		// Add between options
 		for (let i = 0; i < sortedSongs.length - 1; i++) {
+			if (sortedSongs[i].year === sortedSongs[i + 1].year) continue;
 			options.push(
 				<Button
 					key={`between-${i}`}
