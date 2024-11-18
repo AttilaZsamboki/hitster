@@ -67,6 +67,10 @@ app.prepare().then(() => {
 			);
 			console.log("playersWithTimelines", playersWithTimelines);
 
+			const usedSongsCount = await db.query.usedSongs.findMany({
+				where: eq(usedSongs.sessionId, parseInt(sessionId)),
+			});
+
 			return {
 				sessionId: session.id.toString(),
 				sessionName: session.name,
@@ -82,6 +86,8 @@ app.prepare().then(() => {
 							spotifyUrl: currentSong.spotifyUrl || undefined,
 					  }
 					: undefined,
+				totalRounds: 10,
+				currentRound: Math.floor((usedSongsCount.length - 1) / session.players.length) + 1,
 			};
 		} catch (error) {
 			console.error("Error getting game state:", error);
@@ -109,7 +115,8 @@ app.prepare().then(() => {
 		} catch (error) {
 			console.error("Error updating current song:", error);
 			// Handle the case where no more songs are available
-			await db.update(sessions)
+			await db
+				.update(sessions)
 				.set({ status: "finished" })
 				.where(eq(sessions.id, parseInt(sessionId)));
 		}
@@ -118,18 +125,18 @@ app.prepare().then(() => {
 	async function selectRandomSong(packageId: number | null, sessionId: number) {
 		let attempts = 0;
 		const maxAttempts = 50; // Prevent infinite loop
-		
+
 		while (attempts < maxAttempts) {
 			// Get a random song
-			const songs = packageId ? 
-				await db.query.packageSongs.findMany({
-					where: eq(packageSongs.packageId, packageId),
-				}) :
-				await getSongs();
-				
+			const songs = packageId
+				? await db.query.packageSongs.findMany({
+						where: eq(packageSongs.packageId, packageId),
+				  })
+				: await getSongs();
+
 			const randomIndex = Math.floor(Math.random() * songs.length);
 			const song = songs[randomIndex];
-			
+
 			// Check if song was already used in this session
 			const usedSong = await db.query.usedSongs.findFirst({
 				where: and(
@@ -138,7 +145,7 @@ app.prepare().then(() => {
 					eq(usedSongs.songArtist, song.artist)
 				),
 			});
-			
+
 			if (!usedSong) {
 				// Add song to used songs
 				await db.insert(usedSongs).values({
@@ -147,7 +154,7 @@ app.prepare().then(() => {
 					songArtist: song.artist,
 					songYear: parseInt(song.released.split("-")[0]),
 				});
-				
+
 				return {
 					title: song.title,
 					artist: song.artist,
@@ -156,10 +163,10 @@ app.prepare().then(() => {
 					spotifyUrl: undefined,
 				};
 			}
-			
+
 			attempts++;
 		}
-		
+
 		throw new Error("No more unused songs available");
 	}
 
@@ -208,7 +215,7 @@ app.prepare().then(() => {
 					with: { players: true },
 				});
 				if (session) {
-					const playerIds = session.players.map((p) => p.id);
+					const playerIds = session.players.map((p) => p.id).sort();
 					const currentIndex = playerIds.indexOf(parseInt(playerId));
 					const nextPlayerId = playerIds[(currentIndex + 1) % playerIds.length];
 
@@ -224,6 +231,35 @@ app.prepare().then(() => {
 				if (newState) {
 					io.to(`session:${sessionId}`).emit("gameStateUpdate", newState);
 				}
+
+				// Check for winner
+				const winner = await db.query.players.findFirst({
+					where: and(
+						eq(players.sessionId, parseInt(sessionId)),
+						eq(players.score, 10) // Using default win condition of 10 points
+					)
+				});
+
+				if (winner) {
+					// Emit winner event
+					io.to(`session:${sessionId}`).emit("gameWinner", {
+						playerId: winner.id.toString(),
+						playerName: winner.name
+					});
+					
+					// Update session status
+					await db
+						.update(sessions)
+						.set({ status: "finished" })
+						.where(eq(sessions.id, parseInt(sessionId)));
+				}
+
+				// Broadcast the guess result to all players
+				io.to(`session:${sessionId}`).emit("guessResult", {
+					playerId,
+					isCorrect: guess.isCorrect,
+					songDetails: guess.song,
+				});
 			} catch (error) {
 				console.error("Error processing guess:", error);
 			}

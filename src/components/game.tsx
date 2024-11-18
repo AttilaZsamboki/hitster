@@ -7,6 +7,9 @@ import { SpotifyPlayer } from "./spotify-player";
 import { GameState } from "@/types/game";
 import { Timeline } from "@/components/timeline";
 import { PackageSelector } from "./package-selector";
+import { Scoreboard } from "./scoreboard";
+import { GameEffects } from "./game-effects";
+import { WinAnimation } from "./win-animation";
 
 export interface Song {
 	title: string;
@@ -100,6 +103,15 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 	const [gameState, setGameState] = useState<GameState | null>(null);
 	const [socketConnected, setSocketConnected] = useState(false);
 	const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+	const [guessResult, setGuessResult] = useState<{
+		isCorrect: boolean;
+		songDetails?: {
+			title: string;
+			artist: string;
+			year: number;
+		};
+	} | null>(null);
+	const [winner, setWinner] = useState<{ playerId: string; playerName: string } | null>(null);
 
 	useEffect(() => {
 		if (!socket) {
@@ -119,10 +131,31 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 			setGameState(newState);
 		});
 
+		socket.on(
+			"guessResult",
+			(result: {
+				playerId: string;
+				isCorrect: boolean;
+				songDetails?: {
+					title: string;
+					artist: string;
+					year: number;
+				};
+			}) => {
+				setGuessResult(result);
+			}
+		);
+
+		socket.on("gameWinner", (winnerData) => {
+			setWinner(winnerData);
+		});
+
 		return () => {
 			console.log("Cleaning up game component...");
 			socket.off("gameStateUpdate");
+			socket.off("guessResult");
 			socket.emit("leaveSession", sessionId);
+			socket.off("gameWinner");
 		};
 	}, [socket, sessionId]);
 
@@ -184,9 +217,6 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 			isCorrect =
 				currentSongYear >= sortedTimeline[index].year && currentSongYear <= sortedTimeline[index + 1].year;
 		}
-		if (!isCorrect) {
-			alert("Incorrect guess!");
-		}
 
 		socket.emit("makeGuess", {
 			sessionId,
@@ -200,44 +230,75 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 	};
 
 	return (
-		<div className='space-y-8'>
-			{/* Session Info */}
-			<Card className='p-4'>
-				<h2>Session: {gameState?.sessionName}</h2>
-				<div className='flex gap-4 justify-between items-center'>
-					<div className='flex gap-4'>
-						{gameState?.players.map((player) => (
-							<div
-								key={player.id}
-								className={player.id === gameState?.currentPlayerId ? "font-bold" : ""}>
-								{player.name}: {player.score}
-							</div>
-						))}
-					</div>
-				</div>
-			</Card>
+		<>
+			<div className='space-y-8'>
+				{/* Session Info */}
+				<Scoreboard
+					players={gameState?.players || []}
+					currentPlayerId={gameState?.currentPlayerId || ""}
+					currentPlayerName={gameState?.players.find((p) => p.id === gameState?.currentPlayerId)?.name || ""}
+					localPlayerId={playerId}
+					currentRound={gameState?.currentRound || 0}
+					totalRounds={gameState?.totalRounds || 10}
+				/>
 
-			{/* Current Song (hidden for current player) */}
-			{gameState?.currentSong && (
-				<SpotifyPlayer
-					artist={gameState.currentSong.artist}
-					title={gameState.currentSong.title}
-					isCurrentPlayersTurn={isCurrentPlayersTurn}
+				{/* Current Song (hidden for current player) */}
+				{gameState?.currentSong && (
+					<SpotifyPlayer
+						artist={gameState.currentSong.artist}
+						title={gameState.currentSong.title}
+						isCurrentPlayersTurn={isCurrentPlayersTurn}
+					/>
+				)}
+
+				{/* Timeline Display */}
+				<div className='space-y-8'>
+					{/* Show local player's timeline first */}
+					{gameState?.players
+						.sort((a, b) => {
+							if (a.id === playerId) return -1;
+							if (b.id === playerId) return 1;
+							return 0;
+						})
+						.map((player) => (
+							<Card
+								key={player.id}
+								className={`p-4 transition-all ${
+									player.id === playerId ? "ring-2 ring-primary shadow-lg" : ""
+								}`}>
+								<h3
+									className={`font-bold mb-4 flex items-center gap-2 ${
+										player.id === playerId ? "text-primary" : ""
+									}`}>
+									{player.id === playerId && (
+										<span className='text-xs bg-primary/10 px-2 py-1 rounded'>Your Timeline</span>
+									)}
+									{player.name}s Timeline
+								</h3>
+								<Timeline
+									songs={player.timeline}
+									onGuess={player.id === playerId && isCurrentPlayersTurn ? handleGuess : undefined}
+									isCurrentPlayer={player.id === playerId && isCurrentPlayersTurn}
+									currentSong={gameState?.currentSong}
+									isLocalPlayer={player.id === playerId}
+								/>
+							</Card>
+						))}
+				</div>
+
+				{/* Add GameEffects component */}
+			</div>
+			<GameEffects
+				isCorrect={guessResult?.isCorrect ?? null}
+				songDetails={guessResult?.songDetails}
+				onComplete={() => setGuessResult(null)}
+			/>
+			{winner && (
+				<WinAnimation 
+					playerName={winner.playerName}
+					onComplete={() => setWinner(null)}
 				/>
 			)}
-
-			{/* Timeline Display */}
-			{gameState?.players.map((player) => (
-				<Card key={player.id} className='p-4'>
-					<h3 className='font-bold mb-4'>{player.name}s Timeline</h3>
-					<Timeline
-						songs={player.timeline}
-						onGuess={player.id === playerId && isCurrentPlayersTurn ? handleGuess : undefined}
-						isCurrentPlayer={player.id === playerId && isCurrentPlayersTurn}
-						currentSong={gameState?.currentSong}
-					/>
-				</Card>
-			))}
-		</div>
+		</>
 	);
 }

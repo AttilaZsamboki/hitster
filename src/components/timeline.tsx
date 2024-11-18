@@ -6,9 +6,10 @@ interface TimelineProps {
 	onGuess?: (position: string) => void;
 	isCurrentPlayer: boolean;
 	currentSong?: Song;
+	isLocalPlayer: boolean;
 }
 
-export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong }: TimelineProps) {
+export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocalPlayer }: TimelineProps) {
 	const sortedSongs = [...songs].sort((a, b) => a.year - b.year);
 
 	const getGuessOptions = () => {
@@ -59,9 +60,15 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong }: Timel
 			{/* Timeline display */}
 			<div className='space-y-2'>
 				{sortedSongs.map((song, index) => (
-					<div key={index} className='flex items-center gap-2 p-2 bg-gray-100 rounded'>
-						<span className='text-gray-600 w-16'>{song.year}</span>
-						<span>
+					<div
+						key={index}
+						className={`
+							flex items-center gap-2 p-2 rounded
+							${isLocalPlayer ? "bg-primary/5 border border-primary/10" : "bg-gray-100"}
+							transition-all hover:scale-[1.02]
+						`}>
+						<span className={`w-16 ${isLocalPlayer ? "text-primary" : "text-gray-600"}`}>{song.year}</span>
+						<span className={isLocalPlayer ? "font-medium" : ""}>
 							{song.title} - {song.artist}
 						</span>
 					</div>

@@ -20,4 +20,6 @@ export interface GameState {
 	};
 	status: "waiting" | "active" | "finished";
 	currentPlayerId: string;
+	totalRounds: number;
+	currentRound: number;
 }
