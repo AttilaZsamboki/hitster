@@ -15,6 +15,20 @@
       "when": 1731686278189,
       "tag": "0001_warm_mister_fear",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1731924041902,
+      "tag": "0002_clear_metal_master",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1731929452583,
+      "tag": "0003_tranquil_sleeper",
+      "breakpoints": true
     }
   ]
 }

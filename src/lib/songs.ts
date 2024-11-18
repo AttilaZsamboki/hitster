@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-export async function getSongs() {
+export async function getSongs(): Promise<{ title: string; artist: string; released: string }[]> {
 	const csvContent = await fs.readFile(path.join(process.cwd(), "src", "data", "songs.csv"), "utf-8");
 
 	// Split the content into lines and remove the header
@@ -27,5 +27,8 @@ export async function getSongs() {
 				released: fields[2],
 			};
 		})
-		.filter((song) => song && song.title && song.released);
+		.filter(
+			(song): song is { title: string; artist: string; released: string } =>
+				!!song && !!song.title && !!song.released
+		);
 }

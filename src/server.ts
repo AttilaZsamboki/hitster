@@ -3,8 +3,8 @@ import { parse } from "url";
 import next from "next";
 import { Server } from "socket.io";
 import { db } from "./db";
-import { sessions, players, currentSongs, timelines } from "./db/schema";
-import { eq, sql } from "drizzle-orm";
+import { sessions, players, currentSongs, timelines, packageSongs, usedSongs } from "./db/schema";
+import { eq, sql, and } from "drizzle-orm";
 import { GameState, Player } from "./types/game";
 import { getSongs } from "./lib/songs";
 
@@ -90,37 +90,77 @@ app.prepare().then(() => {
 	}
 
 	async function updateCurrentSong(sessionId: string) {
-		const song = await selectRandomSong();
-		await db.delete(currentSongs).where(eq(currentSongs.sessionId, parseInt(sessionId)));
+		try {
+			const session = await db.query.sessions.findFirst({
+				where: eq(sessions.id, parseInt(sessionId)),
+			});
 
-		// Set new current song
-		await db.insert(currentSongs).values({
-			// @ts-expect-error: I don't know why this is happening
-			sessionId: parseInt(sessionId ?? "0") as unknown as number,
-			songTitle: song.title,
-			songArtist: song.artist,
-			songYear: song.year,
-			previewUrl: song.previewUrl,
-			spotifyUrl: song.spotifyUrl,
-		});
+			const song = await selectRandomSong(session?.packageId ?? null, parseInt(sessionId));
+			await db.delete(currentSongs).where(eq(currentSongs.sessionId, parseInt(sessionId)));
+
+			await db.insert(currentSongs).values({
+				sessionId: parseInt(sessionId),
+				songTitle: song.title,
+				songArtist: song.artist,
+				songYear: song.year,
+				previewUrl: song.previewUrl,
+				spotifyUrl: song.spotifyUrl,
+			});
+		} catch (error) {
+			console.error("Error updating current song:", error);
+			// Handle the case where no more songs are available
+			await db.update(sessions)
+				.set({ status: "finished" })
+				.where(eq(sessions.id, parseInt(sessionId)));
+		}
 	}
 
-	async function selectRandomSong() {
-		const songs = await getSongs();
-		const randomIndex = Math.floor(Math.random() * songs.length);
-		const song = songs[randomIndex];
-
-		// Convert released date to year
-		const year = parseInt(song?.released.split("-")[0] || "0");
-
-		return {
-			title: song?.title,
-			artist: song?.artist,
-			year,
-			// Note: Add Spotify integration here if needed
-			previewUrl: undefined,
-			spotifyUrl: undefined,
-		};
+	async function selectRandomSong(packageId: number | null, sessionId: number) {
+		let attempts = 0;
+		const maxAttempts = 50; // Prevent infinite loop
+		
+		while (attempts < maxAttempts) {
+			// Get a random song
+			const songs = packageId ? 
+				await db.query.packageSongs.findMany({
+					where: eq(packageSongs.packageId, packageId),
+				}) :
+				await getSongs();
+				
+			const randomIndex = Math.floor(Math.random() * songs.length);
+			const song = songs[randomIndex];
+			
+			// Check if song was already used in this session
+			const usedSong = await db.query.usedSongs.findFirst({
+				where: and(
+					eq(usedSongs.sessionId, sessionId),
+					eq(usedSongs.songTitle, song.title),
+					eq(usedSongs.songArtist, song.artist)
+				),
+			});
+			
+			if (!usedSong) {
+				// Add song to used songs
+				await db.insert(usedSongs).values({
+					sessionId,
+					songTitle: song.title,
+					songArtist: song.artist,
+					songYear: parseInt(song.released.split("-")[0]),
+				});
+				
+				return {
+					title: song.title,
+					artist: song.artist,
+					year: parseInt(song.released.split("-")[0]),
+					previewUrl: undefined,
+					spotifyUrl: undefined,
+				};
+			}
+			
+			attempts++;
+		}
+		
+		throw new Error("No more unused songs available");
 	}
 
 	io.on("connection", (socket) => {
@@ -216,6 +256,23 @@ app.prepare().then(() => {
 				}
 			} catch (error) {
 				console.error("Error starting game:", error);
+			}
+		});
+
+		socket.on("selectPackage", async ({ sessionId, packageId }) => {
+			console.log("selectPackage", sessionId, packageId);
+			try {
+				await db
+					.update(sessions)
+					.set({ packageId })
+					.where(eq(sessions.id, parseInt(sessionId)));
+
+				const newState = await getGameState(sessionId);
+				if (newState) {
+					io.to(`session:${sessionId}`).emit("gameStateUpdate", newState);
+				}
+			} catch (error) {
+				console.error("Error selecting package:", error);
 			}
 		});
 

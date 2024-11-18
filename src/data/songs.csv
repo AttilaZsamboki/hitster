@@ -1,541 +1,376 @@
-Song,Artist,release_date,original_album
-My Heart Will Go On,Céline Dion,1997,My Heart Will Go On
-Hotel California,Eagles,1976,Long Road out of Eden
-Billie Jean,Michael Jackson,1982,Thriller
-I Will Always Love You,Whitney Houston,1992,Whitney Houston
-Sweet Caroline,Neil Diamond,1969,Sweet Caroline
-Every Breath You Take,The Police,1983,Every Breath You Take (Demo)
-Bohemian Rhapsody,Queen,1975,Sheer Heart Attack
-Stayin' Alive,Bee Gees,1979,One Night Only
-The Sound of Silence,Simon & Garfunkel,1964,"Wednesday Morning, 3 A.M."
-Don't Stop Believin',Journey,1981,Evolution
-Can't Help Falling in Love,Elvis Presley,1961,Loving You
-Beat It,Michael Jackson,1982,"Forever, Michael"
-Stairway To Heaven,Led Zeppelin,1971,Led Zeppelin
-Maggie May,Rod Stewart,1971,Every Picture Tells A Story
-Dancing Queen,ABBA,1976,Abba
-In the Air Tonight,Phil Collins,1981,In The Air Tonight (Epic Version)
-What's Love Got to Do with It,Tina Turner,1984,What's Love Got to Do with It
-Thriller,Michael Jackson,1982,Thriller
-Smoke on the Water,Deep Purple,1972,Smoke on the Water / Smoke on the Water (45 Version) [Edit]
-Another One Bites the Dust,Queen,1980,The Game
-Back in Black,AC/DC,1980,High Voltage
-Wish You Were Here,Pink Floyd,1975,The Piper at the Gates of Dawn
-Black Magic Woman / Gypsy Queen,Santana,1970,Santana
-Sultans of Swing,Dire Straits,1978,Dire Straits
-Wannabe,Spice Girls,1996,Spice
-Imagine,John Lennon,1971,Wedding Album
-(Everything I Do) I Do It for You,Bryan Adams,1991,Waking Up The Neighbours
-Go Your Own Way,Fleetwood Mac,1977,The Pious Bird of Good Omen
-I Wanna Dance with Somebody (Who Loves Me),Whitney Houston,1987,Whitney Houston
-Sweet Child O' Mine,Guns N' Roses,1987,Appetite For Destruction
-Smells Like Teen Spirit,Nirvana,1991,Nevermind
-Your Song,Elton John,1970,Elton John
-Highway to Hell,AC/DC,1979,High Voltage
-You Shook Me All Night Long,AC/DC,1980,Let There Be Rock
-I Want It That Way,Backstreet Boys,1999,Backstreet Boys
-Losing My Religion,R.E.M.,1991,Africa
-Mrs. Robinson,Simon & Garfunkel,1968,"Wednesday Morning, 3 A.M."
-Black or White,Michael Jackson,1991,Ben
-...Baby One More Time,Britney Spears,1999,Till The World Ends The Remixes
-Like A Prayer,Madonna,2009,Like a Virgin
-Jailhouse Rock,Elvis Presley,1997,For LP Fans Only
-Walk This Way,Aerosmith,1975,Aerosmith
-We Will Rock You,Queen,1977,News of the World
-Blue Christmas,Elvis Presley,1957,Elvis Presley
-Another Brick in the Wall (Part II),Pink Floyd,1979,Atom Heart Mother
-Lose Yourself,Eminem,2005,The Slim Shady LP
-Under the Bridge,Red Hot Chili Peppers,1991,Blood Sugar Sex Magik
-Thunderstruck,AC/DC,1990,Dirty Deeds Done Dirt Cheap
-Don't Stop Me Now,Queen,1978,Jazz
-Paranoid,Black Sabbath,1970,13
-Zombie,The Cranberries,1994,"Everybody Else Is Doing It, So Why Can't We?"
-Let It Be,The Beatles,1970,The Beatles
-Paint It Black,The Rolling Stones,1966,12 X 5
-Ironic,Alanis Morissette,1995,Jagged Little Pill
-Dream On,Aerosmith,1973,Aerosmith
-How Deep Is Your Love,Bee Gees,1979,One Night Only
-Nothing Else Matters,Metallica,1991,Reload
-"Rocket Man (I Think It's Going to Be a Long, Long Time)",Elton John,1972,Honky Chateau
-Somebody to Love,Queen,1976,A Day At The Races
-You Can't Hurry Love,The Supremes,1966,Where Did Our Love Go
-Enter Sandman,Metallica,1991,Reload
-Piano Man,Billy Joel,1973,Piano Man
-Dreams,Fleetwood Mac,1977,Mystery to Me
-Wonderful Tonight,Eric Clapton,1977,Eric Clapton
-I Want to Hold Your Hand,The Beatles,1973,The Beatles
-Everybody (Backstreet's Back),Backstreet Boys,2013,Backstreet Boys
-Money for Nothing,Dire Straits,1985,Dire Straits
-Pour Some Sugar on Me,Def Leppard,1987,On Through The Night
-Hero,Mariah Carey,1993,Mariah Carey
-Like A Virgin,Madonna,1984,Like a Virgin
-Come As You Are,Nirvana,1991,Bleach
-Mamma Mia,ABBA,1975,Abba
-Born in the U.S.A.,Bruce Springsteen,1984,"Greetings from Asbury Park, N.J."
-Have You Ever Seen The Rain,Creedence Clearwater Revival,1970,Cosmo's Factory
-Good Vibrations,The Beach Boys,1967,Surfer Girl (Mono & Stereo)
-Da Ya Think I'm Sexy?,Rod Stewart,1978,A Night on the Town
-(I Can't Get No) Satisfaction,The Rolling Stones,1965,12 X 5
-Whole Lotta Love,Led Zeppelin,1969,Celebration Day
-Rolling In The Deep,Adele,2011,19
-Man in the Mirror,Michael Jackson,2012,Dangerous
-Oops!... I Did It Again,Britney Spears,2000,Oops!... I Did It Again
-Money,Pink Floyd,1973,The Piper at the Gates of Dawn
-Uptown Girl,Billy Joel,1983,Cold Spring Harbor
-La Isla Bonita,Madonna,1986,True Blue
-Fortunate Son,Creedence Clearwater Revival,1969,Bayou Country
-Wouldn't It Be Nice,The Beach Boys,1966,The Beach Boys' Christmas Album
-Tears in Heaven,Eric Clapton,1992,Eric Clapton
-Light My Fire,The Doors,1967,Light My Fire / Crystal Ship
-Surfin' U.S.A.,The Beach Boys,1963,Surfin' USA (Mono & Stereo)
-Start Me Up,The Rolling Stones,1981,12 X 5
-Don't Stop 'Til You Get Enough,Michael Jackson,1979,"Forever, Michael"
-Like a Rolling Stone,Bob Dylan,1965,Bob Dylan
-Come Together,The Beatles,1969,Yellow Submarine Songtrack
-Basket Case,Green Day,1994,"1,039 / Smoothed out Slappy Hours"
-Dancing in the Dark,Bruce Springsteen,1984,"The Wild, the Innocent & The E Street Shuffle"
-Careless Whisper,George Michael,1998,Make It Big
-Without You,Mariah Carey,1993,The Emancipation of Mimi
-Yesterday,The Beatles,1965,The Beatles
-I Want to Break Free,Queen,1984,The Works
-Man! I Feel Like a Woman!,Shania Twain,1997,The Woman In Me
-Woman in Love,Barbra Streisand,1980,The Second Barbra Streisand Album
-Suspicious Minds,Elvis Presley,1969,For LP Fans Only
-Fantasy,Mariah Carey,1995,Mariah Carey
-Bennie and the Jets,Elton John,1973,Tumbleweed Connection
-Smooth Criminal,Michael Jackson,1987,Music and Me
-We Are the Champions,Queen,1977,Queen Rock Montreal
-Riders on the Storm,The Doors,1971,L.A. Woman
-I Want You Back,The Jackson 5,1969,Diana Ross Presents The Jackson 5
-Sympathy For The Devil,The Rolling Stones,1968,Flashpoint
-Fly Me to the Moon,Frank Sinatra,1962,Sinatra/Basie: The Complete Reprise Studio Recordings
-The Real Slim Shady,Eminem,2000,The Slim Shady LP
-Welcome to the Jungle,Guns N' Roses,1987,Appetite For Destruction
-The Way You Make Me Feel,Michael Jackson,1987,Ben
-Bad Moon Rising,Creedence Clearwater Revival,1969,Bayou Country
-The Logical Song,Supertramp,1979,Crisis? What Crisis?
-The Boxer,Simon & Garfunkel,1970,"Wednesday Morning, 3 A.M."
-Superstition,Stevie Wonder,2002,Innervisions
-Faith,George Michael,1987,Faith
-Beast Of Burden,The Rolling Stones,1978,Between The Buttons
-Always Be My Baby,Mariah Carey,1995,Mariah Carey
-Without Me,Eminem,2002,2001
-Bridge over Troubled Water,Simon & Garfunkel,1970,"Parsley, Sage, Rosemary And Thyme"
-Hey Jude,The Beatles,2000,The Beatles
-I Have Nothing,Whitney Houston,1992,I'm Your Baby Tonight
-Vogue,Madonna,2009,Like a Virgin
-One,Metallica,1988,Load
-"Whenever, Wherever",Shakira,2001,Pies Descalzos
-Viva La Vida,Coldplay,2008,Viva La Vida or Death and All His Friends
-Paradise by the Dashboard Light,Meat Loaf,1977,Bat Out Of Hell
-Everywhere,Fleetwood Mac,1987,Behind the Mask
-Enjoy the Silence,Depeche Mode,2022,Violator
-How Will I Know,Whitney Houston,1985,Whitney Houston
-Hello,Adele,2015,21
-Respect,Aretha Franklin,1967,I Never Loved a Man the Way I Love You
-Love Me Do,The Beatles,1963,The Beatles
-Comfortably Numb,Pink Floyd,1979,Meddle
-Cocaine,Eric Clapton,1977,Eric Clapton
-Born to Run,Bruce Springsteen,1975,"Greetings from Asbury Park, N.J."
-Yellow,Coldplay,2000,Mylo Xyloto
-Englishman in New York,Sting,1987,...Nothing Like The Sun
-Smooth Operator,Sade,1994,Diamond Life
-Say My Name,Destiny's Child,1999,The Writing's On The Wall
-Shape of You,Ed Sheeran,2017,5
-You Don't Bring Me Flowers,Barbra Streisand,1978,The Second Barbra Streisand Album
-Angie,The Rolling Stones,1973,The Rolling Stones
-Heart of Gold,Neil Young,1972,Everybody Knows This Is Nowhere
-I Just Called to Say I Love You,Stevie Wonder,1999,Down To Earth
-Cecilia,Simon & Garfunkel,1970,"Wednesday Morning, 3 A.M."
-You're Beautiful,James Blunt,2005,Back to Bedlam
-The Scientist,Coldplay,2002,Parachutes
-Just Can't Get Enough,Depeche Mode,1981,Speak & Spell
-A Hard Day's Night,The Beatles,1964,The Beatles
-Californication,Red Hot Chili Peppers,1999,Blood Sugar Sex Magik
-Angels,Robbie Williams,1997,Life Thru A Lens
-I Get Around,The Beach Boys,1964,All Summer Long (Mono & Stereo)
-Crazy,Aerosmith,1993,Aerosmith
-You Can Call Me Al,Paul Simon,1986,Paul Simon
-That's the Way Love Goes,Janet Jackson,1993,Control
-They Don't Care About Us,Michael Jackson,1995,Music and Me
-Every Little Thing She Does Is Magic,The Police,1981,Ghost In The Machine (Alternate Sequence)
-Twist and Shout,The Beatles,1963,The Beatles
-Black Dog,Led Zeppelin,1971,Led Zeppelin
-Killing Me Softly,Fugees,1996,The Score
-Night Fever,Bee Gees,1979,Horizontal
-Bring Me to Life,Evanescence,2003,Fallen
-Fix You,Coldplay,2005,Shiver
-Oye Como Va,Santana,1970,Santana
-Hound Dog,Elvis Presley,1958,For LP Fans Only
-Fallin',Alicia Keys,2001,Songs In A Minor
-That Don't Impress Me Much,Shania Twain,1997,Shania Twain
-Flashdance... What a Feeling,Irene Cara,1983,What a Feelin'
-Baby Love,The Supremes,1964,Where Did Our Love Go
-Master Of Puppets,Metallica,1986,Reload
-Rock with You,Michael Jackson,1979,Off the Wall
-Gimme Shelter,The Rolling Stones,1969,Out Of Our Heads
-Three Little Birds,Bob Marley,1977,Bob Marley Interviews: So Much Things to Say
-Brothers in Arms,Dire Straits,1985,Brothers in Arms
-Can't Buy Me Love,The Beatles,1964,The Beatles
-The Trooper,Iron Maiden,1983,Senjutsu
-Could You Be Loved,Bob Marley,1980,Bob Marley emlékére
-Emotions,Mariah Carey,1991,Mariah Carey
-Toxic,Britney Spears,2003,Drive Me Crazy
-Good Times Bad Times,Led Zeppelin,1969,Led Zeppelin
-Brown Sugar,The Rolling Stones,1971,12 X 5
-Ramble On,Led Zeppelin,1969,Led Zeppelin
-Radio Ga Ga,Queen,1984,At The BBC
-Crazy Train,Ozzy Osbourne,2020,Diary Of A Madman
-Help!,The Beatles,1965,The Beatles
-Back for Good,Take That,1995,Odyssey
-Time,Pink Floyd,1973,A Saucerful of Secrets
-Holiday,Madonna,1983,Madonna
-Invisible Touch,Genesis,1986,Invisible Touch
-Hells Bells,AC/DC,1980,High Voltage
-For Those About to Rock (We Salute You),AC/DC,1981,Dirty Deeds Done Dirt Cheap
-The Times They Are a-Changin',Bob Dylan,1964,Bob Dylan
-Everybody Hurts,R.E.M.,1992,Automatic For The People
-Dirty Deeds Done Dirt Cheap,AC/DC,1976,Dirty Deeds Done Dirt Cheap
-Maniac,Michael Sembello,1983,Bossa Nova Hotel
-Only Time,Enya,2000,The Memory of Trees
-Set Fire To The Rain,Adele,2011,19
-Sweet Emotion,Aerosmith,1975,Aerosmith
-We Didn't Start the Fire,Billy Joel,1989,Streetlife Serenade
-Into The Groove,Madonna,2009,Angel
-T.N.T.,AC/DC,1976,High Voltage
-Cryin',Aerosmith,1993,Aerosmith
-Blank Space,Taylor Swift,2014,Taylor Swift (Big Machine Radio Release Special)
-Sacrifice,Elton John,1989,One Night Only
-Love Story,Taylor Swift,2021,Taylor Swift
-Papa Don't Preach,Madonna,1986,Papa Don't Preach
-Let's Dance,David Bowie,1983,David Bowie
-Jamming,Bob Marley,1977,Stir It Up
-Yellow Submarine,The Beatles,2014,Yellow Submarine Songtrack
-Rock and Roll,Led Zeppelin,1971,Led Zeppelin
-Get Back,The Beatles,1970,The Beatles
-Perfect,Ed Sheeran,2017,Don't
-Roadhouse Blues,The Doors,1970,Morrison Hotel
-I Can't Dance,Genesis,1991,We Can't Dance
-Breakfast in America,Supertramp,1979,Crisis? What Crisis?
-Killer Queen,Queen,1974,Sheer Heart Attack
-Burning Love,Elvis Presley,1973,Loving You
-Frozen,Madonna,2021,Express Yourself
-If I Ain't Got You,Alicia Keys,2003,Songs In A Minor
-Wild Horses,The Rolling Stones,1971,12 X 5
-I'm on Fire,Bruce Springsteen,1984,"Greetings from Asbury Park, N.J."
-Just the Way You Are,Bruno Mars,2010,Doo-Wops & Hooligans
-Woman,John Lennon,1980,Plastic Ono Band
-All You Need Is Love,The Beatles,1967,Yellow Submarine Songtrack
-She Loves You,The Beatles,1973,The Beatles
-It's Still Rock and Roll to Me,Billy Joel,1980,Piano Man
-Iron Man,Black Sabbath,1970,13
-Bad Romance,Lady Gaga,2009,Bad Romance Remixes
-"Theme from New York, New York",Frank Sinatra,2008,Come Fly With Me (Mono Version)
-Any Man of Mine,Shania Twain,1995,The Woman In Me
-The Show Must Go On,Queen,1991,Innuendo
-Bad,Michael Jackson,2012,Ben
-Shake It Off,Taylor Swift,2014,1989 (Big Machine Radio Release Special)
-Hung Up,Madonna,2005,Keep It Together
-Poker Face,Lady Gaga,2008,The Fame
-Candle in the Wind,Elton John,1973,Tumbleweed Connection
-I Gotta Feeling,Black Eyed Peas,2009,Elephunk
-The River,Bruce Springsteen,1980,"Greetings from Asbury Park, N.J."
-In the Ghetto,Elvis Presley,1969,Elvis' Christmas Album
-People Are Strange,The Doors,1967,The Doors
-ABC,The Jackson 5,1970,ABC
-Remember the Time,Michael Jackson,1991,Ben
-Greatest Love of All,Whitney Houston,1985,Whitney Houston
-Give a Little Bit,Supertramp,1977,Crisis? What Crisis?
-The River of Dreams,Billy Joel,1993,Cold Spring Harbor
-Thinking Out Loud,Ed Sheeran,2014,kiss me under the light of a thousand stars
-Can't Get You Out of My Head,Kylie Minogue,2001,Can't Get You out of My Head
-Crazy Little Thing Called Love,Queen,1980,The Game
-Sailing,Rod Stewart,1975,Atlantic Crossing
-We Belong Together,Mariah Carey,2005,Mariah Carey
-God Only Knows,The Beach Boys,1966,All Summer Long (Mono & Stereo)
-Hurricane,Bob Dylan,1976,Desire
-Run to the Hills,Iron Maiden,1982,Death On the Road
-If Tomorrow Never Comes,Garth Brooks,2024,Have Guitar-Will Travel
-Vision of Love,Mariah Carey,1990,Mariah Carey
-Child in Time,Deep Purple,1970,Come Taste the Band
-P.Y.T. (Pretty Young Thing),Michael Jackson,1982,Ben
-Landslide,Fleetwood Mac,1975,The Pious Bird of Good Omen
-My Life,Billy Joel,1978,Streetlife Serenade
-Romeo and Juliet,Dire Straits,1980,Making Movies
-Don't Let the Sun Go Down on Me,Elton John,1974,Elton John
-One Love / People Get Ready,Bob Marley,1977,Bob Marley emlékére
-You Are Not Alone,Michael Jackson,1995,"HIStory - PAST, PRESENT AND FUTURE - BOOK I"
-Space Oddity,David Bowie,1969,Space Oddity (2019 Mix)
-Come Away with Me,Norah Jones,2002,Feels Like Home
-Because of You,Kelly Clarkson,2004,Thankful
-Mockingbird,Eminem,2004,Encore
-Good Riddance (Time of Your Life),Green Day,1997,Nimrod
-I Say a Little Prayer,Aretha Franklin,1968,I Never Loved a Man the Way I Love You
-Samba Pa Ti,Santana,1970,Santana
-Hero,Enrique Iglesias,2001,Enrique Iglesias
-I Shot the Sheriff,Eric Clapton,1974,Eric Clapton
-Linger,The Cranberries,1993,"Everybody Else Is Doing It, So Why Can't We?"
-Blinding Lights,The Weeknd,2020,House Of Balloons (Original)
-Earth Song,Michael Jackson,1995,Ben
-Kashmir,Led Zeppelin,1975,Led Zeppelin
-Forever in Blue Jeans,Neil Diamond,1978,Moods
-Faithfully,Journey,1983,Journey
-The Chain,Fleetwood Mac,1977,The Pious Bird of Good Omen
-Our House,"Crosby, Stills, Nash & Young",1970,Deja Vu
-My Immortal,Evanescence,2003,Fallen
-Crocodile Rock,Elton John,1973,Tumbleweed Connection
-Personal Jesus,Depeche Mode,1998,Violator
-Photograph,Def Leppard,1983,On Through The Night
-Something,The Beatles,1969,The Beatles
-For What It's Worth,Buffalo Springfield,1966,Stop! Hey! What's That Sound?
-I'm Still Standing,Elton John,1983,Honky Chateau
-Don't Know Why,Norah Jones,2002,Don't Know Why
-Suite: Judy Blue Eyes,"Crosby, Stills & Nash",1969,Suite: Judy Blue Eyes / Long Time Gone
-That's All,Genesis,1983,From Genesis to Revelation
-Knockin' on Heaven's Door,Bob Dylan,1973,Highway 61 Revisited
-Me and Julio Down by the Schoolyard,Paul Simon,1972,Paul Simon
-Sir Duke,Stevie Wonder,1976,Talking Book
-Give Me One Reason,Tracy Chapman,1995,New Beginning
-Eleanor Rigby,The Beatles,1966,Yellow Submarine Songtrack
-Rhiannon,Fleetwood Mac,1975,The Pious Bird of Good Omen
-You Should Be Dancing,Bee Gees,1976,Children Of The World
-Rodeo,Garth Brooks,2024,Every Girl
-In My Life,The Beatles,1965,The Beatles
-Love Me Tender,Elvis Presley,2002,Elvis
-My All,Mariah Carey,1997,Mariah Carey
-Buffalo Soldier,Bob Marley,1983,Bob Marley emlékére
-Hysteria,Def Leppard,1987,Hysteria
-Heart-Shaped Box,Nirvana,1993,Bleach
-Heal the World,Michael Jackson,1991,Ben
-Lithium,Nirvana,1991,Bleach
-Lucy in the Sky with Diamonds,The Beatles,1967,Yellow Submarine Songtrack
-Two Out of Three Ain't Bad,Meat Loaf,1977,Stoney & Meat Loaf
-Honky Tonk Women,The Rolling Stones,2023,Let It Bleed
-My Sweet Lord,George Harrison,1970,Living in the Material World
-No Ordinary Love,Sade,1992,Diamond Life
-Radioactive,Imagine Dragons,2012,Night Visions
-The Sweetest Taboo,Sade,1985,Diamond Life
-Everlong,Foo Fighters,1997,Foo Fighters
-Ticket to Ride,The Beatles,1965,The Beatles
-Lay Lady Lay,Bob Dylan,1969,The Freewheelin' Bob Dylan
-To Love Somebody,Bee Gees,1967,Bee Gees' 1st
-Proud Mary,Creedence Clearwater Revival,1969,Bayou Country
-Breathe,Pink Floyd,1973,Ummagumma
-Music,Madonna,2023,Express Yourself
-Shoot to Thrill,AC/DC,1980,Dirty Deeds Done Dirt Cheap
-Hollaback Girl,Gwen Stefani,2004,Hollaback Girl
-Heartbreak Hotel,Elvis Presley,1958,For LP Fans Only
-Wanna Be Startin' Somethin',Michael Jackson,1982,Got To Be There
-Shape of My Heart,Backstreet Boys,2000,Backstreet Boys
-Goodbye Yellow Brick Road,Elton John,1973,One Night Only
-Before He Cheats,Carrie Underwood,2005,Some Hearts
-You Make Me Wanna...,Usher,1997,You Make Me Wanna... (Remix)
-Survivor,Destiny's Child,2001,Destiny's Child
-The Unforgiven,Metallica,1991,Load
-Shine On You Crazy Diamond (Parts I-V),Pink Floyd,,Obscured by Clouds
-Sgt. Pepper's Lonely Hearts Club Band,The Beatles,1967,Yellow Submarine Songtrack
-More Than a Woman,Bee Gees,1979,More Than A Woman (SG's Paradise Edit)
-Tiny Dancer,Elton John,1971,Empty Sky
-Freedom! '90,George Michael,1990,Faith
-Sunrise,Norah Jones,2004,Feels Like Home
-Blinding Lights,The Weeknd,2020,House Of Balloons (Original)
-Shape of You,Ed Sheeran,2017,5
-Someone You Loved,Lewis Capaldi,2019,Bloom - EP
-Sunflower,Post Malone,2019,Hollywood's Bleeding
-One Dance,Drake,2016,So Far Gone
-rockstar,Post Malone,2018,Congratulations (Remix)
-STAY,The Kid LAROI,2021,Diva (feat. Lil Tecca)
-Starboy,The Weeknd,2016,Trilogy
-Believer,Imagine Dragons,2017,Believer (Kaskade Remix)
-As It Was,Harry Styles,2022,Harry Styles
-Heat Waves,Glass Animals,2020,Leaflings
-Closer,The Chainsmokers,2016,#SELFIE
-Perfect,Ed Sheeran,2017,Don't
-SeÃ±orita,Shawn Mendes,2019,Handwritten
-Say You Won't Let Go,James Arthur,2016,Say You Won't Let Go
-lovely,Billie Eilish,2018,Ocean Eyes (The Remixes)
-Watermelon Sugar,Harry Styles,2019,Harry Styles
-Sweater Weather,The Neighbourhood,2013,I'm Sorry...
-bad guy,Billie Eilish,2019,Ocean Eyes
-Lucid Dreams,Juice WRLD,2018,Lucid Dreams
-Thinking out Loud,Ed Sheeran,2014,songs I wrote that almost didn't make it
-God's Plan,Drake,2018,So Far Gone
-Something Just Like This,The Chainsmokers,2017,Dreaming Remix EP
-Bohemian Rhapsody,Queen,1975,Sheer Heart Attack
-Take Me to Church,Hozier,2014,Take Me to Church EP
-Circles,Post Malone,2019,beerbongs & bentleys
-Love Yourself,Justin Bieber,2015,Believe
-All of Me,John Legend,2013,All of Me (Tiësto's Birthday Treatment Remix - Radio Edit)
-Thunder,Imagine Dragons,2017,Evolve
-SAD!,XXXTENTACION,2018,A GHETTO CHRISTMAS CAROL
-7 rings,Ariana Grande,2019,Yours Truly
-Counting Stars,OneRepublic,2013,Dreaming Out Loud
-goosebumps,Travis Scott,2016,DAYS BEFORE RODEO
-Stressed Out,Twenty One Pilots,2015,Twenty One Pilots
-Wake Me Up,Avicii,2013,Levels
-Jocelyn Flores,XXXTENTACION,2017,WitDemDicks!
-Can't Hold Us,Macklemore & Ryan Lewis,2012,VS. Redux
-The Hills,The Weeknd,2015,Echoes Of Silence (Original)
-HUMBLE.,Kendrick Lamar,2017,Overly Dedicated
-XO Tour Llif3,Lil Uzi Vert,2017,Luv Is Rage
-One Kiss,Calvin Harris,2018,Let's Go (feat. Ne-Yo) [Radio Edit]
-Havana,Camila Cabello,2018,Havana (Remix)
-good 4 u,Olivia Rodrigo,2021,"Wondering (From ""High School Musical: The Musical: The Series"")"
-Happier,Marshmello,2018,Joytime
-SICKO MODE,Travis Scott,2018,DAYS BEFORE RODEO
-drivers license,Olivia Rodrigo,2021,SOUR
-Another Love,Tom Odell,2013,Songs from Another Love
-Demons,Imagine Dragons,2012,Demons
-Treat You Better,Shawn Mendes,2017,Illuminate
-Let Me Love You,DJ Snake,2016,Encore
-Lose Yourself,Eminem,2005,The Slim Shady LP
-Sorry,Justin Bieber,2015,Sorry (Latino Remix)
-No Role Modelz,J. Cole,2014,Cole World: The Sideline Story
-Stay With Me,Sam Smith,2014,Nirvana
-INDUSTRY BABY,Lil Nas X,2021,Old Town Road (Diplo Remix)
-Do I Wanna Know?,Arctic Monkeys,2013,Five Minutes With Arctic Monkeys
-Lean On,Major Lazer,2015,Guns Don't Kill People... Lazers Do
-Without Me,Halsey,2020,Castle (The Huntsman: Winter’s War Version)
-Yellow,Coldplay,2000,Mylo Xyloto
-Too Good At Goodbyes,Sam Smith,2017,In The Lonely Hour
-Congratulations,Post Malone,2016,Congratulations (Remix)
-Better Now,Post Malone,2018,beerbongs & bentleys
-Roses,SAINt JHN,2020,1999
-Memories,Maroon 5,2021,Memories (Devault Remix)
-Uptown Funk,Mark Ronson,2015,Uptown Special
-Faded,Alan Walker,2018,Faded
-I Took A Pill In Ibiza,Mike Posner,2016,"At Night, Alone."
-MONTERO (Call Me By Your Name),Lil Nas X,2021,Old Town Road (Diplo Remix)
-There's Nothing Holdin' Me Back,Shawn Mendes,2017,Handwritten
-Unforgettable,French Montana,2017,Unforgettable (feat. Swae Lee) [J Hus & Jae5 Remix]
-That's What I Like,Bruno Mars,2016,Doo-Wops & Hooligans
-Don't Let Me Down,The Chainsmokers,2016,#SELFIE
-Wonderwall,Oasis,1995,(What's The Story) Morning Glory?
-Without Me,Eminem,2002,2001
-"thank u, next",Ariana Grande,2019,Yours Truly
-Die For You,The Weeknd,2016,Starboy
-Smells Like Teen Spirit,Nirvana,1991,Nevermind
-Till I Collapse,Eminem,2002,The Slim Shady LP
-I Don't Care,Ed Sheeran,2019,I Don't Care (Acoustic)
-When I Was Your Man,Bruno Mars,2012,Unorthodox Jukebox
-Moonlight,XXXTENTACION,2018,A GHETTO CHRISTMAS CAROL
-Just the Way You Are,Bruno Mars,2010,Doo-Wops & Hooligans
-Don't Stop Me Now,Queen,1978,Jazz
-The Box,Roddy Ricch,2019,Die Young
-Cold Heart,Elton John,2021,Elton John
-Viva La Vida,Coldplay,2008,Viva La Vida or Death and All His Friends
-I'm Yours,Jason Mraz,2008,We Sing. We Dance. We Steal Things.
-7 Years,Lukas Graham,2016,7 Years (feat. Lukas Graham) [Sped Up Version]
-Before You Go,Lewis Capaldi,2019,Bloom - EP
-Every Breath You Take,The Police,1983,Every Breath You Take (Demo)
-Sugar,Maroon 5,2014,V
-Don't Stop Believin',Journey,1981,Evolution
-Save Your Tears,The Weeknd,2020,After Hours
-The Scientist,Coldplay,2002,Parachutes
-I'm Not The Only One,Sam Smith,2014,Latch
-We Don't Talk Anymore,Charlie Puth,2015,Some Type of Love
-when the party's over,Billie Eilish,2019,Ocean Eyes (The Remixes)
-Despacito (Featuring Daddy Yankee),Luis Fonsi,2019,Despacito (Versión Pop)
-Radioactive,Imagine Dragons,2012,Night Visions
-Kiss Me More,Doja Cat,2021,Amala
-Another One Bites The Dust,Queen,1980,Queen Rock Montreal
-Youngblood,5 Seconds of Summer,2018,5 Seconds Of Summer (B-Sides And Rarities)
-Sweet Child O' Mine,Guns N' Roses,1987,Appetite For Destruction
-Attention,Charlie Puth,2018,Nine Track Mind
-Bad Habits,Ed Sheeran,2021,Bad Habits (Acoustic Version)
-Heathens,Twenty One Pilots,2016,Twenty One Pilots
-Me RehÃºso,Danny Ocean,2019,Baby I Won't
-Girls Like You,Maroon 5,2018,Wait (feat. A Boogie Wit da Hoodie)
-Eastside,benny blanco,2018,Bangers & Cash
-I Feel It Coming,The Weeknd,2016,HNDRXX
-Can't Feel My Face,The Weeknd,2015,Echoes Of Silence (Original)
-Ride,Twenty One Pilots,2015,Twenty One Pilots
-Locked out of Heaven,Bruno Mars,2012,Unorthodox Jukebox
-Pumped Up Kicks,Foster The People,2011,Torches
-I Like It,Cardi B,2018,Like What (Freestyle)
-I Fall Apart,Post Malone,2016,beerbongs & bentleys
-This Is What You Came For,Calvin Harris,2016,Ready For The Weekend
-Payphone,Maroon 5,2012,Call And Response: The Remix Album
-Rolling in the Deep,Adele,2011,Rolling in the Deep
-Wow.,Post Malone,2019,Culture II
-Me Porto Bonito,Bad Bunny,2022,Amorfoda
-death bed (coffee for your head),Powfu,2020,death bed (coffee for your head)
-The Nights,Avicii,2014,Fade Into Darkness
-Call Out My Name,The Weeknd,2018,House Of Balloons (Original)
-Somebody That I Used To Know,Gotye,2011,Making Mirrors
-Sweet but Psycho,Ava Max,2020,Sweet but Psycho (The Remixes)
-Billie Jean,Michael Jackson,1982,Thriller
-Falling,Trevor Daniel,2020,Wake Up
-The Night We Met,Lord Huron,2015,Into the Sun
-Taki Taki,DJ Snake,2019,Carte Blanche
-Adore You,Harry Styles,2019,Harry Styles
-Peaches,Justin Bieber,2021,Believe
-The Real Slim Shady,Eminem,2000,The Slim Shady LP
-Earned It (Fifty Shades Of Grey),The Weeknd,2015,Trilogy
-Blank Space,Taylor Swift,2014,Taylor Swift (Big Machine Radio Release Special)
-Old Town Road,Lil Nas X,2019,Old Town Road (Diplo Remix)
-What Do You Mean?,Justin Bieber,2015,My Worlds Acoustic
-All I Want for Christmas Is You,Mariah Carey,1994,Merry Christmas
-Easy On Me,Adele,2021,25
-High Hopes,Panic! At The Disco,2018,Vices & Virtues
-Flowers,Miley Cyrus,2023,Meet Miley Cyrus
-Cake By The Ocean,DNCE,2016,DNCE
-Hello,Adele,2015,21
-Shut Up and Dance,WALK THE MOON,2014,TALKING IS HARD
-Psycho,Post Malone,2018,beerbongs & bentleys
-Redbone,Childish Gambino,2016,Camp
-Mask Off,Future,2017,Pluto x Baby Pluto
-"Quevedo: Bzrp Music Sessions, Vol. 52",Bizarrap,2022,Quédate (Tiësto Remix)
-Titanium,David Guetta,2011,Nothing but the Beat - The Electronic Album
-Silence,Marshmello,2017,Joytime
-Love Me Like You Do,Ellie Goulding,2018,An Introduction To Ellie Goulding EP
-Let Me Down Slowly,Alec Benjamin,2018,Let Me Down Slowly (feat. Alessia Cara)
-Cold Water,Major Lazer,2016,Guns Don't Kill People... Lazers Do
-HIGHEST IN THE ROOM,Travis Scott,2019,DAYS BEFORE RODEO
-I Wanna Be Yours,Arctic Monkeys,2013,"Whatever People Say I Am, That's What I'm Not"
-everything i wanted,Billie Eilish,2019,Ocean Eyes (The Remixes)
-A Thousand Years,Christina Perri,2011,lovestrong.
-Everybody Dies In Their Nightmares,XXXTENTACION,2017,Revenge
-Tusa,KAROL G,2019,Ahora Me Llama (Remix)
-Gangsta's Paradise,Coolio,1995,Gangsta's Paradise
-ROXANNE,Arizona Zervas,2019,Don't Hit My Line
-Passionfruit,Drake,2017,More Life
-Fuck Love,XXXTENTACION,2017,17
-Rockabye,Clean Bandit,2018,Stronger
-Seven Nation Army,The White Stripes,2003,The White Stripes
-Hotel California,Eagles,1976,Long Road out of Eden
-Young Dumb & Broke,Khalid,2017,Coaster
-All Girls Are The Same,Juice WRLD,2018,Legends
-Pompeii,Bastille,2013,Remixed
-The Less I Know The Better,Tame Impala,2015,Tame Impala
-Woman,Doja Cat,2021,Purrr!
-Hips Don't Lie,Shakira,2005,Pies Descalzos
-Clean White Noise,White Noise Baby Sleep,2020,Peaceful Sleep Noise
-Sign of the Times,Harry Styles,2017,Harry Styles
-Shivers,Ed Sheeran,2021,Bloodstream (Arty Remix)
-September,"Earth, Wind & Fire",1978,Head To The Sky
-FRIENDS,Marshmello,2018,Joytime
-Heather,Conan Gray,2020,Sunset Season
-Pepas,Farruko,2021,Visionary
-All The Stars,Kendrick Lamar,2018,Section.80
-Dreams,Fleetwood Mac,1977,Mystery to Me
-Danza Kuduro,Don Omar,2010,Meet The Orphans
-Back In Black,AC/DC,1980,High Voltage
-Work from Home,Fifth Harmony,2016,Miss Movin' On
-Creep,Radiohead,1993,Creep EP
-In My Feelings,Drake,2018,Thank Me Later
-"i hate u, i love u",gnash,2016,us
-Why'd You Only Call Me When You're High?,Arctic Monkeys,2013,Who The F*** Are Arctic Monkeys?
-In the Name of Love,Martin Garrix,2016,Animals
-Highway to Hell,AC/DC,1979,High Voltage
-Beautiful People,Ed Sheeran,2019,Beautiful People (feat. Khalid)
-Side To Side,Ariana Grande,2016,Yours Truly
-Party In The U.S.A.,Miley Cyrus,2009,Meet Miley Cyrus
-deja vu,Olivia Rodrigo,2021,All I Want (Love That Lasts Mix)
-Mockingbird,Eminem,2004,Encore
-La Bachata,Manuel Turizo,2023,ADN
-Summer,Calvin Harris,2014,Let's Go (feat. Ne-Yo) [Radio Edit]
-Sucker,Jonas Brothers,2019,It's About Time
-Unholy,Sam Smith,2022,Latch
-Drip Too Hard (Lil Baby & Gunna),Lil Baby,2018,Perfect Timing
-PUFFIN ON ZOOTIES,Future,2022,Pluto x Baby Pluto
+Song,Artist,Year
+"The London",Young Thug ft. J. Cole & Travis Scott,2019
+"Runnin",21 Savage & Metro Boomin,2020
+"Noticed",Lil Mosey,2018
+"After Party",Don Toliver,2020
+"G.D.F.R.",Flo Rida ft. Sage the Gemini & Lookas,2014
+"Everyday","ASAP Rocky ft. Rod Stewart, Miguel & Mark Ronson",2015
+"All Falls Down",Kanye West ft. Syleena Johnson,2004
+"Orange Soda",Baby Keem,2019
+"21 Questions",50 Cent ft. Nate Dogg,2003
+"All Of The Lights",Kanye West ft. Rihanna & Kid Cudi,2010
+"Lucky You",Eminem ft. Joyner Lucas,2018
+"Billionaire",Travie McCoy ft. Bruno Mars,2010
+"...And to Those I Love, Thanks For Sticking Around",Suicideboys,2020
+"Popstar",DJ Khaled ft. Drake,2020
+"Just Wanna Rock",Lil Uzi Vert,2023
+"Glock In My Lap",21 Savage & Metro Boomin,2020
+"Sundress",ASAP Rocky,2018
+"A Mí",Rels B,2019
+"Kiss Me Thru The Phone",Soulja Boy ft. Sammie,2008
+"Shoota",Playboi Carti ft. Lil Uzi Vert,2018
+"Ball w/o You",21 Savage,2018
+"Losin Control",Russ,2015
+"Antidote",Travis Scott,2015
+"Loyalty",Kendrick Lamar ft. Rihanna,2017
+"Bounce Back",Big Sean,2016
+"The Spins",Mac Miller & Empire Of The Sun,2010
+"Pride",Kendrick Lamar,2017
+"Hate It Or Love It",The Game ft. 50 Cent,2005
+"California Love",2Pac ft. Dr. Dre & Roger Troutman,1995
+"Armed And Dangerous",Juice WRLD,2018
+"Too Many Nights",Metro Boomin ft. Don Toliver & with Future,2022
+"Love Sosa",Chief Keef,2012
+"Calling My Phone",Lil Tjay & 6lack,2021
+"The Scotts",Travis Scott & Kid Cudi,2020
+"Look Back at It",A Boogie Wit Da Hoodie,2018
+"Chicago Freestyle",Drake & Giveon,2020
+"Runaway",Kanye West ft. Pusha T,2010
+"I Don't Fuck With You",Big Sean ft. E-40,2014
+"Swimming Pools (Drank)",Kendrick Lamar,2012
+"I Wonder",Kanye West,2007
+"Superhero (Heroes & Villains)","Metro Boomin, Future & Chris Brown",2022
+"Save That Shit",Lil Peep,2017
+"Walk It Talk It",Migos ft. Drake,2018
+"Whoopty",CJ,2020
+"Sprinter",Dave & Central Cee,2023
+"Lovin On Me",Jack Harlow,2023
+"Fefe",6ix9ine ft. Nicki Minaj & Murda Beatz,2018
+"Ambitionz Az A Ridah",2Pac,1996
+"Sky",Playboi Carti,2020
+"Paper Planes",M.I.A.,2007
+"Up",Cardi B,2021
+"No Limit",G-Eazy ft. ASAP Rocky & Cardi B,2017
+"10 Freaky Girls",Metro Boomin ft. 21 Savage,2018
+"Leave Me Alone",Flipp Dinero,2018
+"Collard Greens",Schoolboy Q ft. Kendrick Lamar,2013
+"Plug Walk",Rich The Kid,2018
+"Wasted",Juice WRLD ft. Lil Uzi Vert,2018
+"Nena Maldición",Paulo Londra ft. Lenny Tavárez,2018
+"Can't Tell Me Nothing",Kanye West,2007
+"Take What You Want",Post Malone ft. Ozzy Osbourne & Travis Scott,2019
+"Suge",DaBaby,2019
+"Take Care",Drake ft. Rihanna,2011
+"Rara Vez",Taiu & Milo J,2023
+"Gucci Gang",Lil Pump,2017
+"Come Get Her",Rae Sremmurd,2015
+"All Eyez On Me",2Pac ft. Big Syke,1996
+"Weekend",Mac Miller ft. Miguel,2015
+"Sensualidad","Bad Bunny, J Balvin & Prince Royce",2017
+"My Name Is",Eminem,1999
+"Drop It Like It's Hot",Snoop Dogg ft. Pharrell Williams,2004
+"I Don't Wanna Do This Anymore",XXXTentacion,2017
+"Ain't Shit",Doja Cat,2021
+"King Kunta",Kendrick Lamar,2015
+"Best Interest","Tyler, The Creator",2020
+"Get Into It (Yuh)",Doja Cat,2021
+"MotorSport",Migos ft. Nicki Minaj & Cardi B,2017
+"Suicidal",YNW Melly ft. Juice WRLD,2019
+"Lust",Lil Skies,2017
+"Hello",Pop Smoke ft. A Boogie Wit Da Hoodie,2020
+"A Milli",Lil Wayne,2008
+"Black Widow",Iggy Azalea ft. Rita Ora,2014
+"No Type",Rae Sremmurd,2015
+"X",21 Savage & Metro Boomin ft. Future,2016
+"Portland",Drake ft. Quavo & Travis Scott,2017
+"Money",Cardi B,2018
+"Walk Em Down",NLE Choppa ft. Roddy Ricch,2020
+"Life Goes On",Oliver Tree,2021
+"What They Want",Russ,2015
+"Jump Around",House Of Pain,1992
+"Faucet Failure",Ski Mask The Slump God,2018
+"Taking A Walk",Trippie Redd,2018
+"Solita","Ozuna, Mambo Kingz & DJ Luian ft. Bad Bunny, Wisin & Almighty",2018
+"Love Me",Lil Tecca,2018
+"Hollywood's Bleeding",Post Malone,2019
+"Mamichula","Trueno, Nicki Nicole & Bizarrap",2020
+"Pick It Up",Famous Dex ft. ASAP Rocky,2017
+"Like That","Future, Metro Boomin & Kendrick Lamar",2024
+"Vegas",Doja Cat,2022
+"Super Freaky Girl",Nicki Minaj,2022
+"Invincible",Pop Smoke,2020
+"I Love It",Lil Pump & Kanye West,2018
+"Pure Cocaine",Lil Baby,2018
+"Roll In Peace",Kodak Black ft. XXXTentacion,2017
+"Stir Fry",Migos,2017
+"No Hands",Waka Flocka Flame ft. Roscoe Dash & Wale,2010
+"Legends",Juice WRLD,2021
+"Bad Things",MGK & Camila Cabello,2016
+"Headlines",Drake,2011
+"New Magic Wand","Tyler, The Creator",2019
+"Hit 'Em Up",2Pac ft. Outlawz,1996
+"Money Longer",Lil Uzi Vert,2016
+"Ahora Dice","Chris Jedi ft. J Balvin, Ozuna & Arcángel",2017
+"Can't Stay",Travis Scott ft. Don Toliver,2018
+"Power Trip",J. Cole ft. Miguel,2013
+"Freaky Friday",Lil Dicky ft. Chris Brown,2018
+"Best I Ever Had",Drake,2009
+"Tunnel Vision",Kodak Black,2017
+"Swang",Rae Sremmurd,2017
+"She Knows",J. Cole ft. Amber Coffman & Cults,2013
+"Kill Yourself (Part III)",Suicideboys,2015
+"Black And Yellow",Wiz Khalifa,2010
+"Hollaback Girl",Gwen Stefani,2004
+"I Know ?",Travis Scott,2023
+"Yosemite",Travis Scott ft. Gunna & Nav,2018
+"Nothin' On You",B.o.B ft. Bruno Mars,2009
+"Black Skinhead",Kanye West,2013
+"You Know How We Do It",Ice Cube,1993
+"Many Men (Wish Death)",50 Cent,2003
+"Do Re Mi",Blackbear,2017
+"Just A Lil Bit",50 Cent,2005
+"Famous",Kanye West,2016
+"90210",Travis Scott ft. Kacy Hill,2015
+"Ride Wit Me",Nelly,2000
+"Forever","Drake, Kanye West, Lil Wayne & Eminem",2009
+"Surround Sound",JID ft. 21 Savage & Baby Tate,2022
+"I'll Be Missing You",Diddy & Faith Evans ft. 112,1997
+"The Search",NF,2019
+"Agora Hills",Doja Cat,2023
+"Hotel Room Service",Pitbull,2009
+"Carnival","Kanye West, Ty Dolla Sign & Rich The Kid ft. Playboi Carti",2024
+"King's Dead","Jay Rock, Kendrick Lamar, Future & James Blake",2018
+"Les",Childish Gambino,2011
+"Betrayed",Lil Xan,2017
+"Lie",NF,2017
+"Slippery",Migos ft. Gucci Mane,2017
+"Best Friend",Saweetie ft. Doja Cat,2021
+"Ayo",Chris Brown & Tyga,2015
+"This Is America",Childish Gambino,2018
+"Crew",GoldLink ft. Brent Faiyaz & Shy Glizzy,2016
+"Crank That (Soulja Boy)",Soulja Boy,2007
+"Fuck Love",XXXTentacion & Trippie Redd,2017
+"Wow.",Post Malone,2018
+"All Girls Are The Same",Juice WRLD,2018
+"Death Bed (Coffee For Your Head)",Powfu ft. Beabadoobee,2019
+"Mask Off",Future,2017
+"Everybody Dies In Their Nightmares",XXXTentacion,2017
+"Love The Way You Lie",Eminem ft. Rihanna,2010
+"I Fall Apart",Post Malone,2016
+"Ric Flair Drip",Offset & Metro Boomin,2017
+"I Like It","Cardi B, Bad Bunny, & J Balvin",2018
+"Rockstar",DaBaby ft. Roddy Ricch,2020
+"In Da Club",50 Cent,2003
+"Money Trees",Kendrick Lamar ft. Jay Rock,2012
+"Drip Too Hard",Lil Baby & Gunna,2018
+"Hope",XXXTentacion,2018
+"Godzilla",Eminem ft. Juice WRLD,2020
+"Butterfly Effect",Travis Scott,2017
+"Old Town Road (Remix)",Lil Nas X ft. Billy Ray Cyrus,2019
+"Psycho",Post Malone ft. Ty Dolla Sign,2018
+"Still D.R.E.",Dr. Dre ft. Snoop Dogg,1999
+"Ni**as In Paris",Jay-Z & Kanye West,2011
+"Let You Down",NF,2017
+"Young, Wild & Free",Snoop Dogg & Wiz Khalifa ft. Bruno Mars,2011
+"Look At Me!",XXXTentacion,2015
+"Ransom",Lil Tecca,2019
+"Juicy",The Notorious B.I.G.,1994
+"Party Girl",StaySolidRocky,2020
+"Alright",Kendrick Lamar,2015
+"Pump It",Black Eyed Peas,2005
+"Where She Goes",Bad Bunny,2023
+"M.A.A.D City",Kendrick Lamar ft. MC Eiht,2012
+"Stargazing",Travis Scott,2018
+"Caroline",Aminé,2016
+"Knife Talk",Drake & 21 Savage ft. Project Pat,2021
+"Bitch, Don’t Kill My Vibe",Kendrick Lamar,2012
+"Freestyle",Lil Baby,2017
+"X Gon' Give It To Ya",DMX,2002
+"F.N",Lil Tjay,2019
+"Trance","Metro Boomin, Travis Scott & Young Thug",2022
+"Homecoming",Kanye West ft. Chris Martin,2007
+"This Could Be Us",Rae Sremmurd,2015
+"La Jumpa",Arcángel & Bad Bunny,2022
+"Panini",Lil Nas X,2019
+"Fancy",Iggy Azalea ft. Charli XCX,2014
+"Pick Up The Phone",Young Thug & Travis Scott ft. Quavo,2016
+"Doja",Central Cee,2022
+"Out West",Travis Scott ft. Young Thug,2019
+"Plain Jane",ASAP Ferg,2017
+"Pure Water",Mustard & Migos,2019
+"Remember The Name",Fort Minor ft. Styles Of Beyond,2005
+"Heartless",Kanye West,2008
+"Stronger",Kanye West,2007
+"Love",Kendrick Lamar ft. Zacari,2017
+"Stereo Hearts",Gym Class Heroes ft. Adam Levine,2011
+"In My Feelings",Drake,2018
+"Taste",Tyga ft. Offset,2018
+"Lemonade","Internet Money ft. Gunna, Don Toliver & Nav",2020
+"WAP",Cardi B ft. Megan Thee Stallion,2020
+"Me, Myself & I",G-Eazy & Bebe Rexha,2015
+"1-800-273-8255",Logic ft. Alessia Cara & Khalid,2017
+"Robbery",Juice WRLD,2019
+"Praise The Lord (Da Shine)",ASAP Rocky ft. Skepta,2018
+"Middle Child",J. Cole,2019
+"Blueberry Faygo",Lil Mosey,2020
+"Wet Dreamz",J. Cole,2014
+"Thrift Shop",Macklemore & Ryan Lewis ft. Wanz,2012
+"Nice For What",Drake,2018
+"Star Shopping",Lil Peep,2015
+"Goodbyes",Post Malone ft. Young Thug,2019
+"Astronaut In The Ocean",Masked Wolf,2019
+"I'm the One","DJ Khaled ft. Justin Bieber, Quavo, Chance The Rapper & Lil Wayne",2017
+"Life Is Good",Future ft. Drake,2020
+"Money",Lisa,2021
+"Hypnotize",The Notorious B.I.G.,1997
+"Gold Digger",Kanye West ft. Jamie Foxx,2005
+"Magnolia",Playboi Carti,2017
+"Pop Out",Polo G ft. Lil Tjay,2019
+"Love Me",Lil Wayne ft. Drake & Future,2013
+"Day 'N' Nite",Kid Cudi,2008
+"Fair Trade",Drake ft. Travis Scott,2021
+"Family Ties",Baby Keem & Kendrick Lamar,2021
+"3005",Childish Gambino,2013
+"Chill Bill",Rob Stone ft. J. Davis & Spooks,2015
+"Bitch Better Have My Money",Rihanna,2015
+"Forgot About Dre",Dr. Dre ft. Eminem,1999
+"Broccoli",DRAM ft. Lil Yachty,2016
+"First Class",Jack Harlow,2022
+"Rich Flex",Drake & 21 Savage,2022
+"River",Eminem ft. Ed Sheeran,2017
+"Whats Poppin",Jack Harlow,2020
+"Bop",DaBaby,2019
+"F**kin' Problems","ASAP Rocky ft. Drake, 2 Chainz & Kendrick Lamar",2012
+"Airplanes",B.o.B ft. Hayley Williams,2010
+"679",Fetty Wap ft. Remy Boyz,2015
+"P.I.M.P.",50 Cent,2003
+"Pursuit Of Happiness",Kid Cudi,2009
+"Jumpman",Drake & Future,2015
+"Venom",Eminem,2018
+"Swervin",A Boogie Wit Da Hoodie ft. 6ix9ine,2018
+"Wants And Needs",Drake ft. Lil Baby,2021
+"Way 2 Sexy",Drake ft. Future & Young Thug,2021
+"Live Your Life",T.I. ft. Rihanna,2008
+"Cómo Dormiste?",Rels B,2022
+"The Motto",Drake ft. Lil Wayne,2011
+"Tyler Herro",Jack Harlow,2020
+"Hot In Herre",Nelly,2002
+"The Woo",Pop Smoke ft. 50 Cent & Roddy Ricch,2020
+"My Shit",A Boogie Wit Da Hoodie,2016
+"Bad!",XXXTentacion,2018
+"Redrum",21 Savage,2024
+"7/11",Beyoncé,2014
+"Only","Nicki Minaj ft. Drake, Lil Wayne & Chris Brown",2014
+"Carry On",XXXTentacion,2017
+"Changes",2Pac ft. Talent,1998
+"G.O.M.D",J. Cole,2014
+"Lollipop",Lil Wayne ft. Static Major,2008
+"Righteous",Juice WRLD,2020
+"Took Her To The O",King Von,2020
+"I Get the Bag",Gucci Mane ft. Migos,2017
+"Poetic Justice",Kendrick Lamar ft. Drake,2012
+"Camelot",NLE Choppa,2019
+"Miss The Rage",Trippie Redd & Playboi Carti,2021
+"Run This Town",Jay-Z ft. Rihanna & Kanye West,2009
+"Mirror",Lil Wayne ft. Bruno Mars,2011
+"Ghost Town",Kanye West,2018
+"Mo Bamba",Sheck Wes,2017
+"Where Is The Love?",Black Eyed Peas,2003
+"The Next Episode",Dr. Dre ft. Snoop Dogg,1999
+"Toosie Slide",Drake,2020
+"Numb / Encore",Jay-Z & Linkin Park,2004
+"Not Afraid",Eminem,2010
+"Wake Up In The Sky","Gucci Mane, Bruno Mars & Kodak Black",2018
+"Jimmy Cooks",Drake ft. 21 Savage,2022
+"Go Flex",Post Malone,2016
+"Candy Paint",Post Malone,2017
+"The Way Life Goes",Lil Uzi Vert ft. Oh Wonder,2017
+"Work Out",J. Cole,2011
+"Bound 2",Kanye West,2013
+"Old Town Road",Lil Nas X,2019
+"Candy Shop",50 Cent ft. Olivia,2005
+"Fe!n",Travis Scott ft. Playboi Carti,2023
+"Or Nah (Remix)","Ty Dolla Sign ft. The Weeknd, Wiz Khalifa & Mustard",2014
+"Superman",Eminem ft. Dina Rae,2002
+"No Idea",Don Toliver,2019
+"Him & I",G-Eazy & Halsey,2017
+"Truth Hurts",Lizzo,2017
+"Black Beatles",Rae Sremmurd ft. Gucci Mane,2016
+"A Lot",21 Savage ft. J. Cole,2018
+"Money In The Grave",Drake ft. Rick Ross,2019
+"Come & Go",Juice WRLD & Marshmello,2020
+"Laugh Now Cry Later",Drake ft. Lil Durk,2020
+"Look Alive",BlocBoy JB ft. Drake,2018
+"The Remedy For A Broken Heart (Why Am I So In Love)",XXXTentacion,2018
+"Lalala",Y2K & bbno$,2019
+"Space Cadet",Metro Boomin ft. Gunna,2018
+"Pray For Me",The Weeknd & Kendrick Lamar,2018
+"Rapstar",Polo G,2021
+"Power",Kanye West,2010
+"iSpy",Kyle ft. Lil Yachty,2016
+"Drowning",A Boogie Wit Da Hoodie ft. Kodak Black,2017
+"Martin & Gina",Polo G,2020
+"Without You",The Kid Laroi,2020
+"Bandit",Juice WRLD & YoungBoy Never Broke Again,2019
+"Bad And Boujee",Migos ft. Lil Uzi Vert,2016
+"Low Life",Future ft. The Weeknd,2016
+"Fukumean",Gunna,2023
+"Wishing Well",Juice WRLD,2020
+"Ballin'",Mustard ft. Roddy Ricch,2019
+"Glorious",Macklemore ft. Skylar Grey,2017
+"Lean Wit Me",Juice WRLD,2018
+"Break From Toronto",PartyNextDoor,2013
+"2055",Sleepy Hallow,2021
+"Diles","Bad Bunny, Ozuna & Farruko ft. Arcángel, Ñengo Flow, DJ Luian & Mambo Kingz",2016
+"Bodak Yellow",Cardi B,2017
+"Not Like Us",Kendrick Lamar,2024
+"Rockstar",Post Malone ft. 21 Savage,2017
+"Lucid Dreams",Juice WRLD,2018
+"God's Plan",Drake,2018
+"Can't Hold Us",Macklemore & Ryan Lewis ft. Ray Dalton,2011
+"Goosebumps",Travis Scott ft. Kendrick Lamar,2016
+"No Role Modelz",J. Cole,2014
+"Humble",Kendrick Lamar,2017
+"Without Me",Eminem,2002
+"Lose Yourself",Eminem,2002
+"Sad!",XXXTentacion,2018
+"Jocelyn Flores",XXXTentacion,2017
+"XO Tour Llif3",Lil Uzi Vert,2017
+"Sicko Mode",Travis Scott ft. Drake,2018
+"'Till I Collapse",Eminem ft. Nate Dogg,2002
+"Industry Baby",Lil Nas X ft. Jack Harlow,2021
+"Congratulations",Post Malone ft. Quavo,2016
+"The Box",Roddy Ricch,2019
+"See You Again",Wiz Khalifa ft. Charlie Puth,2015
+"Moonlight",XXXTentacion,2018
+"The Real Slim Shady",Eminem,2000
+"Mood",24kGoldn ft. Iann Dior,2020
+"Mockingbird",Eminem,2004
+"Gangsta's Paradise",Coolio ft. L.V.,1995
+"All The Stars",Kendrick Lamar & SZA,2018
+"Highest In The Room",Travis Scott,2019
+"Trap Queen",Fetty Wap,2014
+"Going Bad",Meek Mill ft. Drake,2018
+"Father Stretch My Hands Pt. 1",Kanye West,2016
+"DNA",Kendrick Lamar,2017
+"It Was A Good Day",Ice Cube,1992
+"Paint The Town Red",Doja Cat,2023
+"Flashing Lights",Kanye West,2007
+"Stan",Eminem ft. Dido,2000
+"Panda",Desiigner,2015
+"Ms. Jackson",Outkast,2000
+"Bank Account",21 Savage,2017
+"White Iverson",Post Malone,2015
+"Sucker For Pain","Lil Wayne, Wiz Khalifa, Imagine Dragons, Logic & Ty Dolla Sign ft. X Ambassadors",2016
+"Yes Indeed",Lil Baby & Drake,2018
+"Low",Flo Rida ft. T-Pain,2007
+"Nonstop",Drake,2018
+"For The Night",Pop Smoke ft. Lil Baby & DaBaby,2020
+"20 Min",Lil Uzi Vert,2017
+"Big Poppa",The Notorious B.I.G.,1994
+"Dior",Pop Smoke,2019
+"Empire State Of Mind",Jay-Z ft. Alicia Keys,2009
+"Rap God",Eminem,2013
+"Zeze",Kodak Black ft. Travis Scott & Offset,2018
+"Murder On My Mind",YNW Melly,2017
+"The Monster",Eminem ft. Rihanna,2013

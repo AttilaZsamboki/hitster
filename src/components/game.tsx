@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SpotifyPlayer } from "./spotify-player";
 import { GameState } from "@/types/game";
 import { Timeline } from "@/components/timeline";
+import { PackageSelector } from "./package-selector";
 
 export interface Song {
 	title: string;
@@ -98,6 +99,7 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 	const socket = useSocket();
 	const [gameState, setGameState] = useState<GameState | null>(null);
 	const [socketConnected, setSocketConnected] = useState(false);
+	const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
 	useEffect(() => {
 		if (!socket) {
@@ -129,6 +131,35 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 			<Card className='p-4'>
 				<h2>Connecting to game...</h2>
 			</Card>
+		);
+	}
+	const handleStartGame = () => {
+		if (!socket) return;
+		socket.emit("startGame", { sessionId });
+	};
+
+	if (gameState?.status === "waiting") {
+		return (
+			<div className='space-y-8'>
+				<Card className='p-4'>
+					<h2 className='text-xl font-bold mb-4'>Select a Song Package</h2>
+					<PackageSelector
+						selectedPackageId={selectedPackage || undefined}
+						onSelect={(packageId) => {
+							if (!socket) return;
+							setSelectedPackage(packageId);
+							socket.emit("selectPackage", { sessionId, packageId });
+						}}
+					/>
+					{gameState.players.length > 1 ? (
+						<Button className='mt-4' disabled={!selectedPackage} onClick={() => handleStartGame()}>
+							Start Game
+						</Button>
+					) : (
+						<div className='text-center text-gray-500 py-2'>Waiting for players to join</div>
+					)}
+				</Card>
+			</div>
 		);
 	}
 
@@ -168,11 +199,6 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 		});
 	};
 
-	const handleStartGame = () => {
-		if (!socket) return;
-		socket.emit("startGame", { sessionId });
-	};
-
 	return (
 		<div className='space-y-8'>
 			{/* Session Info */}
@@ -188,16 +214,16 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 							</div>
 						))}
 					</div>
-					{gameState?.status === "waiting" && <Button onClick={handleStartGame}>Start Game</Button>}
 				</div>
 			</Card>
 
 			{/* Current Song (hidden for current player) */}
-			{!isCurrentPlayersTurn && gameState?.currentSong && (
-				<Card className='p-4'>
-					<h3 className='font-bold mb-4'>Current Song</h3>
-					<SpotifyPlayer artist={gameState.currentSong.artist} title={gameState.currentSong.title} />
-				</Card>
+			{gameState?.currentSong && (
+				<SpotifyPlayer
+					artist={gameState.currentSong.artist}
+					title={gameState.currentSong.title}
+					isCurrentPlayersTurn={isCurrentPlayersTurn}
+				/>
 			)}
 
 			{/* Timeline Display */}
