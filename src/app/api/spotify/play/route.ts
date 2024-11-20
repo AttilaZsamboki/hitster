@@ -6,7 +6,7 @@ export async function POST(request: Request) {
 		const { uri } = await request.json();
 		await playSongOnSpotify(uri);
 		return NextResponse.json({ success: true });
-	} catch (error: any) {
-		return NextResponse.json({ error: error.message }, { status: 500 });
+	} catch (error: unknown) {
+		return NextResponse.json({ error: error instanceof Error ? error.message : "Unknown error" }, { status: 500 });
 	}
 }

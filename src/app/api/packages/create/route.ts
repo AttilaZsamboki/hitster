@@ -1,6 +1,6 @@
 import { db } from "@/db";
-import { songPackages, packageSongs } from "@/db/schema";
-import { getFilteredTracks } from "@/lib/lastfm";
+import { songPackages, songs } from "@/db/schema";
+import { and, between, eq } from "drizzle-orm";
 import { PackageConfig } from "@/types/music";
 import { NextResponse } from "next/server";
 
@@ -8,40 +8,37 @@ export async function POST(request: Request) {
 	try {
 		const config: PackageConfig = await request.json();
 
-		// Create the package
+		// Create the package with filters
 		const [package_] = await db
 			.insert(songPackages)
 			.values({
 				name: config.name,
-				description: `Filters: ${config.filters.genre?.join(", ")} | ${config.filters.years?.start}-${
-					config.filters.years?.end
-				} | ${config.filters.country || "Any"}`,
+				filters: config.filters,
+				limit: config.limit,
 			})
 			.returning();
 
-		// Get filtered tracks
-		const tracks = await getFilteredTracks(config);
-
-		// Store valid tracks
-		const validTracks = tracks
-			.filter((track) => track.year) // Ensure we have year data
-			.map((track) => ({
-				packageId: package_.id,
-				title: track.title,
-				artist: track.artist,
-				released: track.year!.toString(),
-			}));
-
-		if (validTracks.length > 0) {
-			await db.insert(packageSongs).values(validTracks);
+		// Count matching songs
+		const conditions = [];
+		if (config.filters.genre) conditions.push(eq(songs.genre, config.filters.genre));
+		if (config.filters.country) conditions.push(eq(songs.country, config.filters.country));
+		if (config.filters.artist) conditions.push(eq(songs.artist, config.filters.artist));
+		if (config.filters.years) {
+			conditions.push(
+				between(songs.released, config.filters.years.start.toString(), config.filters.years.end.toString())
+			);
 		}
+
+		const matchingSongs = await db.query.songs.findMany({
+			where: conditions.length > 0 ? and(...conditions) : undefined,
+		});
 
 		return NextResponse.json({
 			...package_,
-			songCount: validTracks.length,
+			songCount: matchingSongs.length,
 		});
-	} catch (error: any) {
+	} catch (error) {
 		console.error("Error creating package:", error);
-		return NextResponse.json({ error: error.message }, { status: 500 });
+		return NextResponse.json({ error: error instanceof Error ? error.message : "Unknown error" }, { status: 500 });
 	}
 }

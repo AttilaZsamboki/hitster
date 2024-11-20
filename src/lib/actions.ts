@@ -19,9 +19,6 @@ export async function deleteSession(sessionId: number) {
 		await db.delete(timelines).where(eq(timelines.playerId, player.id));
 	}
 
-	// Delete all players in the session
-	await db.delete(players).where(eq(players.sessionId, sessionId));
-
 	// Finally delete the session
 	await db.delete(sessions).where(eq(sessions.id, sessionId));
 }

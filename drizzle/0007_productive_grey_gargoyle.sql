@@ -1,0 +1,1 @@
+ALTER TABLE "song_packages" ADD COLUMN "limit" integer DEFAULT 100;

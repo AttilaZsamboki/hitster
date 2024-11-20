@@ -17,7 +17,7 @@ export async function playSongOnSpotify(trackUri: string) {
 		});
 
 		const { devices } = await devicesResponse.json();
-		const activeDevice = devices.find((d: any) => d.is_active) || devices[0];
+		const activeDevice = devices.find((d: { is_active: boolean }) => d.is_active) || devices[0];
 
 		if (!activeDevice) {
 			throw new Error("No available Spotify devices found");

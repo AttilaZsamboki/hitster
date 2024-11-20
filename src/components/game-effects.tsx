@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { useEffect } from "react";
-import { Player } from "@/types/game";
 
 interface GameEffectsProps {
 	isCorrect: boolean | null;

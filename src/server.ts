@@ -3,10 +3,10 @@ import { parse } from "url";
 import next from "next";
 import { Server } from "socket.io";
 import { db } from "./db";
-import { sessions, players, currentSongs, timelines, packageSongs, usedSongs } from "./db/schema";
-import { eq, sql, and } from "drizzle-orm";
+import { sessions, players, currentSongs, timelines, usedSongs, songPackages, songs } from "./db/schema";
+import { eq, sql, and, between } from "drizzle-orm";
 import { GameState, Player } from "./types/game";
-import { getSongs } from "./lib/songs";
+import { PackageConfig } from "./types/music";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -125,41 +125,69 @@ app.prepare().then(() => {
 
 	async function selectRandomSong(packageId: number | null, sessionId: number) {
 		let attempts = 0;
-		const maxAttempts = 50; // Prevent infinite loop
+		const maxAttempts = 50;
 
 		while (attempts < maxAttempts) {
-			// Get a random song
-			const songs = packageId
-				? await db.query.packageSongs.findMany({
-						where: eq(packageSongs.packageId, packageId),
+			// Get package filters if packageId is provided
+			const package_ = packageId
+				? await db.query.songPackages.findFirst({
+						where: eq(songPackages.id, packageId),
 				  })
-				: await getSongs();
+				: null;
 
-			const randomIndex = Math.floor(Math.random() * songs.length);
-			const song = songs[randomIndex];
+			// Build query conditions
+			const conditions = [];
+			if (package_?.filters) {
+				const filters = package_.filters as PackageConfig;
+				if (filters.filters.genre) conditions.push(eq(songs.genre, filters.filters.genre));
+				if (filters.filters.country) conditions.push(eq(songs.country, filters.filters.country));
+				if (filters.filters.artist) conditions.push(eq(songs.artist, filters.filters.artist));
+				if (filters.filters.years) {
+					conditions.push(
+						between(
+							songs.released,
+							filters.filters.years.start.toString(),
+							filters.filters.years.end.toString()
+						)
+					);
+				}
+			}
 
-			// Check if song was already used in this session
+			// Get all matching songs
+			const matchingSongs = await db.query.songs.findMany({
+				where: conditions.length > 0 ? and(...conditions) : undefined,
+				orderBy: (songs, { asc }) => [asc(songs.rank)],
+				limit: package_?.limit ?? 50,
+			});
+
+			if (matchingSongs.length === 0) {
+				throw new Error("No songs match the package filters");
+			}
+
+			// Select random song
+			const randomSong = matchingSongs[Math.floor(Math.random() * matchingSongs.length)];
+
+			// Check if already used
 			const usedSong = await db.query.usedSongs.findFirst({
 				where: and(
 					eq(usedSongs.sessionId, sessionId),
-					eq(usedSongs.songTitle, song.title),
-					eq(usedSongs.songArtist, song.artist)
+					eq(usedSongs.songTitle, randomSong.title),
+					eq(usedSongs.songArtist, randomSong.artist)
 				),
 			});
 
 			if (!usedSong) {
-				// Add song to used songs
 				await db.insert(usedSongs).values({
 					sessionId,
-					songTitle: song.title,
-					songArtist: song.artist,
-					songYear: parseInt(song.released.split("-")[0]),
+					songTitle: randomSong.title,
+					songArtist: randomSong.artist,
+					songYear: parseInt(randomSong.released),
 				});
 
 				return {
-					title: song.title,
-					artist: song.artist,
-					year: parseInt(song.released.split("-")[0]),
+					title: randomSong.title,
+					artist: randomSong.artist,
+					year: parseInt(randomSong.released),
 					previewUrl: undefined,
 					spotifyUrl: undefined,
 				};

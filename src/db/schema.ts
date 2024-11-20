@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, integer, boolean } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, integer, boolean, jsonb } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const sessions = pgTable("sessions", {
@@ -59,8 +59,9 @@ export const currentSongs = pgTable("current_songs", {
 export const songPackages = pgTable("song_packages", {
 	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
-	description: text("description"),
+	filters: jsonb("filters").notNull(),
 	createdAt: timestamp("created_at").defaultNow(),
+	limit: integer("limit").default(100),
 });
 
 export const songs = pgTable("songs", {

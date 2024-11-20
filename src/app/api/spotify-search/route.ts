@@ -1,14 +1,13 @@
-import { searchSpotifyTrack } from '@/lib/spotify';
-import { NextRequest } from 'next/server';
+import { searchSpotifyTrack } from "@/lib/spotify";
+import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url);
-	const title = searchParams.get('title');
-	const artist = searchParams.get('artist');
-	console.log(title, artist)
+	const title = searchParams.get("title");
+	const artist = searchParams.get("artist");
 
 	if (!title || !artist) {
-		return Response.json({ error: 'Missing title or artist' }, { status: 400 });
+		return Response.json({ error: "Missing title or artist" }, { status: 400 });
 	}
 
 	try {

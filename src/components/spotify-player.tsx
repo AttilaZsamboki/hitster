@@ -12,8 +12,13 @@ interface SpotifyPlayerProps {
 	isCurrentPlayersTurn: boolean;
 }
 
+interface SpotifyTrack {
+	preview_url: string | null;
+	uri: string;
+}
+
 export function SpotifyPlayer({ title, artist, isCurrentPlayersTurn }: SpotifyPlayerProps) {
-	const [track, setTrack] = useState<any>(null);
+	const [track, setTrack] = useState<SpotifyTrack | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
@@ -66,8 +71,8 @@ export function SpotifyPlayer({ title, artist, isCurrentPlayersTurn }: SpotifyPl
 				}
 
 				setTrack(data);
-			} catch (err: any) {
-				setError(err.message);
+			} catch (err: unknown) {
+				setError(err instanceof Error ? err.message : "Unknown error");
 			} finally {
 				setLoading(false);
 			}

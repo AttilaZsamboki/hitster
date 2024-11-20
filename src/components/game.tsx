@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { SpotifyPlayer } from "./spotify-player";
 import { GameState } from "@/types/game";
 import { Timeline } from "@/components/timeline";
-import { PackageSelector } from "./package-selector";
 import { Scoreboard } from "./scoreboard";
 import { GameEffects } from "./game-effects";
 import { WinAnimation } from "./win-animation";
+import { Package, PackageList } from "./package-list";
 
 export interface Song {
 	title: string;
@@ -27,7 +27,19 @@ interface JoinSessionResponse {
 	playerName: string;
 }
 
-export default function Game({ sessionId }: { sessionId: string }) {
+export default function Game({
+	sessionId,
+	genres,
+	artists,
+	countries,
+	packages,
+}: {
+	sessionId: string;
+	genres: string[];
+	artists: string[];
+	countries: string[];
+	packages: Package[];
+}) {
 	const [playerId, setPlayerId] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
@@ -93,12 +105,33 @@ export default function Game({ sessionId }: { sessionId: string }) {
 
 	return (
 		<div className='p-4'>
-			<GuessSongGame sessionId={sessionId} playerId={playerId} />
+			<GuessSongGame
+				sessionId={sessionId}
+				playerId={playerId}
+				genres={genres}
+				artists={artists}
+				countries={countries}
+				packages={packages}
+			/>
 		</div>
 	);
 }
 
-function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: string }) {
+function GuessSongGame({
+	sessionId,
+	playerId,
+	genres,
+	artists,
+	countries,
+	packages,
+}: {
+	sessionId: string;
+	playerId: string;
+	genres: string[];
+	artists: string[];
+	countries: string[];
+	packages: Package[];
+}) {
 	const socket = useSocket();
 	const [gameState, setGameState] = useState<GameState | null>(null);
 	const [socketConnected, setSocketConnected] = useState(false);
@@ -175,9 +208,12 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 		return (
 			<div className='space-y-8'>
 				<Card className='p-4'>
-					<h2 className='text-xl font-bold mb-4'>Select a Song Package</h2>
-					<PackageSelector
-						selectedPackage={selectedPackage || undefined}
+					<PackageList
+						packages={packages}
+						sessionId={sessionId}
+						genres={genres}
+						artists={artists}
+						countries={countries}
 						onSelect={(packageId) => {
 							if (!socket) return;
 							setSelectedPackage(packageId);

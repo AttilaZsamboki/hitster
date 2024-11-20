@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams;
 	const code = searchParams.get("code");
-	const state = searchParams.get("state");
 
 	if (!code) {
 		return NextResponse.redirect("/error?message=spotify_auth_failed");
