@@ -138,7 +138,7 @@ app.prepare().then(() => {
 			// Build query conditions
 			const conditions = [];
 			if (package_?.filters) {
-				const filters = package_.filters as PackageConfig;
+				const filters = package_ as PackageConfig;
 				if (filters.filters.genre) conditions.push(eq(songs.genre, filters.filters.genre));
 				if (filters.filters.country) conditions.push(eq(songs.country, filters.filters.country));
 				if (filters.filters.artist) conditions.push(eq(songs.artist, filters.filters.artist));
