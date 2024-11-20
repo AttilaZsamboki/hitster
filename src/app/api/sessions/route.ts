@@ -14,13 +14,14 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-	const { name } = await request.json();
+	const { name, maxSongs } = await request.json();
 
 	const session = await db
 		.insert(sessions)
 		.values({
 			name,
 			status: "waiting",
+			maxSongs: maxSongs || 10,
 		})
 		.returning();
 

@@ -86,8 +86,9 @@ app.prepare().then(() => {
 							spotifyUrl: currentSong.spotifyUrl || undefined,
 					  }
 					: undefined,
-				totalRounds: 10,
+				totalRounds: session.maxSongs ?? 10,
 				currentRound: Math.floor((usedSongsCount.length - 1) / session.players.length) + 1,
+				maxSongs: session.maxSongs ?? 10,
 			};
 		} catch (error) {
 			console.error("Error getting game state:", error);
@@ -234,19 +235,16 @@ app.prepare().then(() => {
 
 				// Check for winner
 				const winner = await db.query.players.findFirst({
-					where: and(
-						eq(players.sessionId, parseInt(sessionId)),
-						eq(players.score, 10) // Using default win condition of 10 points
-					)
+					where: and(eq(players.sessionId, parseInt(sessionId)), eq(players.score, session?.maxSongs ?? 10)),
 				});
 
 				if (winner) {
 					// Emit winner event
 					io.to(`session:${sessionId}`).emit("gameWinner", {
 						playerId: winner.id.toString(),
-						playerName: winner.name
+						playerName: winner.name,
 					});
-					
+
 					// Update session status
 					await db
 						.update(sessions)

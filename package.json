@@ -3,11 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "tsx src/server.ts",
+		"dev": "cross-env NODE_OPTIONS='--inspect' tsx src/server.ts",
 		"build": "next build",
 		"start": "tsx src/server.ts"
 	},
 	"dependencies": {
+		"@radix-ui/react-dialog": "^1.1.2",
+		"@radix-ui/react-label": "^2.1.0",
+		"@radix-ui/react-select": "^2.1.2",
 		"@radix-ui/react-slot": "^1.1.0",
 		"@types/socket.io-client": "^3.0.0",
 		"canvas-confetti": "^1.9.3",

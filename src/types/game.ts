@@ -22,4 +22,5 @@ export interface GameState {
 	currentPlayerId: string;
 	totalRounds: number;
 	currentRound: number;
+	maxSongs: number;
 }

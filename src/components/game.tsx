@@ -177,7 +177,7 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 				<Card className='p-4'>
 					<h2 className='text-xl font-bold mb-4'>Select a Song Package</h2>
 					<PackageSelector
-						selectedPackageId={selectedPackage || undefined}
+						selectedPackage={selectedPackage || undefined}
 						onSelect={(packageId) => {
 							if (!socket) return;
 							setSelectedPackage(packageId);
@@ -293,12 +293,7 @@ function GuessSongGame({ sessionId, playerId }: { sessionId: string; playerId: s
 				songDetails={guessResult?.songDetails}
 				onComplete={() => setGuessResult(null)}
 			/>
-			{winner && (
-				<WinAnimation 
-					playerName={winner.playerName}
-					onComplete={() => setWinner(null)}
-				/>
-			)}
+			{winner && <WinAnimation playerName={winner.playerName} onComplete={() => setWinner(null)} />}
 		</>
 	);
 }

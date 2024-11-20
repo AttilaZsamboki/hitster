@@ -1,0 +1,1 @@
+ALTER TABLE "sessions" ADD COLUMN "max_songs" integer DEFAULT 10;
