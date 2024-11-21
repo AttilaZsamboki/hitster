@@ -96,7 +96,7 @@ export function PackageSelector({ onSelect, sessionId, genres, artists, countrie
 					<SelectContent>
 						<SelectItem value='all'>All</SelectItem>
 						{genres.map((genre) => (
-							<SelectItem key={genre} value={genre}>
+							<SelectItem key={genre} value={genre === "" ? "all" : genre}>
 								{genre}
 							</SelectItem>
 						))}
@@ -173,7 +173,7 @@ export function PackageSelector({ onSelect, sessionId, genres, artists, countrie
 					<SelectContent>
 						<SelectItem value='all'>All</SelectItem>
 						{countries.map((country) => (
-							<SelectItem key={country} value={country}>
+							<SelectItem key={country} value={country === "" ? "all" : country}>
 								{country}
 							</SelectItem>
 						))}
