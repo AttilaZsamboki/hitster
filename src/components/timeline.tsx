@@ -3,26 +3,31 @@ import { Button } from "./ui/button";
 
 interface TimelineProps {
 	songs: Song[];
-	onGuess?: (position: string) => void;
+	onGuess?: (position: string, detailedGuesses?: { year: number; artist: string; album: string; title: string }) => void;
 	isCurrentPlayer: boolean;
 	currentSong?: Song;
 	isLocalPlayer: boolean;
+	detailedGuesses?: { year: number; artist: string; album: string; title: string };
 }
 
-export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocalPlayer }: TimelineProps) {
+export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocalPlayer, detailedGuesses }: TimelineProps) {
 	const sortedSongs = [...songs].sort((a, b) => a.year - b.year);
+
+	const handleGuess = (position: string) => {
+		onGuess?.(position, detailedGuesses);
+	};
 
 	const getGuessOptions = () => {
 		if (sortedSongs.length === 0) {
 			return [
-				<Button key='first' onClick={() => onGuess?.("first")} variant='outline' className='w-full'>
+				<Button key='first' onClick={() => handleGuess("first")} variant='outline' className='w-full' disabled={!detailedGuesses}>
 					Place First Song
 				</Button>,
 			];
 		}
 
 		const options = [
-			<Button key='older' onClick={() => onGuess?.("older")} variant='outline' className='w-full'>
+			<Button key='older' onClick={() => handleGuess("older")} variant='outline' className='w-full' disabled={!detailedGuesses}>
 				Older than {sortedSongs[0].year}
 			</Button>,
 		];
@@ -33,9 +38,11 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 			options.push(
 				<Button
 					key={`between-${i}`}
-					onClick={() => onGuess?.(`between:${i}`)}
+					onClick={() => handleGuess(`between:${i}`)}
 					variant='outline'
-					className='w-full'>
+					className='w-full'
+					disabled={!detailedGuesses}
+				>
 					Between {sortedSongs[i].year} and {sortedSongs[i + 1].year}
 				</Button>
 			);
@@ -45,9 +52,11 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 		options.push(
 			<Button
 				key='newer'
-				onClick={() => onGuess?.(`newer:${sortedSongs.length - 1}`)}
+				onClick={() => handleGuess(`newer:${sortedSongs.length - 1}`)}
 				variant='outline'
-				className='w-full'>
+				className='w-full'
+				disabled={!detailedGuesses}
+			>
 				Newer than {sortedSongs[sortedSongs.length - 1].year}
 			</Button>
 		);
@@ -76,7 +85,16 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 			</div>
 
 			{/* Placement buttons */}
-			{isCurrentPlayer && onGuess && currentSong && <div className='space-y-2'>{getGuessOptions()}</div>}
+			{isCurrentPlayer && onGuess && currentSong && (
+				<div className='space-y-2'>
+					{!detailedGuesses && (
+						<p className="text-sm text-gray-500 text-center">
+							Fill in your guesses above before placing the song
+						</p>
+					)}
+					{getGuessOptions()}
+				</div>
+			)}
 		</div>
 	);
 }

@@ -1,5 +1,19 @@
-import { pgTable, serial, text, timestamp, integer, boolean, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, integer, boolean, jsonb, doublePrecision } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
+
+export const songs = pgTable("songs", {
+	id: serial("id").primaryKey(),
+	title: text("title").notNull(),
+	artist: text("artist").notNull(),
+	released: text("released").notNull(),
+	genre: text("genre"),
+	country: text("country"),
+	rank: integer("rank"),
+	songArtistCredit: text("song_artist_credit"),
+	cspc: integer("cspc"),
+	album: text("album"),
+	artistSpotifyId: text("artist_spotify_id"),
+});
 
 export const sessions = pgTable("sessions", {
 	id: serial("id").primaryKey(),
@@ -16,7 +30,7 @@ export const players = pgTable("players", {
 	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
 	sessionId: integer("session_id"),
-	score: integer("score").default(0),
+	score: doublePrecision("score").default(0),
 	createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -48,13 +62,19 @@ export const timelines = pgTable("timelines", {
 export const currentSongs = pgTable("current_songs", {
 	id: serial("id").primaryKey(),
 	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
-	songTitle: text("song_title").notNull(),
-	songArtist: text("song_artist").notNull(),
-	songYear: integer("song_year").notNull(),
-	previewUrl: text("preview_url"),
-	spotifyUrl: text("spotify_url"),
+	songId: integer("song_id").references(() => songs.id, { onDelete: "cascade" }),
 	createdAt: timestamp("created_at").defaultNow(),
 });
+export const currentSongsRelations = relations(currentSongs, ({ one }) => ({
+	session: one(sessions, {
+		fields: [currentSongs.sessionId],
+		references: [sessions.id],
+	}),
+	song: one(songs, {
+		fields: [currentSongs.songId],
+		references: [songs.id],
+	}),
+}));
 
 export const songPackages = pgTable("song_packages", {
 	id: serial("id").primaryKey(),
@@ -64,25 +84,20 @@ export const songPackages = pgTable("song_packages", {
 	limit: integer("limit").default(100),
 });
 
-export const songs = pgTable("songs", {
-	id: serial("id").primaryKey(),
-	title: text("title").notNull(),
-	artist: text("artist").notNull(),
-	released: text("released").notNull(),
-	genre: text("genre"),
-	country: text("country"),
-	rank: integer("rank"),
-	songArtistCredit: text("song_artist_credit"),
-	cspc: integer("cspc"),
-	album: text("album"),
-	artistSpotifyId: text("artist_spotify_id"),
-});
-
 export const usedSongs = pgTable("used_songs", {
 	id: serial("id").primaryKey(),
 	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
-	songTitle: text("song_title").notNull(),
-	songArtist: text("song_artist").notNull(),
-	songYear: integer("song_year").notNull(),
+	songId: integer("song_id").references(() => songs.id, { onDelete: "cascade" }),
 	createdAt: timestamp("created_at").defaultNow(),
 });
+
+export const usedSongsRelations = relations(usedSongs, ({ one }) => ({
+	session: one(sessions, {
+		fields: [usedSongs.sessionId],
+		references: [sessions.id],
+	}),
+	song: one(songs, {
+		fields: [usedSongs.songId],
+		references: [songs.id],
+	}),
+}));

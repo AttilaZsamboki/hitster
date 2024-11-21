@@ -4,12 +4,13 @@ import { useSocket } from "@/hooks/useSocket";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpotifyPlayer } from "./spotify-player";
-import { GameState } from "@/types/game";
+import { GameState, GuessDetails } from "@/types/game";
 import { Timeline } from "@/components/timeline";
 import { Scoreboard } from "./scoreboard";
 import { GameEffects } from "./game-effects";
 import { WinAnimation } from "./win-animation";
 import { Package, PackageList } from "./package-list";
+import { SongGuessForm } from "./song-guess-form";
 
 export interface Song {
 	title: string;
@@ -143,8 +144,16 @@ function GuessSongGame({
 			artist: string;
 			year: number;
 		};
+		guessDetails?: GuessDetails;
+		pointsEarned?: number;
 	} | null>(null);
 	const [winner, setWinner] = useState<{ playerId: string; playerName: string } | null>(null);
+	const [currentDetailedGuesses, setCurrentDetailedGuesses] = useState<{
+		year: number;
+		artist: string;
+		album: string;
+		title: string;
+	} | null>(null);
 
 	useEffect(() => {
 		if (!socket) {
@@ -174,7 +183,9 @@ function GuessSongGame({
 					artist: string;
 					year: number;
 				};
+				pointsEarned?: number;
 			}) => {
+				console.log("Received guess result:", result);
 				setGuessResult(result);
 			}
 		);
@@ -234,7 +245,10 @@ function GuessSongGame({
 
 	const isCurrentPlayersTurn = gameState?.currentPlayerId === playerId;
 
-	const handleGuess = (position: string) => {
+	const handleGuess = (
+		position: string,
+		detailedGuesses?: { year: number; artist: string; album: string; title: string }
+	) => {
 		if (!socket || !gameState?.currentSong) return;
 
 		const currentPlayerTimeline = gameState.players.find((p) => p.id === playerId)?.timeline || [];
@@ -262,13 +276,13 @@ function GuessSongGame({
 				song: gameState.currentSong,
 				isCorrect,
 			},
+			detailedGuesses,
 		});
 	};
 
 	return (
 		<>
 			<div className='space-y-8'>
-				{/* Session Info */}
 				<Scoreboard
 					players={gameState?.players || []}
 					currentPlayerId={gameState?.currentPlayerId || ""}
@@ -278,24 +292,40 @@ function GuessSongGame({
 					totalRounds={gameState?.totalRounds || 10}
 				/>
 
-				{/* Current Song (hidden for current player) */}
 				{gameState?.currentSong && (
-					<SpotifyPlayer
-						artist={gameState.currentSong.artist}
-						title={gameState.currentSong.title}
-						isCurrentPlayersTurn={isCurrentPlayersTurn}
-					/>
+					<>
+						<SpotifyPlayer
+							artist={gameState.currentSong.artist}
+							title={gameState.currentSong.title}
+							isCurrentPlayersTurn={isCurrentPlayersTurn}
+						/>
+
+						{isCurrentPlayersTurn && (
+							<Card className='p-4'>
+								<h3 className='font-bold mb-4'>Make Your Guesses</h3>
+								<SongGuessForm
+									onSubmit={(guesses) => {
+										setCurrentDetailedGuesses(guesses);
+									}}
+									disabled={!!currentDetailedGuesses}
+								/>
+								{currentDetailedGuesses && (
+									<Button
+										onClick={() => setCurrentDetailedGuesses(null)}
+										variant='outline'
+										className='mt-2 w-full'>
+										Clear Guesses
+									</Button>
+								)}
+							</Card>
+						)}
+					</>
 				)}
 
 				{/* Timeline Display */}
 				<div className='space-y-8'>
-					{/* Show local player's timeline first */}
 					{gameState?.players
-						.sort((a, b) => {
-							if (a.id === playerId) return -1;
-							if (b.id === playerId) return 1;
-							return 0;
-						})
+						.sort((a, b) => (a.id === playerId ? -1 : b.id === playerId ? 1 : 0))
 						.map((player) => (
 							<Card
 								key={player.id}
@@ -317,17 +347,22 @@ function GuessSongGame({
 									isCurrentPlayer={player.id === playerId && isCurrentPlayersTurn}
 									currentSong={gameState?.currentSong}
 									isLocalPlayer={player.id === playerId}
+									detailedGuesses={currentDetailedGuesses ?? undefined}
 								/>
 							</Card>
 						))}
 				</div>
-
-				{/* Add GameEffects component */}
 			</div>
+
 			<GameEffects
 				isCorrect={guessResult?.isCorrect ?? null}
 				songDetails={guessResult?.songDetails}
-				onComplete={() => setGuessResult(null)}
+				guessDetails={guessResult?.guessDetails}
+				onComplete={() => {
+					setGuessResult(null);
+					setCurrentDetailedGuesses(null);
+				}}
+				pointsEarned={guessResult?.pointsEarned}
 			/>
 			{winner && <WinAnimation playerName={winner.playerName} onComplete={() => setWinner(null)} />}
 		</>

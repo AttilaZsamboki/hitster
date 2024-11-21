@@ -7,6 +7,14 @@ export interface Player {
 	timeline: Song[];
 }
 
+export interface GuessDetails {
+	timelineGuess: boolean;
+	yearGuess?: boolean;
+	artistGuess?: boolean;
+	albumGuess?: boolean;
+	titleGuess?: boolean;
+}
+
 export interface GameState {
 	sessionId: string;
 	sessionName: string;
@@ -15,6 +23,7 @@ export interface GameState {
 		title: string;
 		artist: string;
 		year: number;
+		album: string;
 		previewUrl?: string;
 		spotifyUrl?: string;
 	};
@@ -23,4 +32,5 @@ export interface GameState {
 	totalRounds: number;
 	currentRound: number;
 	maxSongs: number;
+	currentGuesses: Record<string, GuessDetails>;
 }

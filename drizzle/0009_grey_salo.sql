@@ -1,0 +1,1 @@
+ALTER TABLE "players" ALTER COLUMN "score" SET DATA TYPE double precision;

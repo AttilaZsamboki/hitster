@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { useEffect } from "react";
+import { GuessDetails } from "@/types/game";
 
 interface GameEffectsProps {
 	isCorrect: boolean | null;
@@ -9,10 +10,13 @@ interface GameEffectsProps {
 		artist: string;
 		year: number;
 	};
+	guessDetails?: GuessDetails;
+	pointsEarned?: number;
 	onComplete?: () => void;
 }
 
-export function GameEffects({ isCorrect, songDetails, onComplete }: GameEffectsProps) {
+export function GameEffects({ isCorrect, songDetails, guessDetails, pointsEarned, onComplete }: GameEffectsProps) {
+	console.log(guessDetails);
 	useEffect(() => {
 		if (isCorrect !== null) {
 			if (isCorrect) {
@@ -65,12 +69,27 @@ export function GameEffects({ isCorrect, songDetails, onComplete }: GameEffectsP
 								</h2>
 							</motion.div>
 							{songDetails && (
-								<div className='mt-4'>
-									<p className='text-gray-700'>The song was from:</p>
-									<p className='font-bold text-lg'>{songDetails.year}</p>
-									<p className='text-sm text-gray-600'>
-										{songDetails.title} - {songDetails.artist}
-									</p>
+								<div className='mt-4 space-y-4'>
+									<div>
+										<p className='text-gray-700'>The song was from:</p>
+										<p className='font-bold text-lg'>{songDetails.year}</p>
+										<p className='text-sm text-gray-600'>
+											{songDetails.title} - {songDetails.artist}
+										</p>
+									</div>
+
+									{isCorrect && guessDetails && (
+										<div className='border-t pt-4'>
+											<p className='font-medium mb-2'>Points Earned: {pointsEarned}</p>
+											<div className='text-sm space-y-1'>
+												<p>✓ Timeline Placement (1 point)</p>
+												{guessDetails.yearGuess && <p>✓ Exact Year (+0.5 points)</p>}
+												{guessDetails.artistGuess && <p>✓ Artist Name (+0.5 points)</p>}
+												{guessDetails.albumGuess && <p>✓ Album Name (+0.5 points)</p>}
+												{guessDetails.titleGuess && <p>✓ Song Title (+0.5 points)</p>}
+											</div>
+										</div>
+									)}
 								</div>
 							)}
 						</div>

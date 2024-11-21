@@ -5,12 +5,14 @@ import { Server } from "socket.io";
 import { db } from "./db";
 import { sessions, players, currentSongs, timelines, usedSongs, songPackages, songs } from "./db/schema";
 import { eq, sql, and, between } from "drizzle-orm";
-import { GameState, Player } from "./types/game";
+import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const levenshtein = require("js-levenshtein");
 
 app.prepare().then(() => {
 	const server = createServer((req, res) => {
@@ -42,6 +44,16 @@ app.prepare().then(() => {
 			// Get current song if exists
 			const currentSong = await db.query.currentSongs.findFirst({
 				where: eq(currentSongs.sessionId, parseInt(sessionId)),
+				with: {
+					song: {
+						columns: {
+							title: true,
+							artist: true,
+							released: true,
+							album: true,
+						},
+					},
+				},
 			});
 
 			// Map players with their timelines
@@ -79,16 +91,18 @@ app.prepare().then(() => {
 				currentPlayerId: session.currentPlayerId?.toString() || "",
 				currentSong: currentSong
 					? {
-							title: currentSong.songTitle,
-							artist: currentSong.songArtist,
-							year: currentSong.songYear,
-							previewUrl: currentSong.previewUrl || undefined,
-							spotifyUrl: currentSong.spotifyUrl || undefined,
+							title: currentSong.song?.title || "",
+							artist: currentSong.song?.artist || "",
+							year: parseInt(currentSong.song?.released ?? "0"),
+							album: currentSong.song?.album || "",
+							previewUrl: undefined,
+							spotifyUrl: undefined,
 					  }
 					: undefined,
 				totalRounds: session.maxSongs ?? 10,
 				currentRound: Math.floor((usedSongsCount.length - 1) / session.players.length) + 1,
 				maxSongs: session.maxSongs ?? 10,
+				currentGuesses: {},
 			};
 		} catch (error) {
 			console.error("Error getting game state:", error);
@@ -107,15 +121,10 @@ app.prepare().then(() => {
 
 			await db.insert(currentSongs).values({
 				sessionId: parseInt(sessionId),
-				songTitle: song.title,
-				songArtist: song.artist,
-				songYear: song.year,
-				previewUrl: song.previewUrl,
-				spotifyUrl: song.spotifyUrl,
+				songId: song.id,
 			});
 		} catch (error) {
 			console.error("Error updating current song:", error);
-			// Handle the case where no more songs are available
 			await db
 				.update(sessions)
 				.set({ status: "finished" })
@@ -169,28 +178,16 @@ app.prepare().then(() => {
 
 			// Check if already used
 			const usedSong = await db.query.usedSongs.findFirst({
-				where: and(
-					eq(usedSongs.sessionId, sessionId),
-					eq(usedSongs.songTitle, randomSong.title),
-					eq(usedSongs.songArtist, randomSong.artist)
-				),
+				where: and(eq(usedSongs.sessionId, sessionId), eq(usedSongs.songId, randomSong.id)),
 			});
 
 			if (!usedSong) {
 				await db.insert(usedSongs).values({
 					sessionId,
-					songTitle: randomSong.title,
-					songArtist: randomSong.artist,
-					songYear: parseInt(randomSong.released),
+					songId: randomSong.id,
 				});
 
-				return {
-					title: randomSong.title,
-					artist: randomSong.artist,
-					year: parseInt(randomSong.released),
-					previewUrl: undefined,
-					spotifyUrl: undefined,
-				};
+				return randomSong;
 			}
 
 			attempts++;
@@ -217,12 +214,19 @@ app.prepare().then(() => {
 			}
 		});
 
-		socket.on("makeGuess", async ({ sessionId, playerId, guess }) => {
+		socket.on("makeGuess", async ({ sessionId, playerId, guess, detailedGuesses }) => {
 			try {
 				const { position, song, isCorrect } = guess;
+				let totalPoints = 0;
+				const guessDetails: GuessDetails = {
+					timelineGuess: false,
+					yearGuess: false,
+					artistGuess: false,
+					albumGuess: false,
+					titleGuess: false,
+				};
 
 				if (isCorrect) {
-					// Add song to player's timeline
 					await db.insert(timelines).values({
 						playerId: parseInt(playerId),
 						songTitle: song.title,
@@ -230,11 +234,53 @@ app.prepare().then(() => {
 						songYear: song.year,
 						position: parseInt(position.split(":")[1] || "0"),
 					});
+					totalPoints += 1;
+					guessDetails.timelineGuess = true;
 
-					// Update player's score
+					// Only check detailed guesses if timeline placement was correct
+					if (detailedGuesses) {
+						const currentSong = await db.query.currentSongs.findFirst({
+							where: eq(currentSongs.sessionId, parseInt(sessionId)),
+							with: { song: true },
+						});
+
+						if (currentSong) {
+							// Exact year check
+							if (detailedGuesses.year?.toString() === currentSong.song?.released) {
+								totalPoints += 0.5;
+								guessDetails.yearGuess = true;
+							}
+
+							// Fuzzy text matching for other fields
+							const similarity = (str1: string, str2: string) => {
+								const longer = str1.length > str2.length ? str1 : str2;
+								const shorter = str1.length > str2.length ? str2 : str1;
+								const longerLength = longer.length;
+								const distance = levenshtein(longer.toLowerCase(), shorter.toLowerCase());
+								return (longerLength - distance) / longerLength;
+							};
+
+							if (similarity(detailedGuesses.artist, currentSong.song?.artist ?? "") >= 0.85) {
+								totalPoints += 0.5;
+								guessDetails.artistGuess = true;
+							}
+
+							if (similarity(detailedGuesses.album, currentSong.song?.album ?? "") >= 0.85) {
+								totalPoints += 0.5;
+								guessDetails.albumGuess = true;
+							}
+
+							if (similarity(detailedGuesses.title, currentSong.song?.title ?? "") >= 0.85) {
+								totalPoints += 0.5;
+								guessDetails.titleGuess = true;
+							}
+						}
+					}
+
+					// Update player's score with total points
 					await db
 						.update(players)
-						.set({ score: sql`${players.score} + 1` })
+						.set({ score: sql`${players.score} + ${totalPoints}` })
 						.where(eq(players.id, parseInt(playerId)));
 
 					// Move to next player
@@ -285,6 +331,8 @@ app.prepare().then(() => {
 					playerId,
 					isCorrect: guess.isCorrect,
 					songDetails: guess.song,
+					guessDetails,
+					pointsEarned: totalPoints,
 				});
 			} catch (error) {
 				console.error("Error processing guess:", error);
@@ -335,6 +383,65 @@ app.prepare().then(() => {
 				}
 			} catch (error) {
 				console.error("Error selecting package:", error);
+			}
+		});
+
+		socket.on("makeDetailedGuess", async ({ sessionId, playerId, guesses }) => {
+			try {
+				const currentSong = await db.query.currentSongs.findFirst({
+					where: eq(currentSongs.sessionId, parseInt(sessionId)),
+					with: {
+						song: true,
+					},
+				});
+
+				if (!currentSong) return;
+
+				let pointsEarned = 0;
+				const guessDetails: GuessDetails = {
+					timelineGuess: false,
+				};
+
+				// Check each guess
+				if (guesses.year.toString() === currentSong.song?.released) {
+					pointsEarned += 0.5;
+					guessDetails.yearGuess = true;
+				}
+				if (guesses.artist.toLowerCase() === currentSong.song?.artist.toLowerCase()) {
+					pointsEarned += 0.5;
+					guessDetails.artistGuess = true;
+				}
+				if (guesses.album.toLowerCase() === currentSong.song?.album?.toLowerCase()) {
+					pointsEarned += 0.5;
+					guessDetails.albumGuess = true;
+				}
+				if (guesses.title.toLowerCase() === currentSong.song?.title.toLowerCase()) {
+					pointsEarned += 0.5;
+					guessDetails.titleGuess = true;
+				}
+
+				// Update player's score
+				if (pointsEarned > 0) {
+					await db
+						.update(players)
+						.set({ score: sql`${players.score} + ${pointsEarned}` })
+						.where(eq(players.id, parseInt(playerId)));
+				}
+
+				// Emit the detailed guess results
+				io.to(`session:${sessionId}`).emit("detailedGuessResult", {
+					playerId,
+					guessDetails,
+					pointsEarned,
+					correctDetails: {
+						year: currentSong.song?.released,
+						artist: currentSong.song?.artist,
+						album: currentSong.song?.album,
+						title: currentSong.song?.title,
+					},
+				});
+			} catch (error) {
+				console.error("Error processing detailed guess:", error);
 			}
 		});
 
