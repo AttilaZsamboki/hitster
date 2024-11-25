@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "cross-env NODE_OPTIONS='--inspect' tsx src/server.ts",
+		"dev": "cross-env NODE_OPTIONS='--inspect' tsx watch src/server.ts",
 		"build": "next build",
 		"start": "tsx src/server.ts"
 	},

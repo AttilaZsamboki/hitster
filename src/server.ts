@@ -3,8 +3,17 @@ import { parse } from "url";
 import next from "next";
 import { Server } from "socket.io";
 import { db } from "./db";
-import { sessions, players, currentSongs, timelines, usedSongs, songPackages, songs } from "./db/schema";
-import { eq, sql, and, between } from "drizzle-orm";
+import {
+	sessions,
+	players,
+	currentSongs,
+	timelines,
+	usedSongs,
+	songPackages,
+	songs,
+	SessionWithPlayer,
+} from "./db/schema";
+import { eq, sql, and, between, asc, gte } from "drizzle-orm";
 import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
 
@@ -116,7 +125,7 @@ app.prepare().then(() => {
 				where: eq(sessions.id, parseInt(sessionId)),
 			});
 
-			const song = await selectRandomSong(session?.packageId ?? null, parseInt(sessionId));
+			const song = await selectRandomSong(session?.packageId ?? null, session);
 			await db.delete(currentSongs).where(eq(currentSongs.sessionId, parseInt(sessionId)));
 
 			await db.insert(currentSongs).values({
@@ -132,65 +141,108 @@ app.prepare().then(() => {
 		}
 	}
 
-	async function selectRandomSong(packageId: number | null, sessionId: number) {
-		let attempts = 0;
-		const maxAttempts = 50;
+	async function selectRandomSong(packageId: number | null, session?: SessionWithPlayer) {
+		if (!session?.currentPlayerId) {
+			throw new Error("No current player found");
+		}
 
-		while (attempts < maxAttempts) {
-			// Get package filters if packageId is provided
-			const package_ = packageId
-				? await db.query.songPackages.findFirst({
-						where: eq(songPackages.id, packageId),
-				  })
-				: null;
+		const playerTimelines = await db.query.timelines.findMany({
+			where: eq(timelines.playerId, session.currentPlayerId),
+			orderBy: (timelines, { desc }) => [desc(timelines.createdAt)],
+		});
 
-			// Build query conditions
-			const conditions = [];
-			if (package_?.filters) {
-				const filters = package_ as PackageConfig;
-				if (filters.filters.genre) conditions.push(eq(songs.genre, filters.filters.genre));
-				if (filters.filters.country) conditions.push(eq(songs.country, filters.filters.country));
-				if (filters.filters.artist) conditions.push(eq(songs.artist, filters.filters.artist));
-				if (filters.filters.years) {
-					conditions.push(
-						between(
-							songs.released,
-							filters.filters.years.start.toString(),
-							filters.filters.years.end.toString()
-						)
-					);
-				}
+		const lastUsedDecade = playerTimelines.length > 0 ? Math.floor(playerTimelines[0].songYear / 10) * 10 : null;
+
+		// Get package filters if packageId is provided
+		const package_ = packageId
+			? await db.query.songPackages.findFirst({
+					where: eq(songPackages.id, packageId),
+			  })
+			: null;
+
+		// Build base query conditions
+		const conditions = [];
+		if (package_?.filters) {
+			const filters = package_ as PackageConfig;
+			if (filters.filters.genre) conditions.push(eq(songs.genre, filters.filters.genre));
+			if (filters.filters.country) conditions.push(eq(songs.country, filters.filters.country));
+			if (filters.filters.artist) conditions.push(eq(songs.artist, filters.filters.artist));
+			if (filters.filters.years) {
+				conditions.push(
+					between(
+						songs.released,
+						filters.filters.years.start.toString(),
+						filters.filters.years.end.toString()
+					)
+				);
 			}
+		}
 
-			// Get all matching songs
-			const matchingSongs = await db.query.songs.findMany({
-				where: conditions.length > 0 ? and(...conditions) : undefined,
-				orderBy: (songs, { asc }) => [asc(songs.rank)],
-				limit: package_?.limit ?? 50,
+		// Get all decades used by this player
+		const usedDecades = new Set(playerTimelines.map((timeline) => Math.floor(timeline.songYear / 10) * 10));
+
+		// Calculate available decades from the database first
+		const decadeRangeResult = await db
+			.select({
+				minYear: sql<string>`MIN(${songs.released})`,
+				maxYear: sql<string>`MAX(${songs.released})`,
+			})
+			.from(songs)
+			.where(conditions.length > 0 ? and(...conditions, gte(songs.rank, package_?.limit ?? 50)) : undefined);
+
+		const minDecade = Math.floor(parseInt(decadeRangeResult[0].minYear || "1900") / 10) * 10;
+		const maxDecade = Math.floor(parseInt(decadeRangeResult[0].maxYear || "2020") / 10) * 10;
+		const totalDecades = (maxDecade - minDecade) / 10;
+
+		// Build the decade condition
+		let decadeCondition;
+		if (usedDecades.size >= totalDecades) {
+			// If all decades have been used, exclude the last used decade
+			decadeCondition = lastUsedDecade
+				? sql`FLOOR(CAST(${songs.released} AS INTEGER) / 10) * 10 != ${lastUsedDecade}`
+				: undefined;
+		} else {
+			// Otherwise, exclude all used decades
+			const usedDecadesArray = Array.from(usedDecades);
+			decadeCondition =
+				usedDecadesArray.length > 0
+					? sql`CAST(FLOOR(CAST(${
+							songs.released
+					  } AS INTEGER) / 10) * 10 AS TEXT) NOT IN (${usedDecadesArray.join(",")})`
+					: undefined;
+		}
+
+		// Combine all conditions
+		const finalConditions = [...conditions, decadeCondition].filter(Boolean);
+
+		// Get matching songs with decade filtering at the database level
+		const matchingSongs = await db.query.songs.findMany({
+			where: finalConditions.length > 0 ? and(...finalConditions) : undefined,
+			orderBy: (songs, { asc }) => asc(songs.rank),
+			limit: package_?.limit ?? 50,
+		});
+		console.log("matchingSongs", matchingSongs);
+
+		if (matchingSongs.length === 0) {
+			throw new Error("No songs match the package filters");
+		}
+
+		// Select random song from available songs
+		const randomSong = matchingSongs[Math.floor(Math.random() * matchingSongs.length)];
+
+		// Check if already used in this session
+		const usedSong = await db.query.usedSongs.findFirst({
+			where: and(eq(usedSongs.sessionId, session.id), eq(usedSongs.songId, randomSong.id)),
+		});
+
+		if (!usedSong) {
+			console.log("inserting used song", randomSong.id, session.id);
+			await db.insert(usedSongs).values({
+				sessionId: session.id,
+				songId: randomSong.id,
 			});
 
-			if (matchingSongs.length === 0) {
-				throw new Error("No songs match the package filters");
-			}
-
-			// Select random song
-			const randomSong = matchingSongs[Math.floor(Math.random() * matchingSongs.length)];
-
-			// Check if already used
-			const usedSong = await db.query.usedSongs.findFirst({
-				where: and(eq(usedSongs.sessionId, sessionId), eq(usedSongs.songId, randomSong.id)),
-			});
-
-			if (!usedSong) {
-				await db.insert(usedSongs).values({
-					sessionId,
-					songId: randomSong.id,
-				});
-
-				return randomSong;
-			}
-
-			attempts++;
+			return randomSong;
 		}
 
 		throw new Error("No more unused songs available");

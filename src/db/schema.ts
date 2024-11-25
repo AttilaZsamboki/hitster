@@ -1,5 +1,5 @@
 import { pgTable, serial, text, timestamp, integer, boolean, jsonb, doublePrecision } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
 
 export const songs = pgTable("songs", {
 	id: serial("id").primaryKey(),
@@ -101,3 +101,5 @@ export const usedSongsRelations = relations(usedSongs, ({ one }) => ({
 		references: [songs.id],
 	}),
 }));
+
+export type SessionWithPlayer = InferSelectModel<typeof sessions>;
