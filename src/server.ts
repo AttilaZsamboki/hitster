@@ -12,10 +12,12 @@ import {
 	songPackages,
 	songs,
 	SessionWithPlayer,
+	playlists,
 } from "./db/schema";
-import { eq, sql, and, between, asc, gte } from "drizzle-orm";
+import { eq, sql, and, between, gte } from "drizzle-orm";
 import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
+import { fetchSpotifyPlaylistTracks, filterTracksByDecade } from "./utils/spotify";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -53,16 +55,6 @@ app.prepare().then(() => {
 			// Get current song if exists
 			const currentSong = await db.query.currentSongs.findFirst({
 				where: eq(currentSongs.sessionId, parseInt(sessionId)),
-				with: {
-					song: {
-						columns: {
-							title: true,
-							artist: true,
-							released: true,
-							album: true,
-						},
-					},
-				},
 			});
 
 			// Map players with their timelines
@@ -72,10 +64,17 @@ app.prepare().then(() => {
 						where: eq(timelines.playerId, player.id),
 						orderBy: (timelines, { asc }) => [asc(timelines.position)],
 					});
+
+					// Check if player has selected a playlist
+					const playerPlaylist = await db.query.playlists.findFirst({
+						where: and(eq(playlists.sessionId, session.id), eq(playlists.playerId, player.id)),
+					});
+
 					return {
 						id: player.id.toString(),
 						name: player.name,
 						score: player.score,
+						hasPlaylist: !!playerPlaylist,
 						timeline: playerTimelines
 							.filter((t) => t.playerId === player.id)
 							.map((t) => ({
@@ -100,10 +99,10 @@ app.prepare().then(() => {
 				currentPlayerId: session.currentPlayerId?.toString() || "",
 				currentSong: currentSong
 					? {
-							title: currentSong.song?.title || "",
-							artist: currentSong.song?.artist || "",
-							year: parseInt(currentSong.song?.released ?? "0"),
-							album: currentSong.song?.album || "",
+							title: currentSong.title,
+							artist: currentSong.artist,
+							year: parseInt(currentSong.released),
+							album: currentSong.album,
 							previewUrl: undefined,
 							spotifyUrl: undefined,
 					  }
@@ -112,6 +111,7 @@ app.prepare().then(() => {
 				currentRound: Math.floor((usedSongsCount.length - 1) / session.players.length) + 1,
 				maxSongs: session.maxSongs ?? 10,
 				currentGuesses: {},
+				mode: session.mode as "packages" | "playlists",
 			};
 		} catch (error) {
 			console.error("Error getting game state:", error);
@@ -130,7 +130,10 @@ app.prepare().then(() => {
 
 			await db.insert(currentSongs).values({
 				sessionId: parseInt(sessionId),
-				songId: song.id,
+				title: song.title,
+				artist: song.artist,
+				album: song.album || "",
+				released: song.released || "",
 			});
 		} catch (error) {
 			console.error("Error updating current song:", error);
@@ -144,6 +147,25 @@ app.prepare().then(() => {
 	async function selectRandomSong(packageId: number | null, session?: SessionWithPlayer) {
 		if (!session?.currentPlayerId) {
 			throw new Error("No current player found");
+		}
+
+		// Check if session is in playlist mode
+		if (session.mode === "playlists") {
+			const playerPlaylists = await db.query.playlists.findMany({
+				where: eq(playlists.sessionId, session.id),
+			});
+
+			// Randomly select a playlist
+			const randomPlaylist = playerPlaylists[Math.floor(Math.random() * playerPlaylists.length)];
+
+			// Fetch songs from Spotify playlist
+			const playlistTracks = await fetchSpotifyPlaylistTracks(randomPlaylist.spotifyPlaylistId);
+
+			// Apply decade filtering logic similar to package mode
+			const filteredTracks = filterTracksByDecade(playlistTracks, session.currentPlayerId);
+			console.log("filteredTracks", filteredTracks);
+
+			return filteredTracks[Math.floor(Math.random() * filteredTracks.length)];
 		}
 
 		const playerTimelines = await db.query.timelines.findMany({
@@ -293,12 +315,11 @@ app.prepare().then(() => {
 					if (detailedGuesses) {
 						const currentSong = await db.query.currentSongs.findFirst({
 							where: eq(currentSongs.sessionId, parseInt(sessionId)),
-							with: { song: true },
 						});
 
 						if (currentSong) {
 							// Exact year check
-							if (detailedGuesses.year?.toString() === currentSong.song?.released) {
+							if (detailedGuesses.year?.toString() === currentSong.released) {
 								totalPoints += 0.5;
 								guessDetails.yearGuess = true;
 							}
@@ -312,17 +333,17 @@ app.prepare().then(() => {
 								return (longerLength - distance) / longerLength;
 							};
 
-							if (similarity(detailedGuesses.artist, currentSong.song?.artist ?? "") >= 0.85) {
+							if (similarity(detailedGuesses.artist, currentSong.artist ?? "") >= 0.85) {
 								totalPoints += 0.5;
 								guessDetails.artistGuess = true;
 							}
 
-							if (similarity(detailedGuesses.album, currentSong.song?.album ?? "") >= 0.85) {
+							if (similarity(detailedGuesses.album, currentSong.album ?? "") >= 0.85) {
 								totalPoints += 0.5;
 								guessDetails.albumGuess = true;
 							}
 
-							if (similarity(detailedGuesses.title, currentSong.song?.title ?? "") >= 0.85) {
+							if (similarity(detailedGuesses.title, currentSong.title ?? "") >= 0.85) {
 								totalPoints += 0.5;
 								guessDetails.titleGuess = true;
 							}
@@ -442,9 +463,6 @@ app.prepare().then(() => {
 			try {
 				const currentSong = await db.query.currentSongs.findFirst({
 					where: eq(currentSongs.sessionId, parseInt(sessionId)),
-					with: {
-						song: true,
-					},
 				});
 
 				if (!currentSong) return;
@@ -455,19 +473,19 @@ app.prepare().then(() => {
 				};
 
 				// Check each guess
-				if (guesses.year.toString() === currentSong.song?.released) {
+				if (guesses.year.toString() === currentSong.released) {
 					pointsEarned += 0.5;
 					guessDetails.yearGuess = true;
 				}
-				if (guesses.artist.toLowerCase() === currentSong.song?.artist.toLowerCase()) {
+				if (guesses.artist.toLowerCase() === currentSong.artist.toLowerCase()) {
 					pointsEarned += 0.5;
 					guessDetails.artistGuess = true;
 				}
-				if (guesses.album.toLowerCase() === currentSong.song?.album?.toLowerCase()) {
+				if (guesses.album.toLowerCase() === currentSong.album?.toLowerCase()) {
 					pointsEarned += 0.5;
 					guessDetails.albumGuess = true;
 				}
-				if (guesses.title.toLowerCase() === currentSong.song?.title.toLowerCase()) {
+				if (guesses.title.toLowerCase() === currentSong.title.toLowerCase()) {
 					pointsEarned += 0.5;
 					guessDetails.titleGuess = true;
 				}
@@ -486,14 +504,34 @@ app.prepare().then(() => {
 					guessDetails,
 					pointsEarned,
 					correctDetails: {
-						year: currentSong.song?.released,
-						artist: currentSong.song?.artist,
-						album: currentSong.song?.album,
-						title: currentSong.song?.title,
+						year: currentSong.released,
+						artist: currentSong.artist,
+						album: currentSong.album,
+						title: currentSong.title,
 					},
 				});
 			} catch (error) {
 				console.error("Error processing detailed guess:", error);
+			}
+		});
+
+		socket.on("selectPlaylist", async ({ sessionId, playerId, playlistId }) => {
+			try {
+				// Save playlist to database
+				await db.insert(playlists).values({
+					name: playlistId,
+					sessionId: parseInt(sessionId),
+					playerId: parseInt(playerId),
+					spotifyPlaylistId: playlistId,
+				});
+
+				// Update game state
+				const newState = await getGameState(sessionId);
+				if (newState) {
+					io.to(`session:${sessionId}`).emit("gameStateUpdate", newState);
+				}
+			} catch (error) {
+				console.error("Error selecting playlist:", error);
 			}
 		});
 

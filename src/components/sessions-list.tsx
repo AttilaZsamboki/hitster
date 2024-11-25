@@ -25,18 +25,26 @@ export default function SessionsList() {
 			.then(setSessions);
 	}, []);
 
-	const handleCreateSession = async ({ name, maxSongs }: { name: string; maxSongs: number }) => {
+	const handleCreateSession = async ({
+		name,
+		maxSongs,
+		mode,
+	}: {
+		name: string;
+		maxSongs: number;
+		mode: "packages" | "playlists";
+	}) => {
 		const res = await fetch("/api/sessions", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ name, maxSongs }),
+			body: JSON.stringify({ name, maxSongs, mode }),
 		});
 		const newSession = await res.json();
 		setSessions([...sessions, newSession]);
 	};
 
 	return (
-		<div className="space-y-4">
+		<div className='space-y-4'>
 			<Button onClick={() => setIsCreateDialogOpen(true)}>Create New Session</Button>
 
 			<CreateSessionDialog
@@ -45,28 +53,27 @@ export default function SessionsList() {
 				onCreateSession={handleCreateSession}
 			/>
 
-			<div className="grid gap-4">
+			<div className='grid gap-4'>
 				{sessions.map((session) => (
-					<Card key={session.id} className="p-4 flex flex-row justify-between items-center">
-						<div className="flex-col flex justify-between items-start">
+					<Card key={session.id} className='p-4 flex flex-row justify-between items-center'>
+						<div className='flex-col flex justify-between items-start'>
 							<h3>{session.name}</h3>
-							<p className="text-sm text-gray-500">
+							<p className='text-sm text-gray-500'>
 								Players: {session.players?.length} | Songs to Win: {session.maxSongs}
 							</p>
 							<Link href={`/game/${session.id}`}>
 								<Button>Join Session</Button>
 							</Link>
 						</div>
-						<div className="flex-col flex justify-between items-end">
+						<div className='flex-col flex justify-between items-end'>
 							<Button
-								className="bg-red-500 hover:bg-red-600 text-white"
+								className='bg-red-500 hover:bg-red-600 text-white'
 								onClick={() => {
 									deleteSession(parseInt(session.id));
 									setSessions(sessions.filter((s) => s.id !== session.id));
 								}}
-								variant="outline"
-							>
-								<Trash2 className="w-4 h-4" />
+								variant='outline'>
+								<Trash2 className='w-4 h-4' />
 							</Button>
 						</div>
 					</Card>

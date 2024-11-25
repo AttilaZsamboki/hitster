@@ -11,12 +11,14 @@ import { GameEffects } from "./game-effects";
 import { WinAnimation } from "./win-animation";
 import { Package, PackageList } from "./package-list";
 import { SongGuessForm } from "./song-guess-form";
+import { PlaylistSelector } from "./playlist-selector";
 
 export interface Song {
 	title: string;
 	artist: string;
 	year: number;
 	released?: string;
+	album?: string;
 }
 
 export interface Timeline {
@@ -219,24 +221,41 @@ function GuessSongGame({
 		return (
 			<div className='space-y-8'>
 				<Card className='p-4'>
-					<PackageList
-						packages={packages}
-						sessionId={sessionId}
-						genres={genres}
-						artists={artists}
-						countries={countries}
-						onSelect={(packageId) => {
-							if (!socket) return;
-							setSelectedPackage(packageId);
-							socket.emit("selectPackage", { sessionId, packageId });
-						}}
-					/>
-					{gameState.players.length > 1 ? (
+					{gameState.mode === "packages" ? (
+						<PackageList
+							packages={packages}
+							sessionId={sessionId}
+							genres={genres}
+							artists={artists}
+							countries={countries}
+							onSelect={(packageId) => {
+								if (!socket) return;
+								setSelectedPackage(packageId);
+								socket.emit("selectPackage", { sessionId, packageId });
+							}}
+						/>
+					) : (
+						<PlaylistSelector
+							onPlaylistSelected={(playlistId) => {
+								if (!socket) return;
+								socket.emit("selectPlaylist", { sessionId, playerId, playlistId });
+							}}
+						/>
+					)}
+					{gameState.players.length > 1 && gameState.mode === "packages" ? (
 						<Button className='mt-4' disabled={!selectedPackage} onClick={() => handleStartGame()}>
 							Start Game
 						</Button>
+					) : gameState.mode === "playlists" && gameState.players.some((p) => p.hasPlaylist) ? (
+						<Button className='mt-4' onClick={() => handleStartGame()}>
+							Start Game
+						</Button>
 					) : (
-						<div className='text-center text-gray-500 py-2'>Waiting for players to join</div>
+						<div className='text-center text-gray-500 py-2'>
+							{gameState.mode === "packages"
+								? "Waiting for players to join"
+								: "Waiting for a player to select a playlist"}
+						</div>
 					)}
 				</Card>
 			</div>

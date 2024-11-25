@@ -3,20 +3,22 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 interface CreateSessionDialogProps {
 	isOpen: boolean;
 	onClose: () => void;
-	onCreateSession: (sessionData: { name: string; maxSongs: number }) => void;
+	onCreateSession: (sessionData: { name: string; maxSongs: number; mode: "packages" | "playlists" }) => void;
 }
 
 export function CreateSessionDialog({ isOpen, onClose, onCreateSession }: CreateSessionDialogProps) {
 	const [sessionName, setSessionName] = useState("");
 	const [maxSongs, setMaxSongs] = useState(10);
+	const [mode, setMode] = useState<"packages" | "playlists">("packages");
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		onCreateSession({ name: sessionName, maxSongs });
+		onCreateSession({ name: sessionName, maxSongs, mode });
 		setSessionName("");
 		setMaxSongs(10);
 		onClose();
@@ -53,6 +55,18 @@ export function CreateSessionDialog({ isOpen, onClose, onCreateSession }: Create
 						<p className='text-sm text-gray-500'>
 							Number of songs a player needs to correctly place to win
 						</p>
+					</div>
+					<div className='space-y-2'>
+						<Label htmlFor='mode'>Mode</Label>
+						<Select value={mode} onValueChange={(value) => setMode(value as "packages" | "playlists")}>
+							<SelectTrigger>
+								<SelectValue placeholder='Select a mode' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='packages'>Packages</SelectItem>
+								<SelectItem value='playlists'>Playlists</SelectItem>
+							</SelectContent>
+						</Select>
 					</div>
 					<DialogFooter>
 						<Button type='button' variant='outline' onClick={onClose}>

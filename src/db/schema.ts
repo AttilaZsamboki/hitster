@@ -24,6 +24,7 @@ export const sessions = pgTable("sessions", {
 	maxSongs: integer("max_songs").default(10),
 	packageLocked: boolean("package_locked").default(false),
 	createdAt: timestamp("created_at").defaultNow(),
+	mode: text("mode").notNull().default("packages"),
 });
 
 export const players = pgTable("players", {
@@ -62,17 +63,16 @@ export const timelines = pgTable("timelines", {
 export const currentSongs = pgTable("current_songs", {
 	id: serial("id").primaryKey(),
 	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
-	songId: integer("song_id").references(() => songs.id, { onDelete: "cascade" }),
+	title: text("title").notNull(),
+	artist: text("artist").notNull(),
+	album: text("album").notNull(),
+	released: text("released").notNull(),
 	createdAt: timestamp("created_at").defaultNow(),
 });
 export const currentSongsRelations = relations(currentSongs, ({ one }) => ({
 	session: one(sessions, {
 		fields: [currentSongs.sessionId],
 		references: [sessions.id],
-	}),
-	song: one(songs, {
-		fields: [currentSongs.songId],
-		references: [songs.id],
 	}),
 }));
 
@@ -101,5 +101,14 @@ export const usedSongsRelations = relations(usedSongs, ({ one }) => ({
 		references: [songs.id],
 	}),
 }));
+
+export const playlists = pgTable("playlists", {
+	id: serial("id").primaryKey(),
+	sessionId: integer("session_id").references(() => sessions.id),
+	playerId: integer("player_id").references(() => players.id),
+	spotifyPlaylistId: text("spotify_playlist_id").notNull(),
+	name: text("name").notNull(),
+	createdAt: timestamp("created_at").defaultNow(),
+});
 
 export type SessionWithPlayer = InferSelectModel<typeof sessions>;

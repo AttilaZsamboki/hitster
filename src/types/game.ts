@@ -5,6 +5,7 @@ export interface Player {
 	name: string;
 	score: number;
 	timeline: Song[];
+	hasPlaylist?: boolean;
 }
 
 export interface GuessDetails {
@@ -33,4 +34,5 @@ export interface GameState {
 	currentRound: number;
 	maxSongs: number;
 	currentGuesses: Record<string, GuessDetails>;
+	mode: "packages" | "playlists";
 }

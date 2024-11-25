@@ -71,6 +71,20 @@
       "when": 1732206357984,
       "tag": "0009_grey_salo",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1732524374866,
+      "tag": "0010_green_northstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1732527220469,
+      "tag": "0011_tricky_the_liberteens",
+      "breakpoints": true
     }
   ]
 }

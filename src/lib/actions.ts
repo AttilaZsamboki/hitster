@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import { currentSongs, players, sessions, timelines } from "@/db/schema";
+import { currentSongs, players, playlists, sessions, timelines } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
 
@@ -19,6 +19,7 @@ export async function deleteSession(sessionId: number) {
 		await db.delete(timelines).where(eq(timelines.playerId, player.id));
 	}
 
+	await db.delete(playlists).where(eq(playlists.sessionId, sessionId));
 	// Finally delete the session
 	await db.delete(sessions).where(eq(sessions.id, sessionId));
 }
