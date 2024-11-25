@@ -42,7 +42,7 @@ export async function GET() {
 				id: playlist.id,
 				name: playlist.name,
 				trackCount: playlist.tracks.total,
-				imageUrl: playlist.images[0]?.url,
+				imageUrl: playlist.images?.[0]?.url,
 			})
 		);
 
