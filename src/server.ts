@@ -17,7 +17,7 @@ import {
 import { eq, sql, and, between, gte } from "drizzle-orm";
 import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
-import { fetchSpotifyPlaylistTracks, filterTracksByDecade } from "./utils/spotify";
+import { fetchSpotifyPlaylistTracks } from "./utils/spotify";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -162,10 +162,21 @@ app.prepare().then(() => {
 			const playlistTracks = await fetchSpotifyPlaylistTracks(randomPlaylist.spotifyPlaylistId);
 
 			// Apply decade filtering logic similar to package mode
-			const filteredTracks = filterTracksByDecade(playlistTracks, session.currentPlayerId);
-			console.log("filteredTracks", filteredTracks);
+			const used = await db.query.usedSongs.findMany({
+				where: eq(usedSongs.sessionId, session.id),
+			});
 
-			return filteredTracks[Math.floor(Math.random() * filteredTracks.length)];
+			const filteredTracks = playlistTracks.filter((track) => !used.some((used) => used.songId === track.id));
+			console.log("filteredTracks", filteredTracks.length);
+
+			const randomPlaylistSong = filteredTracks[Math.floor(Math.random() * filteredTracks.length)];
+
+			await db.insert(usedSongs).values({
+				sessionId: session.id,
+				songId: randomPlaylistSong.id ?? "",
+			});
+
+			return randomPlaylistSong;
 		}
 
 		const playerTimelines = await db.query.timelines.findMany({
@@ -254,14 +265,14 @@ app.prepare().then(() => {
 
 		// Check if already used in this session
 		const usedSong = await db.query.usedSongs.findFirst({
-			where: and(eq(usedSongs.sessionId, session.id), eq(usedSongs.songId, randomSong.id)),
+			where: and(eq(usedSongs.sessionId, session.id), eq(usedSongs.songId, randomSong.id.toString())),
 		});
 
 		if (!usedSong) {
 			console.log("inserting used song", randomSong.id, session.id);
 			await db.insert(usedSongs).values({
 				sessionId: session.id,
-				songId: randomSong.id,
+				songId: randomSong.id.toString(),
 			});
 
 			return randomSong;

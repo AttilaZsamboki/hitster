@@ -14,6 +14,7 @@ import { SongGuessForm } from "./song-guess-form";
 import { PlaylistSelector } from "./playlist-selector";
 
 export interface Song {
+	id?: string;
 	title: string;
 	artist: string;
 	year: number;

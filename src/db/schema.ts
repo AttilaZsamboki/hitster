@@ -87,7 +87,7 @@ export const songPackages = pgTable("song_packages", {
 export const usedSongs = pgTable("used_songs", {
 	id: serial("id").primaryKey(),
 	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
-	songId: integer("song_id").references(() => songs.id, { onDelete: "cascade" }),
+	songId: text("song_id").notNull(),
 	createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -95,10 +95,6 @@ export const usedSongsRelations = relations(usedSongs, ({ one }) => ({
 	session: one(sessions, {
 		fields: [usedSongs.sessionId],
 		references: [sessions.id],
-	}),
-	song: one(songs, {
-		fields: [usedSongs.songId],
-		references: [songs.id],
 	}),
 }));
 
