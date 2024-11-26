@@ -1,33 +1,60 @@
 import { Song } from "./game";
 import { Button } from "./ui/button";
+import React, { useState } from "react";
 
 interface TimelineProps {
 	songs: Song[];
-	onGuess?: (position: string, detailedGuesses?: { year: number; artist: string; album: string; title: string }) => void;
+	onGuess?: (
+		position: string,
+		detailedGuesses?: { year: number; artist: string; album: string; title: string }
+	) => void;
 	isCurrentPlayer: boolean;
 	currentSong?: Song;
 	isLocalPlayer: boolean;
 	detailedGuesses?: { year: number; artist: string; album: string; title: string };
+	isButtonClicked: boolean;
+	setIsButtonClicked: (value: boolean) => void;
 }
 
-export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocalPlayer, detailedGuesses }: TimelineProps) {
+export function Timeline({
+	songs,
+	onGuess,
+	isCurrentPlayer,
+	currentSong,
+	isLocalPlayer,
+	detailedGuesses,
+	isButtonClicked,
+	setIsButtonClicked,
+}: TimelineProps) {
 	const sortedSongs = [...songs].sort((a, b) => a.year - b.year);
 
 	const handleGuess = (position: string) => {
+		if (isButtonClicked) return;
+		setIsButtonClicked(true);
 		onGuess?.(position, detailedGuesses);
 	};
 
 	const getGuessOptions = () => {
 		if (sortedSongs.length === 0) {
 			return [
-				<Button key='first' onClick={() => handleGuess("first")} variant='outline' className='w-full' disabled={!detailedGuesses}>
+				<Button
+					key='first'
+					onClick={() => handleGuess("first")}
+					variant='outline'
+					className='w-full'
+					disabled={!detailedGuesses}>
 					Place First Song
 				</Button>,
 			];
 		}
 
 		const options = [
-			<Button key='older' onClick={() => handleGuess("older")} variant='outline' className='w-full' disabled={!detailedGuesses}>
+			<Button
+				key='older'
+				onClick={() => handleGuess("older")}
+				variant='outline'
+				className='w-full'
+				disabled={!detailedGuesses}>
 				Older than {sortedSongs[0].year}
 			</Button>,
 		];
@@ -41,8 +68,7 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 					onClick={() => handleGuess(`between:${i}`)}
 					variant='outline'
 					className='w-full'
-					disabled={!detailedGuesses}
-				>
+					disabled={!detailedGuesses}>
 					Between {sortedSongs[i].year} and {sortedSongs[i + 1].year}
 				</Button>
 			);
@@ -55,13 +81,14 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 				onClick={() => handleGuess(`newer:${sortedSongs.length - 1}`)}
 				variant='outline'
 				className='w-full'
-				disabled={!detailedGuesses}
-			>
+				disabled={!detailedGuesses}>
 				Newer than {sortedSongs[sortedSongs.length - 1].year}
 			</Button>
 		);
 
-		return options;
+		return options.map((option) =>
+			React.cloneElement(option, { disabled: isButtonClicked || option.props.disabled })
+		);
 	};
 
 	return (
@@ -88,7 +115,7 @@ export function Timeline({ songs, onGuess, isCurrentPlayer, currentSong, isLocal
 			{isCurrentPlayer && onGuess && currentSong && (
 				<div className='space-y-2'>
 					{!detailedGuesses && (
-						<p className="text-sm text-gray-500 text-center">
+						<p className='text-sm text-gray-500 text-center'>
 							Fill in your guesses above before placing the song
 						</p>
 					)}

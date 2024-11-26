@@ -157,6 +157,7 @@ function GuessSongGame({
 		album: string;
 		title: string;
 	} | null>(null);
+	const [isButtonClicked, setIsButtonClicked] = useState(false);
 
 	useEffect(() => {
 		if (!socket) {
@@ -189,6 +190,7 @@ function GuessSongGame({
 				pointsEarned?: number;
 			}) => {
 				console.log("Received guess result:", result);
+				setIsButtonClicked(false);
 				setGuessResult(result);
 			}
 		);
@@ -368,6 +370,8 @@ function GuessSongGame({
 									currentSong={gameState?.currentSong}
 									isLocalPlayer={player.id === playerId}
 									detailedGuesses={currentDetailedGuesses ?? undefined}
+									isButtonClicked={isButtonClicked}
+									setIsButtonClicked={setIsButtonClicked}
 								/>
 							</Card>
 						))}
