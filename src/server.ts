@@ -14,10 +14,11 @@ import {
 	SessionWithPlayer,
 	playlists,
 } from "./db/schema";
-import { eq, sql, and, between, gte } from "drizzle-orm";
+import { eq, sql, and, between, gte, notInArray } from "drizzle-orm";
 import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
 import { fetchSpotifyPlaylistTracks } from "./utils/spotify";
+import { Song } from "./components/game";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -144,6 +145,40 @@ app.prepare().then(() => {
 		}
 	}
 
+	async function cachePlaylistSongs(sessionId: number) {
+		try {
+			const pl = await db.query.playlists.findMany({
+				where: eq(playlists.sessionId, sessionId),
+			});
+
+			let allSongs: Song[] = [];
+			for (const playlist of pl) {
+				const playlistTracks = await fetchSpotifyPlaylistTracks(playlist.spotifyPlaylistId);
+				allSongs = [...allSongs, ...playlistTracks];
+			}
+
+			// Store all songs in the database
+			await db
+				.insert(songs)
+				.values(
+					allSongs.map((song) => ({
+						title: song.title,
+						artist: song.artist,
+						released: song.released?.toString() || "",
+						album: song.album || "",
+						rank: 0,
+						sessionId,
+					}))
+				)
+				.onConflictDoNothing(); // Ignore duplicates
+
+			return allSongs.length;
+		} catch (error) {
+			console.error("Error caching playlist songs:", error);
+			throw error;
+		}
+	}
+
 	async function selectRandomSong(packageId: number | null, session?: SessionWithPlayer) {
 		if (!session?.currentPlayerId) {
 			throw new Error("No current player found");
@@ -151,32 +186,33 @@ app.prepare().then(() => {
 
 		// Check if session is in playlist mode
 		if (session.mode === "playlists") {
-			const playerPlaylists = await db.query.playlists.findMany({
-				where: eq(playlists.sessionId, session.id),
-			});
+			// Get all cached songs for this session
 
-			// Randomly select a playlist
-			const randomPlaylist = playerPlaylists[Math.floor(Math.random() * playerPlaylists.length)];
-
-			// Fetch songs from Spotify playlist
-			const playlistTracks = await fetchSpotifyPlaylistTracks(randomPlaylist.spotifyPlaylistId);
-
-			// Apply decade filtering logic similar to package mode
 			const used = await db.query.usedSongs.findMany({
 				where: eq(usedSongs.sessionId, session.id),
 			});
+			const randomSong = await db.query.songs.findMany({
+				where: and(
+					eq(songs.sessionId, session.id),
+					notInArray(
+						songs.id,
+						used.map((u) => parseInt(u.songId ?? "0"))
+					)
+				),
+				limit: 1,
+				orderBy: sql`RANDOM()`,
+			});
 
-			const filteredTracks = playlistTracks.filter((track) => !used.some((used) => used.songId === track.id));
-			console.log("filteredTracks", filteredTracks.length);
-
-			const randomPlaylistSong = filteredTracks[Math.floor(Math.random() * filteredTracks.length)];
+			if (randomSong.length === 0) {
+				throw new Error("No songs found in playlists");
+			}
 
 			await db.insert(usedSongs).values({
 				sessionId: session.id,
-				songId: randomPlaylistSong.id ?? "",
+				songId: randomSong[0].id.toString(),
 			});
 
-			return randomPlaylistSong;
+			return randomSong[0];
 		}
 
 		const playerTimelines = await db.query.timelines.findMany({
@@ -426,7 +462,14 @@ app.prepare().then(() => {
 		socket.on("startGame", async ({ sessionId }: { sessionId: string }) => {
 			console.log("startGame", sessionId);
 			try {
-				// Select random song
+				const session = await db.query.sessions.findFirst({
+					where: eq(sessions.id, parseInt(sessionId)),
+				});
+
+				if (session?.mode === "playlists") {
+					// Cache all playlist songs before starting
+					await cachePlaylistSongs(parseInt(sessionId));
+				}
 
 				// Update session status and set first player
 				await db

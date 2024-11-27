@@ -13,6 +13,7 @@ export const songs = pgTable("songs", {
 	cspc: integer("cspc"),
 	album: text("album"),
 	artistSpotifyId: text("artist_spotify_id"),
+	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
 });
 
 export const sessions = pgTable("sessions", {
