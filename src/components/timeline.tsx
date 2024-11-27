@@ -1,6 +1,6 @@
 import { Song } from "./game";
 import { Button } from "./ui/button";
-import React, { useState } from "react";
+import React from "react";
 
 interface TimelineProps {
 	songs: Song[];
