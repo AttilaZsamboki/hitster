@@ -257,7 +257,11 @@ app.prepare().then(() => {
 				maxYear: sql<string>`MAX(${songs.released})`,
 			})
 			.from(songs)
-			.where(conditions.length > 0 ? and(...conditions, gte(songs.rank, package_?.limit ?? 50)) : undefined);
+			.where(
+				conditions.length > 0
+					? and(...conditions, gte(songs.rank, package_?.limit ?? 50), eq(songs.sessionId, session.id))
+					: undefined
+			);
 
 		const minDecade = Math.floor(parseInt(decadeRangeResult[0].minYear || "1900") / 10) * 10;
 		const maxDecade = Math.floor(parseInt(decadeRangeResult[0].maxYear || "2020") / 10) * 10;
@@ -296,15 +300,18 @@ app.prepare().then(() => {
 			throw new Error("No songs match the package filters");
 		}
 
+		const usedSongsSession = await db.query.usedSongs.findMany({
+			where: eq(usedSongs.sessionId, session.id),
+		});
+		const filteredMatchingSongs = matchingSongs.filter(
+			(song) => !usedSongsSession.some((usedSong) => usedSong.songId === song.id.toString())
+		);
+
 		// Select random song from available songs
-		const randomSong = matchingSongs[Math.floor(Math.random() * matchingSongs.length)];
+		const randomSong = filteredMatchingSongs[Math.floor(Math.random() * filteredMatchingSongs.length)];
 
 		// Check if already used in this session
-		const usedSong = await db.query.usedSongs.findFirst({
-			where: and(eq(usedSongs.sessionId, session.id), eq(usedSongs.songId, randomSong.id.toString())),
-		});
-
-		if (!usedSong) {
+		if (randomSong) {
 			console.log("inserting used song", randomSong.id, session.id);
 			await db.insert(usedSongs).values({
 				sessionId: session.id,
