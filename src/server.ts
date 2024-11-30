@@ -151,28 +151,30 @@ app.prepare().then(() => {
 				where: eq(playlists.sessionId, sessionId),
 			});
 
-			let allSongs: Song[] = [];
+			let totalSongs = 0;
 			for (const playlist of pl) {
 				const playlistTracks = await fetchSpotifyPlaylistTracks(playlist.spotifyPlaylistId);
-				allSongs = [...allSongs, ...playlistTracks];
+				
+				// Store songs with playlist ID
+				await db
+					.insert(songs)
+					.values(
+						playlistTracks.map((song) => ({
+							title: song.title,
+							artist: song.artist,
+							released: song.released?.toString() || "",
+							album: song.album || "",
+							rank: 0,
+							sessionId,
+							playlistId: playlist.id,
+						}))
+					)
+					.onConflictDoNothing();
+					
+				totalSongs += playlistTracks.length;
 			}
 
-			// Store all songs in the database
-			await db
-				.insert(songs)
-				.values(
-					allSongs.map((song) => ({
-						title: song.title,
-						artist: song.artist,
-						released: song.released?.toString() || "",
-						album: song.album || "",
-						rank: 0,
-						sessionId,
-					}))
-				)
-				.onConflictDoNothing(); // Ignore duplicates
-
-			return allSongs.length;
+			return totalSongs;
 		} catch (error) {
 			console.error("Error caching playlist songs:", error);
 			throw error;

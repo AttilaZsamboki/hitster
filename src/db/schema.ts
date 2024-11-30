@@ -14,6 +14,7 @@ export const songs = pgTable("songs", {
 	album: text("album"),
 	artistSpotifyId: text("artist_spotify_id"),
 	sessionId: integer("session_id").references(() => sessions.id, { onDelete: "cascade" }),
+	playlistId: integer("playlist_id"),
 });
 
 export const sessions = pgTable("sessions", {
