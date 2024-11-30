@@ -18,7 +18,6 @@ import { eq, sql, and, between, gte, notInArray } from "drizzle-orm";
 import { GameState, GuessDetails, Player } from "./types/game";
 import { PackageConfig } from "./types/music";
 import { fetchSpotifyPlaylistTracks } from "./utils/spotify";
-import { Song } from "./components/game";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -154,7 +153,7 @@ app.prepare().then(() => {
 			let totalSongs = 0;
 			for (const playlist of pl) {
 				const playlistTracks = await fetchSpotifyPlaylistTracks(playlist.spotifyPlaylistId);
-				
+
 				// Store songs with playlist ID
 				await db
 					.insert(songs)
@@ -170,7 +169,7 @@ app.prepare().then(() => {
 						}))
 					)
 					.onConflictDoNothing();
-					
+
 				totalSongs += playlistTracks.length;
 			}
 
