@@ -11,6 +11,7 @@ export async function GET() {
                user-read-playback-state \
                playlist-modify-public \
                playlist-modify-private \
+			   playlist-read-collaborative \
                user-library-read \
                user-modify-playback-state";
 
