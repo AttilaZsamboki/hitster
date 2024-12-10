@@ -207,6 +207,7 @@ app.prepare().then(() => {
 					eq(songs.playlistId, randomPlaylist[0].id)
 				),
 				limit: 1,
+				orderBy: sql`RANDOM()`,
 			});
 
 			if (randomSong.length === 0) {
