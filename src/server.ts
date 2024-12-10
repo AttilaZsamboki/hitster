@@ -192,16 +192,21 @@ app.prepare().then(() => {
 			const used = await db.query.usedSongs.findMany({
 				where: eq(usedSongs.sessionId, session.id),
 			});
+			const randomPlaylist = await db.query.playlists.findMany({
+				where: eq(playlists.sessionId, session.id),
+				limit: 1,
+				orderBy: sql`RANDOM()`,
+			});
 			const randomSong = await db.query.songs.findMany({
 				where: and(
 					eq(songs.sessionId, session.id),
 					notInArray(
 						songs.id,
 						used.map((u) => parseInt(u.songId ?? "0"))
-					)
+					),
+					eq(songs.playlistId, randomPlaylist[0].id)
 				),
 				limit: 1,
-				orderBy: sql`RANDOM()`,
 			});
 
 			if (randomSong.length === 0) {
